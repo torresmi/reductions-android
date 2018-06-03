@@ -1,0 +1,63 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext {
+
+        //////////////////////////////////////////////////
+        // VERSIONS
+
+        // Tooling
+
+        androidGradlePluginVersion = '3.1.2'
+        kotlinVersion = '1.2.30'
+
+        // Libraries
+
+        appCompatVersion = '1.0.0-alpha1'
+        constraintLayoutVersion = '1.1.0'
+        materialVersion = '1.0.0-alpha1'
+
+        // Testing
+
+        androidTestRunnerVersion = '1.0.2'
+        espressoVersion = '3.0.2'
+        junitVersion = '4.12'
+
+        //////////////////////////////////////////////////
+        // DEPENDENCIES
+
+        // Libraries
+
+        appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
+        constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+        kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+        material = "com.google.android.material:material:$materialVersion"
+
+        // Testing
+
+        androidTestRunner = "com.android.support.test:runner:$androidTestRunnerVersion"
+        espresso = "com.android.support.test.espresso:espresso-core:$espressoVersion"
+        junit = "junit:junit:$junitVersion"
+    }
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$androidGradlePluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
