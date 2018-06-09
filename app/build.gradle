@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 'android-P'
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.fuzzyfunctors.reductions"
         minSdkVersion 21
-        targetSdkVersion 'P'
+        targetSdkVersion 28
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
