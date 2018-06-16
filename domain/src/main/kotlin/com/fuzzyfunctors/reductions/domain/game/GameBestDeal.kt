@@ -5,6 +5,6 @@ data class GameBestDeal(
         val steamAppID: String?,
         val cheapest: String,
         val cheapestDealID: String,
-        val external: String,
+        val title: String,
         val thumb: String
 )
