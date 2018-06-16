@@ -1,7 +1,9 @@
 package com.fuzzyfunctors.reductions.domain.store
 
+typealias StoreId = String
+
 data class Store(
-        val id: String,
+        val id: StoreId,
         val name: String,
         val isActive: Boolean,
         val images: Images
