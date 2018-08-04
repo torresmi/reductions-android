@@ -8,7 +8,6 @@ import com.fuzzyfunctors.reductions.data.store.Store
 import com.fuzzyfunctors.reductions.domain.deal.DealId
 import com.fuzzyfunctors.reductions.domain.game.GameId
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
@@ -20,10 +19,10 @@ interface CheapSharkService {
             @QueryMap stringParams: Map<String, String>,
             @QueryMap intParams: Map<String, Int>,
             @QueryMap boolParams: Map<String, Boolean>
-    ): Call<Response<List<Deal>>>
+    ): Call<List<Deal>>
 
     @GET("deals")
-    fun getDeal(@Query("id") dealId: DealId): Call<Response<DealInfoResponse>>
+    fun getDeal(@Query("id") dealId: DealId): Call<DealInfoResponse>
 
     @GET("games")
     fun getGames(
@@ -31,10 +30,10 @@ interface CheapSharkService {
             @Query("steamAppID") steamAppId: Int? = null,
             @Query("limit") limit: Int? = null,
             @Query("exact") exact: Boolean? = null
-    ): Call<Response<List<GameBestDeal>>>
+    ): Call<List<GameBestDeal>>
 
     @GET("games")
-    fun getGame(@Query("id") gameId: GameId): Call<Response<GameInfoResponse>>
+    fun getGame(@Query("id") gameId: GameId): Call<GameInfoResponse>
 
     @GET("stores")
     fun getStores(): Call<List<Store>>
@@ -45,7 +44,7 @@ interface CheapSharkService {
             @Query("email") email: String,
             @Query("gameID") gameId: GameId,
             @Query("price") price: Double?
-    ): Call<Response<Boolean>>
+    ): Call<Boolean>
 
     companion object {
         const val BASE_URL = "http://www.cheapshark.com/api/1.0/"
