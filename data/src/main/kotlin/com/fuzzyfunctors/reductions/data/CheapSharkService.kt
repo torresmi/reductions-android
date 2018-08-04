@@ -37,7 +37,7 @@ interface CheapSharkService {
     fun getGame(@Query("id") gameId: GameId): Call<Response<GameInfoResponse>>
 
     @GET("stores")
-    fun getStores(): Call<Response<List<Store>>>
+    fun getStores(): Call<List<Store>>
 
     @GET("alerts")
     fun updateAlert(
@@ -46,4 +46,8 @@ interface CheapSharkService {
             @Query("gameID") gameId: GameId,
             @Query("price") price: Double?
     ): Call<Response<Boolean>>
+
+    companion object {
+        const val BASE_URL = "http://www.cheapshark.com/api/1.0/"
+    }
 }
