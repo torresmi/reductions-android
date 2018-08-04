@@ -13,6 +13,7 @@ dependencies {
     compile moshi
     compile moshiConverter
     compile retrofit
+    compile rxJava
 
     testCompile junit
     testCompile kotlinTest
