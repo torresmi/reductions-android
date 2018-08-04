@@ -35,7 +35,7 @@ buildscript {
 
         appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
         constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-        kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+        kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
         material = "com.google.android.material:material:$materialVersion"
         moshi = "com.squareup.moshi:moshi:$moshiVersion"
         moshiConverter = "com.squareup.retrofit2:converter-moshi:$moshiConverterVersion"
