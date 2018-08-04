@@ -8,4 +8,7 @@ dependencies {
     compile project(':core')
 
     compile kotlinStdLib
+    compile moshi
+    compile moshiConverter
+    compile retrofit
 }
