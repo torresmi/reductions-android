@@ -19,17 +19,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
     implementation project(':data')
     implementation project(':presentation')
-
     implementation appCompat
     implementation constraintLayout
     implementation kotlinStdLib
     implementation material
-
+    implementation rxAndroid
+    implementation rxJava
+    implementation rxJavaCallAdapter
     testImplementation junit
     androidTestImplementation androidTestRunner
     androidTestImplementation espresso
