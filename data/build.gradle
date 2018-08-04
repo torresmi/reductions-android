@@ -9,6 +9,7 @@ dependencies {
     compile project(':domain')
     compile project(':core')
 
+    compile arrowCore
     compile kotlinStdLib
     compile moshi
     compile moshiConverter

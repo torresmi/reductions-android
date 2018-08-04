@@ -25,7 +25,9 @@ android {
 dependencies {
     implementation project(':data')
     implementation project(':presentation')
+
     implementation appCompat
+    implementation arrowCore
     implementation constraintLayout
     implementation kotlinStdLib
     implementation material
