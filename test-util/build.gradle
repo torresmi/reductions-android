@@ -7,4 +7,5 @@ dependencies {
 
     compile project(':core')
     compile kotlinTest
+    compile remoteData
 }
