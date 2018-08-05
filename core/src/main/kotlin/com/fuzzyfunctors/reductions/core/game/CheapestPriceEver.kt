@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.domain.game
+package com.fuzzyfunctors.reductions.core.game
 
 import java.util.Date
 

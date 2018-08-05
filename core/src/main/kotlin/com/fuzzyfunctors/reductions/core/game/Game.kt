@@ -1,7 +1,7 @@
-package com.fuzzyfunctors.reductions.domain.game
+package com.fuzzyfunctors.reductions.core.game
 
-import com.fuzzyfunctors.reductions.domain.deal.DealId
-import com.fuzzyfunctors.reductions.domain.store.StoreId
+import com.fuzzyfunctors.reductions.core.deal.DealId
+import com.fuzzyfunctors.reductions.core.store.StoreId
 
 typealias GameId = String
 

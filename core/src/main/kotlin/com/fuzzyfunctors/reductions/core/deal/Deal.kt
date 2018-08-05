@@ -1,8 +1,8 @@
-package com.fuzzyfunctors.reductions.domain.deal
+package com.fuzzyfunctors.reductions.core.deal
 
-import com.fuzzyfunctors.reductions.domain.game.CheapestPriceEver
-import com.fuzzyfunctors.reductions.domain.game.GameId
-import com.fuzzyfunctors.reductions.domain.store.StoreId
+import com.fuzzyfunctors.reductions.core.game.CheapestPriceEver
+import com.fuzzyfunctors.reductions.core.game.GameId
+import com.fuzzyfunctors.reductions.core.store.StoreId
 import java.util.Date
 
 typealias DealId = String

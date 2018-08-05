@@ -5,8 +5,8 @@ import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
 import com.fuzzyfunctors.reductions.data.game.GameBestDeal
 import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
-import com.fuzzyfunctors.reductions.domain.deal.DealId
-import com.fuzzyfunctors.reductions.domain.game.GameId
+import com.fuzzyfunctors.reductions.core.deal.DealId
+import com.fuzzyfunctors.reductions.core.game.GameId
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
