@@ -27,6 +27,9 @@ buildscript {
         androidTestRunnerVersion = '1.0.2'
         espressoVersion = '3.0.2'
         junitVersion = '4.12'
+        junitPlatformPluginVersion = '1.0.1'
+        kotlinTestVersion = '3.1.7'
+        mockkVersion = '1.8.6'
 
         //////////////////////////////////////////////////
         // DEPENDENCIES
@@ -46,6 +49,8 @@ buildscript {
         androidTestRunner = "com.android.support.test:runner:$androidTestRunnerVersion"
         espresso = "com.android.support.test.espresso:espresso-core:$espressoVersion"
         junit = "junit:junit:$junitVersion"
+        kotlinTest = "io.kotlintest:kotlintest-runner-junit5:$kotlinTestVersion"
+        mockk = "io.mockk:mockk:$mockkVersion"
     }
 
     repositories {
@@ -56,6 +61,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$androidGradlePluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion"
+        classpath "org.junit.platform:junit-platform-gradle-plugin:$junitPlatformPluginVersion"
     }
 }
 
