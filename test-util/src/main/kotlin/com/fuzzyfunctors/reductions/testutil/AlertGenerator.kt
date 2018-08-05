@@ -17,7 +17,7 @@ class AlertGenerator : Gen<Alert> {
         Alert(
                 email = randomString(),
                 gameID = randomString(),
-                price = randomString()
+                price = NullableGenerator(Gen.string()).firstRandom()
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.`test-util`
+package com.fuzzyfunctors.reductions.testutil
 
 import com.fuzzyfunctors.reductions.core.store.Store
 import io.kotlintest.properties.Gen
