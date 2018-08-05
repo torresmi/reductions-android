@@ -26,10 +26,13 @@ dependencies {
     implementation project(':presentation')
 
     implementation appCompat
+    implementation arrowCore
     implementation constraintLayout
     implementation kotlinStdLib
     implementation material
-
+    implementation rxAndroid
+    implementation rxJava
+    implementation rxJavaCallAdapter
     testImplementation junit
     androidTestImplementation androidTestRunner
     androidTestImplementation espresso

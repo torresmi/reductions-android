@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.data
+package com.fuzzyfunctors.reductions.data.network
 
 import com.fuzzyfunctors.reductions.data.deal.Deal
 import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
@@ -7,7 +7,10 @@ import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.game.GameId
+import io.reactivex.Flowable
+import io.reactivex.Single
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
@@ -19,10 +22,10 @@ interface CheapSharkService {
             @QueryMap stringParams: Map<String, String>,
             @QueryMap intParams: Map<String, Int>,
             @QueryMap boolParams: Map<String, Boolean>
-    ): Call<List<Deal>>
+    ): Single<Response<List<Deal>>>
 
     @GET("deals")
-    fun getDeal(@Query("id") dealId: DealId): Call<DealInfoResponse>
+    fun getDeal(@Query("id") dealId: DealId): Single<Response<DealInfoResponse>>
 
     @GET("games")
     fun getGames(
@@ -30,13 +33,13 @@ interface CheapSharkService {
             @Query("steamAppID") steamAppId: Int? = null,
             @Query("limit") limit: Int? = null,
             @Query("exact") exact: Boolean? = null
-    ): Call<List<GameBestDeal>>
+    ): Single<Response<List<GameBestDeal>>>
 
     @GET("games")
-    fun getGame(@Query("id") gameId: GameId): Call<GameInfoResponse>
+    fun getGame(@Query("id") gameId: GameId): Single<GameInfoResponse>
 
     @GET("stores")
-    fun getStores(): Call<List<Store>>
+    fun getStores(): Single<Response<List<Store>>>
 
     @GET("alerts")
     fun updateAlert(
@@ -44,7 +47,7 @@ interface CheapSharkService {
             @Query("email") email: String,
             @Query("gameID") gameId: GameId,
             @Query("price") price: Double?
-    ): Call<Boolean>
+    ): Single<Response<Boolean>>
 
     companion object {
         const val BASE_URL = "http://www.cheapshark.com/api/1.0/"

@@ -1,7 +1,7 @@
 package com.fuzzyfunctors.reductions
 
 import android.app.Application
-import com.fuzzyfunctors.reductions.data.CheapSharkService
+import com.fuzzyfunctors.reductions.data.network.CheapSharkService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
