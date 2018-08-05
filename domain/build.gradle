@@ -10,6 +10,7 @@ dependencies {
 
     compile arrowCore
     compile kotlinStdLib
+    compile remoteData
     compile rxJava
 
     testCompile junit

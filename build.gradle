@@ -21,6 +21,7 @@ buildscript {
         materialVersion = '1.0.0-beta01'
         moshiVersion = '1.6.0'
         moshiConverterVersion = '2.4.0'
+        remoteDataVersion = '1.1'
         retrofitVersion = '2.4.0'
         rxAndroidVersion = '2.0.2'
         rxJavaVersion = '2.2.0'
@@ -47,6 +48,7 @@ buildscript {
         material = "com.google.android.material:material:$materialVersion"
         moshi = "com.squareup.moshi:moshi:$moshiVersion"
         moshiConverter = "com.squareup.retrofit2:converter-moshi:$moshiConverterVersion"
+        remoteData = "com.github.torresmi:remotedata:$remoteDataVersion"
         retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         rxAndroid = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
         rxJava = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

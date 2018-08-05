@@ -13,6 +13,7 @@ dependencies {
     compile kotlinStdLib
     compile moshi
     compile moshiConverter
+    compile remoteData
     compile retrofit
     compile rxJava
 
