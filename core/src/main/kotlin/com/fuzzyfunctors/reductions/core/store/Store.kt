@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.domain.store
+package com.fuzzyfunctors.reductions.core.store
 
 typealias StoreId = String
 

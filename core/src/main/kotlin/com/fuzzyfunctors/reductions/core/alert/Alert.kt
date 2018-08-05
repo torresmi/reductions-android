@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.domain.alert
+package com.fuzzyfunctors.reductions.core.alert
 
 data class Alert(
         val email: String,

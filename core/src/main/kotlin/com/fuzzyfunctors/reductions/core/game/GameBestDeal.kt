@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.domain.game
+package com.fuzzyfunctors.reductions.core.game
 
 data class GameBestDeal(
         val gameID: String,
