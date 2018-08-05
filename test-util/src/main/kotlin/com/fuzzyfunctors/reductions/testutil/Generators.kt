@@ -1,5 +1,6 @@
-package com.fuzzyfunctors.reductions.`test-util`
+package com.fuzzyfunctors.reductions.testutil
 
+import com.fuzzyfunctors.reductions.core.alert.Alert
 import com.fuzzyfunctors.reductions.core.store.Store
 import io.kotlintest.properties.Gen
 
@@ -12,3 +13,5 @@ fun randomBool(): Boolean = Gen.bool().firstRandom()
 fun randomInt(): Int = Gen.int().firstRandom()
 
 fun randomStore(): Store = StoreGenerator().firstRandom()
+
+fun randomAlert(): Alert = AlertGenerator().firstRandom()
