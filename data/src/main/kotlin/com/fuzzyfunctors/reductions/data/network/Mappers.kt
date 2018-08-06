@@ -52,31 +52,35 @@ fun Deal.toCore(): CoreDeal =
                 iconLink = thumb
         )
 
-fun DealInfoResponse.toCore(dealId: DealId): DealInfo =
-        DealInfo(
-                id = dealId,
-                storeId = gameInfo.storeID,
-                gameId = gameInfo.gameID,
-                title = gameInfo.name,
-                salePrice = gameInfo.salePrice,
-                normalPrice = gameInfo.retailPrice,
-                metacriticData = metacriticData(
-                        metacriticLink = gameInfo.metacriticLink,
-                        metacriticScore = gameInfo.metacriticScore
-                ),
-                steamData = steamData(
-                        steamAppID = gameInfo.steamAppID,
-                        steamRatingCount = gameInfo.steamRatingCount,
-                        steamRatingText = gameInfo.steamRatingText,
-                        steamRatingPercent = gameInfo.steamRatingPercent
-                ),
-                releaseDate = Date(gameInfo.releaseDate),
-                iconLink = gameInfo.thumb,
-                publisher = gameInfo.publisher,
-                steamWorks = gameInfo.steamworks == "1",
-                cheapestPriceEver = cheapestPrice.toCore(),
-                cheaperStores = cheaperStores.map { it.toCore() }.associateBy { it.storeId }
-        )
+fun DealInfoResponse.toCore(dealId: DealId): DealInfo {
+    val isOnSale = gameInfo.salePrice != gameInfo.retailPrice
+    val salePrice = if (isOnSale) gameInfo.salePrice else null
+
+    return DealInfo(
+            id = dealId,
+            storeId = gameInfo.storeID,
+            gameId = gameInfo.gameID,
+            title = gameInfo.name,
+            salePrice = salePrice,
+            normalPrice = gameInfo.retailPrice,
+            metacriticData = metacriticData(
+                    metacriticLink = gameInfo.metacriticLink,
+                    metacriticScore = gameInfo.metacriticScore
+            ),
+            steamData = steamData(
+                    steamAppID = gameInfo.steamAppID,
+                    steamRatingCount = gameInfo.steamRatingCount,
+                    steamRatingText = gameInfo.steamRatingText,
+                    steamRatingPercent = gameInfo.steamRatingPercent
+            ),
+            releaseDate = Date(gameInfo.releaseDate),
+            iconLink = gameInfo.thumb,
+            publisher = gameInfo.publisher,
+            steamWorks = gameInfo.steamworks == "1",
+            cheapestPriceEver = cheapestPrice.toCore(),
+            cheaperStores = cheaperStores.map { it.toCore() }.associateBy { it.storeId }
+    )
+}
 
 
 fun DealInfoResponse.CheaperStore.toCore(): DealInfo.CheaperStore =

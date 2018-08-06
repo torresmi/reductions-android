@@ -1,6 +1,6 @@
 package com.fuzzyfunctors.reductions.data.deal
 
-class DealInfoResponse(
+data class DealInfoResponse(
         val gameInfo: GameInfo,
         val cheaperStores: List<CheaperStore>,
         val cheapestPrice: CheapestPrice
