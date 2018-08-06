@@ -107,7 +107,5 @@ class DealMapperTest : DescribeSpec() {
         result.releaseDate shouldBe Date(deal.releaseDate)
         result.lastChange shouldBe deal.lastChange?.let { Date(it) }
         result.iconLink shouldBe deal.thumb
-        result.gameInfo shouldBe null
-        result.cheaperStores shouldBe null
     }
 }
