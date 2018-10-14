@@ -26,6 +26,7 @@ buildscript {
         rxAndroidVersion = '2.0.2'
         rxJavaVersion = '2.2.0'
         rxJavaCallAdapterVersion = '2.4.0'
+        rxRelayVersion = '2.1.0'
 
         // Testing
 
@@ -53,6 +54,7 @@ buildscript {
         rxAndroid = "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
         rxJava = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
         rxJavaCallAdapter = "com.squareup.retrofit2:adapter-rxjava2:$rxJavaCallAdapterVersion"
+        rxRelay = "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion"
 
         // Testing
 
