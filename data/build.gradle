@@ -16,6 +16,7 @@ dependencies {
     compile remoteData
     compile retrofit
     compile rxJava
+    compile rxRelay
 
     testCompile junit
     testCompile kotlinTest

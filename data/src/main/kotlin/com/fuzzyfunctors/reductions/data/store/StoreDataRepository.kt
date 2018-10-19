@@ -1,27 +1,31 @@
 package com.fuzzyfunctors.reductions.data.store
 
-import arrow.core.Either
+import arrow.core.Option
 import com.fuzzyfunctors.reductions.core.store.Store
-import com.fuzzyfunctors.reductions.data.AbsDataRepository
-import com.fuzzyfunctors.reductions.data.CacheHandler
+import com.fuzzyfunctors.reductions.core.store.StoreId
+import com.fuzzyfunctors.reductions.data.ReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import io.reactivex.Flowable
-import io.reactivex.Single
-import remotedata.RemoteData
+import com.fuzzyfunctors.reductions.domain.store.StoreRepository
+import com.fuzzyfunctors.reductions.domain.toMaybeLeft
+import io.reactivex.Maybe
+import io.reactivex.Observable
 
 class StoreDataRepository(
         private val networkDataSource: StoreNetworkDataSource,
-        private val cacheHandler: CacheHandler<List<Store>> = CacheHandler()
-) : AbsDataRepository<List<Store>>() {
+        private val memoryStore: ReactiveStore<StoreId, Store>
+) : StoreRepository {
 
-    override fun get(): Flowable<RemoteData<LoadingFailure, List<Store>>> =
-            cacheHandler.getCacheOrFetch { fetch() }
+    override fun getStore(id: StoreId): Observable<Option<Store>> = memoryStore.get(id)
 
-    override fun networkCall(): Single<Either<LoadingFailure.Remote, List<Store>>> =
+    override fun getStores(): Observable<Option<Set<Store>>> = memoryStore.get()
+
+    override fun fetchStores(): Maybe<LoadingFailure.Remote> =
             networkDataSource.getStores()
-
-    override fun save(data: List<Store>) {
-        // TODO: Add disk
-        cacheHandler.cache = RemoteData.succeed(data)
-    }
+                    .doOnSuccess { response ->
+                        response.fold(
+                                {},
+                                { memoryStore.store(it) }
+                        )
+                    }
+                    .flatMapMaybe { it.toMaybeLeft() }
 }
