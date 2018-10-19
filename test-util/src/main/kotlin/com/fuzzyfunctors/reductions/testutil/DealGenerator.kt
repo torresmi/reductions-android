@@ -6,69 +6,62 @@ import io.kotlintest.properties.Gen
 
 class DealGenerator : Gen<Deal> {
     override fun constants(): Iterable<Deal> = listOf(
-            Deal(
-                    id = randomString(),
-                    storeId = randomString(),
-                    gameId = randomString(),
-                    title = randomString(),
+            random().first().copy(
                     saleData = null,
-                    normalPrice = randomString(),
                     metacriticData = null,
                     steamData = null,
-                    releaseDate = randomDate(),
-                    lastChange = null,
-                    iconLink = randomString(),
-                    gameInfo = null,
-                    cheaperStores = null
+                    lastChange = null
             )
     )
 
     override fun random(): Sequence<Deal> = generateSequence {
         Deal(
-                    id = randomString(),
-                    storeId = randomString(),
-                    gameId = randomString(),
-                    title = randomString(),
-                    saleData = Deal.SaleData(
-                            price = randomString(),
-                            savings = randomString(),
-                            rating = randomString()
-                    ),
-                    normalPrice = randomString(),
-                    metacriticData = Deal.MetacriticData(
-                            link = randomString(),
-                            score = randomString()
-                    ),
-                    steamData = Deal.SteamData(
-                            appId = randomString(),
-                            ratingText = NullableGenerator(Gen.string()).firstRandom(),
-                            ratingCount = randomString(),
-                            ratingPercent = randomString()
-                    ),
-                    releaseDate = randomDate(),
-                    lastChange = randomDate(),
-                    iconLink = randomString(),
-                    gameInfo = Deal.GameInfo(
-                            publisher = randomString(),
-                            steamWorks = randomBool(),
-                            cheapestPriceEver = CheapestPriceEver(
-                                    price = randomString(),
-                                    date = randomDate()
-                            )
-                    ),
-                    cheaperStores = Gen.map(Gen.string(), CheaperStoreGenerator()).firstRandom()
-            )
+                id = randomString(),
+                storeId = randomString(),
+                gameId = randomString(),
+                title = randomString(),
+                saleData = NullableGenerator(SaleDataGenerator()).firstRandom(),
+                normalPrice = randomString(),
+                metacriticData = NullableGenerator(MetacriticDataGenerator()).firstRandom(),
+                steamData = NullableGenerator(SteamDataGenerator()).firstRandom(),
+                releaseDate = randomDate(),
+                lastChange = randomDate(),
+                iconLink = randomString()
+        )
     }
 
-    class CheaperStoreGenerator : Gen<Deal.CheaperStore> {
-        override fun constants(): Iterable<Deal.CheaperStore> = emptyList()
+    class SaleDataGenerator : Gen<Deal.SaleData> {
+        override fun constants(): Iterable<Deal.SaleData> = emptyList()
 
-        override fun random(): Sequence<Deal.CheaperStore> = generateSequence {
-            Deal.CheaperStore(
-                    storeId = randomString(),
-                    dealId = randomString(),
-                    salePrice = randomString(),
-                    normalPrice = randomString()
+        override fun random(): Sequence<Deal.SaleData> = generateSequence {
+            Deal.SaleData(
+                    price = randomString(),
+                    savings = randomString(),
+                    rating = Gen.choose(0, 100).firstRandom().toString()
+            )
+        }
+    }
+
+    class SteamDataGenerator : Gen<Deal.SteamData> {
+        override fun constants(): Iterable<Deal.SteamData> = emptyList()
+
+        override fun random(): Sequence<Deal.SteamData> = generateSequence {
+            Deal.SteamData(
+                    appId = randomString(),
+                    ratingText = randomString(),
+                    ratingCount = randomString(),
+                    ratingPercent = randomPercent()
+            )
+        }
+    }
+
+    class MetacriticDataGenerator : Gen<Deal.MetacriticData> {
+        override fun constants(): Iterable<Deal.MetacriticData> = emptyList()
+
+        override fun random(): Sequence<Deal.MetacriticData> = generateSequence {
+            Deal.MetacriticData(
+                    link = randomString(),
+                    score = Gen.choose(0, 100).firstRandom().toString()
             )
         }
     }

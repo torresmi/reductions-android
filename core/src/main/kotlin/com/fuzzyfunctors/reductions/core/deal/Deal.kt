@@ -1,6 +1,5 @@
 package com.fuzzyfunctors.reductions.core.deal
 
-import com.fuzzyfunctors.reductions.core.game.CheapestPriceEver
 import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.core.store.StoreId
 import java.util.Date
@@ -18,9 +17,7 @@ data class Deal(
         val steamData: SteamData?,
         val releaseDate: Date,
         val lastChange: Date?,
-        val iconLink: String,
-        val gameInfo: GameInfo?,
-        val cheaperStores: Map<StoreId, CheaperStore>?
+        val iconLink: String
 ) {
 
     data class SaleData(
@@ -41,16 +38,4 @@ data class Deal(
             val ratingPercent: String
     )
 
-    data class GameInfo(
-            val publisher: String,
-            val steamWorks: Boolean,
-            val cheapestPriceEver: CheapestPriceEver
-    )
-
-    data class CheaperStore(
-            val storeId: StoreId,
-            val dealId: DealId,
-            val salePrice: String,
-            val normalPrice: String
-    )
 }

@@ -12,11 +12,17 @@ fun <A> Gen<A>.firstRandom(): A = random().first()
 
 fun randomString(): String = Gen.string().firstRandom()
 
+fun randomNullableString(): String? = NullableGenerator(Gen.string()).firstRandom()
+
 fun randomBool(): Boolean = Gen.bool().firstRandom()
 
 fun randomInt(): Int = Gen.int().firstRandom()
 
+fun randomNullableInt(): Int? = NullableGenerator(Gen.int()).firstRandom()
+
 fun randomLong(): Long = Gen.long().firstRandom()
+
+fun randomNullableLong(): Long? = NullableGenerator(Gen.long()).firstRandom()
 
 fun randomStore(): Store = StoreGenerator().firstRandom()
 
@@ -29,3 +35,5 @@ fun randomGame(): Game = GameGenerator().firstRandom()
 fun randomGameBestDeal(): GameBestDeal = GameBestDealGenerator().firstRandom()
 
 fun randomDate(): Date = Date(randomLong())
+
+fun randomPercent(): String = Gen.choose(0, 100).firstRandom().toString().plus(" %")
