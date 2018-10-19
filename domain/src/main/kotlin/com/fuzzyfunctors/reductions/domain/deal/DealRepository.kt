@@ -13,19 +13,19 @@ interface DealRepository {
 
     fun getTopDeals(): Observable<Option<List<Deal>>>
 
-    fun fetchTopDeals(options: Options): Maybe<LoadingFailure.Remote>
+    fun fetchTopDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
 
     fun getNewestGamesDeals(): Observable<Option<List<Deal>>>
 
-    fun fetchNewestGamesDeals(options: Options): Maybe<LoadingFailure.Remote>
+    fun fetchNewestGamesDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
 
     fun getLatestDeals(): Observable<Option<List<Deal>>>
 
-    fun fetchLatestDeals(options: Options): Maybe<LoadingFailure.Remote>
+    fun fetchLatestDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
 
     fun getMostSavingsDeals(): Observable<Option<List<Deal>>>
 
-    fun fetchMostSavingsDeals(options: Options): Maybe<LoadingFailure.Remote>
+    fun fetchMostSavingsDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
 
     fun getDealInfo(id: DealId): Observable<Option<DealInfo>>
 
