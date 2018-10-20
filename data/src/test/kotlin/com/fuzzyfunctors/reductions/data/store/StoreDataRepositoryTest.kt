@@ -1,11 +1,12 @@
-package com.fuzzyfunctors.reductions.data
+package com.fuzzyfunctors.reductions.data.store
 
 import arrow.core.Either
 import arrow.core.None
 import arrow.core.Some
 import com.fuzzyfunctors.reductions.core.store.Store
 import com.fuzzyfunctors.reductions.core.store.StoreId
-import com.fuzzyfunctors.reductions.data.store.StoreDataRepository
+import com.fuzzyfunctors.reductions.data.MemoryReactiveStore
+import com.fuzzyfunctors.reductions.data.Mocks
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.testutil.randomStore
 import io.kotlintest.Description
