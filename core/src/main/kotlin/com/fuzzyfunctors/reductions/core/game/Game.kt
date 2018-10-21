@@ -7,10 +7,10 @@ typealias GameId = String
 
 data class Game(
         val id: GameId,
+        val steamAppId: String?,
         val title: String,
         val cheapestPriceEver: CheapestPriceEver,
         val deals: Map<DealId, DealInfo>
-
 ) {
 
     data class DealInfo(

@@ -1,15 +1,13 @@
 package com.fuzzyfunctors.reductions.data.network
 
+import com.fuzzyfunctors.reductions.core.deal.DealId
+import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.deal.Deal
 import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
 import com.fuzzyfunctors.reductions.data.game.GameBestDeal
 import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
-import com.fuzzyfunctors.reductions.core.deal.DealId
-import com.fuzzyfunctors.reductions.core.game.GameId
-import io.reactivex.Flowable
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -28,15 +26,15 @@ interface CheapSharkService {
     fun getDeal(@Query("id") dealId: DealId): Single<Response<DealInfoResponse>>
 
     @GET("games")
-    fun getGames(
+    fun searchGames(
             @Query("title") title: String? = null,
-            @Query("steamAppID") steamAppId: Int? = null,
+            @Query("steamAppId") steamAppId: Int? = null,
             @Query("limit") limit: Int? = null,
             @Query("exact") exact: Boolean? = null
     ): Single<Response<List<GameBestDeal>>>
 
     @GET("games")
-    fun getGame(@Query("id") gameId: GameId): Single<GameInfoResponse>
+    fun getGame(@Query("id") gameId: GameId): Single<Response<GameInfoResponse>>
 
     @GET("stores")
     fun getStores(): Single<Response<List<Store>>>
@@ -45,7 +43,7 @@ interface CheapSharkService {
     fun updateAlert(
             @Query("action") action: String,
             @Query("email") email: String,
-            @Query("gameID") gameId: GameId,
+            @Query("gameId") gameId: GameId,
             @Query("price") price: Double?
     ): Single<Response<Boolean>>
 

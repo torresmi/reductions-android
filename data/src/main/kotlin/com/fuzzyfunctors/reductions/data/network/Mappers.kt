@@ -3,11 +3,16 @@ package com.fuzzyfunctors.reductions.data.network
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.core.game.CheapestPriceEver
+import com.fuzzyfunctors.reductions.core.game.Game
+import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.deal.Deal
 import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
-import com.fuzzyfunctors.reductions.core.deal.Deal as CoreDeal
+import com.fuzzyfunctors.reductions.data.game.GameBestDeal
+import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
 import java.util.Date
+import com.fuzzyfunctors.reductions.core.deal.Deal as CoreDeal
+import com.fuzzyfunctors.reductions.core.game.GameBestDeal as CoreGameBestDeal
 import com.fuzzyfunctors.reductions.core.store.Store as CoreStore
 
 fun Store.toCore(): CoreStore {
@@ -82,7 +87,6 @@ fun DealInfoResponse.toCore(dealId: DealId): DealInfo {
     )
 }
 
-
 fun DealInfoResponse.CheaperStore.toCore(): DealInfo.CheaperStore =
         DealInfo.CheaperStore(
                 storeId = storeID,
@@ -95,6 +99,40 @@ fun DealInfoResponse.CheapestPrice.toCore(): CheapestPriceEver =
         CheapestPriceEver(
                 price = price,
                 date = Date(date)
+        )
+
+fun GameInfoResponse.toCoreGame(gameId: GameId): Game =
+        Game(
+                id = gameId,
+                steamAppId = info.steamAppID,
+                title = info.title,
+                cheapestPriceEver = cheapestPriceEver.toCore(),
+                deals = deals.map { it.toCore() }.associateBy { it.dealId }
+        )
+
+fun GameInfoResponse.CheapestPriceEver.toCore(): CheapestPriceEver =
+        CheapestPriceEver(
+                price = price,
+                date = Date(date)
+        )
+
+fun GameInfoResponse.Deal.toCore(): Game.DealInfo =
+        Game.DealInfo(
+                dealId = dealID,
+                storeId = storeID,
+                price = price,
+                retailPrice = retailPrice,
+                savings = savings
+        )
+
+fun GameBestDeal.toCore(): CoreGameBestDeal =
+        CoreGameBestDeal(
+                gameId = gameID,
+                steamAppId = steamAppID,
+                cheapest = cheapest,
+                cheapestDealId = cheapestDealID,
+                title = external,
+                thumb = thumb
         )
 
 private fun steamData(
