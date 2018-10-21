@@ -10,6 +10,7 @@ class GameGenerator : Gen<Game> {
     override fun random(): Sequence<Game> = generateSequence {
         Game(
                 id = randomString(),
+                steamAppId = randomString(),
                 title = randomString(),
                 cheapestPriceEver = CheapestPriceEverGenerator().firstRandom(),
                 deals = Gen.map(Gen.string(), DealInfoGenerator()).firstRandom()
