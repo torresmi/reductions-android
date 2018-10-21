@@ -18,6 +18,7 @@ buildscript {
         appCompatVersion = '1.0.0-beta1'
         arrowVersion = '0.7.2'
         constraintLayoutVersion = '2.0.0-alpha1'
+        koinVersion = '1.0.1'
         materialVersion = '1.0.0-beta01'
         moshiVersion = '1.6.0'
         moshiConverterVersion = '2.4.0'
@@ -45,6 +46,7 @@ buildscript {
         appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
         arrowCore = "io.arrow-kt:arrow-core:$arrowVersion"
         constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+        koin = "org.koin:koin-android:$koinVersion"
         kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
         material = "com.google.android.material:material:$materialVersion"
         moshi = "com.squareup.moshi:moshi:$moshiVersion"
@@ -61,6 +63,7 @@ buildscript {
         androidTestRunner = "com.android.support.test:runner:$androidTestRunnerVersion"
         espresso = "com.android.support.test.espresso:espresso-core:$espressoVersion"
         junit = "junit:junit:$junitVersion"
+        koinTest = "org.koin:koin-test:$koinVersion"
         kotlinTest = "io.kotlintest:kotlintest-runner-junit5:$kotlinTestVersion"
         mockk = "io.mockk:mockk:$mockkVersion"
     }

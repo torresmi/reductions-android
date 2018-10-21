@@ -28,12 +28,16 @@ dependencies {
     implementation appCompat
     implementation arrowCore
     implementation constraintLayout
+    implementation koin
     implementation kotlinStdLib
     implementation material
     implementation rxAndroid
     implementation rxJava
     implementation rxJavaCallAdapter
+
     testImplementation junit
+    testImplementation koinTest
+    testImplementation kotlinTest
     androidTestImplementation androidTestRunner
     androidTestImplementation espresso
 }
