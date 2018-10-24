@@ -31,6 +31,7 @@ dependencies {
     implementation koin
     implementation kotlinStdLib
     implementation material
+    implementation materialValues
     implementation rxAndroid
     implementation rxJava
     implementation rxJavaCallAdapter
