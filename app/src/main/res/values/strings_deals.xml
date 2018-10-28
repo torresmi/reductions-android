@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deals_title">Deals</string>
+    <string name="deals_top_title">Top</string>
+    <string name="deals_newest_games_title">Newest Games</string>
+    <string name="deals_most_savings_title">Most Savings</string>
+    <string name="deals_latest_deals_title">Latest</string>
+</resources>
