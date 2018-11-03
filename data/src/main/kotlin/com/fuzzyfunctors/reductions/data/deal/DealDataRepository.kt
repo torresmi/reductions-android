@@ -19,10 +19,10 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
 ) : DealRepository {
 
     // Keep requests ordered for pagination
-    private val topDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
-    private val newestGameDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
-    private val latestGameDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
-    private val mostSavingsDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
+    private val topDealsScheduler = createNewSingleThreadScheduler()
+    private val newestGameDealsScheduler = createNewSingleThreadScheduler()
+    private val latestGameDealsScheduler = createNewSingleThreadScheduler()
+    private val mostSavingsDealsScheduler = createNewSingleThreadScheduler()
 
     private val paginator = Paginator()
 
@@ -87,6 +87,8 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
                 }
                 .flatMapMaybe { it.toMaybeLeft() }
     }
+
+    private fun createNewSingleThreadScheduler() = Schedulers.from(Executors.newSingleThreadExecutor())
 
     private fun DealType.toOrder(): DealRepository.Options.Order = when (this) {
             DealType.MOST_SAVINGS -> DealRepository.Options.Order.SAVINGS
