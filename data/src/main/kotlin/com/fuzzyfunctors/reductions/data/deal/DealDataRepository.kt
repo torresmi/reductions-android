@@ -19,10 +19,10 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
 ) : DealRepository {
 
     // Keep requests ordered for pagination
-    private val topDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
-    private val newestGameDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
-    private val latestGameDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
-    private val mostSavingsDealsScheduler = Schedulers.from(Executors.newSingleThreadExecutor())
+    private val topDealsScheduler = createNewSingleThreadScheduler()
+    private val newestGameDealsScheduler = createNewSingleThreadScheduler()
+    private val latestGameDealsScheduler = createNewSingleThreadScheduler()
+    private val mostSavingsDealsScheduler = createNewSingleThreadScheduler()
 
     private val paginator = Paginator()
 
@@ -32,7 +32,8 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
             fetchDealsForType(DealType.TOP, options)
                     .subscribeOn(topDealsScheduler)
 
-    override fun getNewestGamesDeals(): Observable<Option<List<Deal>>> = getDealsForType(DealType.NEWEST_GAMES)
+    override fun getNewestGamesDeals(): Observable<Option<List<Deal>>> =
+            getDealsForType(DealType.NEWEST_GAMES)
 
     override fun fetchNewestGamesDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
             fetchDealsForType(DealType.NEWEST_GAMES, options)
@@ -44,7 +45,8 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
             fetchDealsForType(DealType.LATEST, options)
                     .subscribeOn(latestGameDealsScheduler)
 
-    override fun getMostSavingsDeals(): Observable<Option<List<Deal>>> = getDealsForType(DealType.MOST_SAVINGS)
+    override fun getMostSavingsDeals(): Observable<Option<List<Deal>>> =
+            getDealsForType(DealType.MOST_SAVINGS)
 
     override fun fetchMostSavingsDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
             fetchDealsForType(DealType.MOST_SAVINGS, options)
@@ -71,7 +73,10 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
         data.map { it.deals }
     }
 
-    private fun fetchDealsForType(type: DealType, options: DealRepository.Options): Maybe<LoadingFailure.Remote> {
+    private fun fetchDealsForType(
+            type: DealType,
+            options: DealRepository.Options
+    ): Maybe<LoadingFailure.Remote> {
         val optionsWithOrder = options.copy(order = type.toOrder())
         val page = paginator.getPageforOptions(type, optionsWithOrder)
         return networkDataSource.getDeals(optionsWithOrder, page)
@@ -88,42 +93,45 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
                 .flatMapMaybe { it.toMaybeLeft() }
     }
 
+    private fun createNewSingleThreadScheduler() =
+            Schedulers.from(Executors.newSingleThreadExecutor())
+
     private fun DealType.toOrder(): DealRepository.Options.Order = when (this) {
-            DealType.MOST_SAVINGS -> DealRepository.Options.Order.SAVINGS
-            DealType.LATEST -> DealRepository.Options.Order.RECENT
-            DealType.NEWEST_GAMES -> DealRepository.Options.Order.RELEASE
-            DealType.TOP -> DealRepository.Options.Order.DEAL_RATING
+        DealType.MOST_SAVINGS -> DealRepository.Options.Order.SAVINGS
+        DealType.LATEST -> DealRepository.Options.Order.RECENT
+        DealType.NEWEST_GAMES -> DealRepository.Options.Order.RELEASE
+        DealType.TOP -> DealRepository.Options.Order.DEAL_RATING
+    }
+}
+
+private class Paginator {
+    private val pages = HashMap<DealType, Int?>()
+
+    fun getPageforOptions(dealType: DealType, options: DealRepository.Options): Int? {
+        val currentPage = pages[dealType]
+        return if (options.continuePagination) {
+            currentPage?.plus(1)
+        } else {
+            null
         }
+    }
 
-    private class Paginator {
-        private val pages = HashMap<DealType, Int?>()
-
-        fun getPageforOptions(dealType: DealType, options: DealRepository.Options): Int? {
+    fun onSuccessfulResponse(dealType: DealType, options: DealRepository.Options) {
+        val nextPage = if (options.continuePagination) {
             val currentPage = pages[dealType]
-            return if (options.continuePagination) {
-                currentPage?.plus(1)
-            } else {
-                null
-            }
+            currentPage?.plus(1) ?: 1
+        } else {
+            null
         }
-
-        fun onSuccessfulResponse(dealType: DealType, options: DealRepository.Options) {
-            val nextPage = if (options.continuePagination) {
-                val currentPage = pages[dealType]
-                currentPage?.plus(1) ?: 1
-            } else {
-                null
-            }
-            pages[dealType] = nextPage
-        }
+        pages[dealType] = nextPage
     }
 }
 
 enum class DealType {
-        TOP,
-        NEWEST_GAMES,
-        LATEST,
-        MOST_SAVINGS
-    }
+    TOP,
+    NEWEST_GAMES,
+    LATEST,
+    MOST_SAVINGS
+}
 
 data class DealTypeData(val type: DealType, val deals: List<Deal>)
