@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FailureView">
+        <attr name="errorText" format="reference|string" localization="suggested" />
+        <attr name="retryText" format="reference|string" localization="suggested" />
+        <attr name="allowRetry" format="boolean" />
+        <attr name="retryColor" format="reference|color" />
+        <attr name="errorTextColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="RemoteDataView">
+        <attr name="notAskedView" format="reference" />
+        <attr name="loadingView" format="reference" />
+        <attr name="successView" format="reference" />
+        <attr name="failureView" format="reference" />
+    </declare-styleable>
+</resources>
