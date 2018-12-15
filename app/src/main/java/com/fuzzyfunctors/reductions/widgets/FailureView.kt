@@ -61,10 +61,10 @@ class FailureView @JvmOverloads constructor(
 
         try {
             showRetry = a.getBoolean(R.styleable.FailureView_allowRetry, false)
-            errorText = a.getString(R.styleable.FailureView_errorText).orEmpty()
+            errorText = a.getString(R.styleable.FailureView_failureText).orEmpty()
             retryText = a.getString(R.styleable.FailureView_retryText).orEmpty()
             retryColor = a.getColor(R.styleable.FailureView_retryColor, Color.BLACK)
-            errorTextColor = a.getColor(R.styleable.FailureView_errorTextColor, Color.BLACK)
+            errorTextColor = a.getColor(R.styleable.FailureView_failureTextColor, Color.BLACK)
         }
         finally {
             a.recycle()

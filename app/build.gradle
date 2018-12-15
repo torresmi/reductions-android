@@ -28,7 +28,9 @@ dependencies {
     implementation appCompat
     implementation arrowCore
     implementation constraintLayout
-    implementation glide
+    implementation (glide) {
+        exclude group: "com.android.support"
+    }
     annotationProcessor glideCompiler
     implementation koin
     implementation kotlinStdLib
