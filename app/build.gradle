@@ -28,6 +28,8 @@ dependencies {
     implementation appCompat
     implementation arrowCore
     implementation constraintLayout
+    implementation glide
+    annotationProcessor glideCompiler
     implementation koin
     implementation kotlinStdLib
     implementation material
