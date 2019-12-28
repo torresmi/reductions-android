@@ -23,8 +23,9 @@ import com.fuzzyfunctors.reductions.domain.alert.AlertRepository
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository
 import com.fuzzyfunctors.reductions.domain.game.GameRepository
 import com.fuzzyfunctors.reductions.domain.store.StoreRepository
-import org.koin.dsl.module.Module
-import org.koin.dsl.module.module
+import org.koin.core.module.Module
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -35,15 +36,15 @@ val appModule = module {
 
 val repositoryModule = module {
 
-    single<StoreRepository> { StoreDataRepository(get(), get(name = MEMORY_STORE_STORE)) }
+    single<StoreRepository> { StoreDataRepository(get(), get(named(MEMORY_STORE_STORE))) }
 
-    single<GameRepository> { GameDataRepository(get(), get(name = MEMORY_STORE_GAME)) }
+    single<GameRepository> { GameDataRepository(get(), get(named(MEMORY_STORE_GAME))) }
 
     single<DealRepository> {
         DealDataRepository(
                 get(),
-                get(name = MEMORY_STORE_DEALS),
-                get(name = MEMORY_STORE_DEAL))
+                get(named(MEMORY_STORE_DEALS)),
+                get(named(MEMORY_STORE_DEAL)))
     }
 
     single<AlertRepository> { AlertDataRepository(get()) }
@@ -52,19 +53,19 @@ val repositoryModule = module {
 
 val localModule = module {
 
-    factory<ReactiveStore<StoreId, Store>>(name = MEMORY_STORE_STORE) {
+    factory<ReactiveStore<StoreId, Store>>(named(MEMORY_STORE_STORE)) {
         MemoryReactiveStore { store -> store.id }
     }
 
-    factory<ReactiveStore<GameId, Game>>(name = MEMORY_STORE_GAME) {
+    factory<ReactiveStore<GameId, Game>>(named(MEMORY_STORE_GAME)) {
         MemoryReactiveStore { game -> game.id }
     }
 
-    factory<ReactiveStore<DealType, DealTypeData>>(name = MEMORY_STORE_DEALS) {
+    factory<ReactiveStore<DealType, DealTypeData>>(named(MEMORY_STORE_DEALS)) {
         MemoryReactiveStore { (type, _) -> type }
     }
 
-    factory<ReactiveStore<DealId, DealInfo>>(name = MEMORY_STORE_DEAL) {
+    factory<ReactiveStore<DealId, DealInfo>>(named(MEMORY_STORE_DEAL)) {
         MemoryReactiveStore { deal -> deal.id }
     }
 
