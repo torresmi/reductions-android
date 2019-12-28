@@ -1,3 +1,5 @@
+import dependencies.Deps
+
 apply plugin: 'kotlin'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'org.junit.platform.gradle.plugin'
@@ -8,14 +10,14 @@ targetCompatibility = "1.7"
 dependencies {
     compile project(':core')
 
-    compile arrowCore
-    compile kotlinStdLib
-    compile remoteData
-    compile rxJava
+    compile Deps.arrow
+    compile Deps.kotlin
+    compile Deps.remoteData
+    compile Deps.RxJava.core
 
-    testCompile junit
-    testCompile kotlinTest
-    testCompile mockk
+    testCompile Deps.junit
+    testCompile Deps.kotlinTest
+    testCompile Deps.mockk
     testCompile project(':test-util')
 
 }

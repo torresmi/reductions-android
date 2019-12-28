@@ -1,3 +1,5 @@
+import dependencies.Deps
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -25,24 +27,24 @@ dependencies {
     implementation project(':data')
     implementation project(':presentation')
 
-    implementation appCompat
-    implementation arrowCore
-    implementation constraintLayout
-    implementation (glide) {
+    implementation Deps.appCompat
+    implementation Deps.arrow
+    implementation Deps.constraintLayout
+    implementation (Deps.Glide.core) {
         exclude group: "com.android.support"
     }
-    annotationProcessor glideCompiler
-    implementation koin
-    implementation kotlinStdLib
-    implementation material
-    implementation materialValues
-    implementation rxAndroid
-    implementation rxJava
-    implementation rxJavaCallAdapter
+    annotationProcessor Deps.Glide.compiler
+    implementation Deps.Koin.android
+    implementation Deps.kotlin
+    implementation Deps.material
+    implementation Deps.materialValues
+    implementation Deps.RxJava.android
+    implementation Deps.RxJava.core
+    implementation Deps.Retrofit.rxJavaCallAdapter
 
-    testImplementation junit
-    testImplementation koinTest
-    testImplementation kotlinTest
-    androidTestImplementation androidTestRunner
-    androidTestImplementation espresso
+    testImplementation Deps.junit
+    testImplementation Deps.Koin.test
+    testImplementation Deps.kotlinTest
+    androidTestImplementation Deps.androidTestRunner
+    androidTestImplementation Deps.espresso
 }

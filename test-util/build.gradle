@@ -1,3 +1,5 @@
+import dependencies.Deps
+
 apply plugin: 'kotlin'
 
 sourceCompatibility = "1.7"
@@ -6,6 +8,6 @@ targetCompatibility = "1.7"
 dependencies {
 
     compile project(':core')
-    compile kotlinTest
-    compile remoteData
+    compile Deps.kotlinTest
+    compile Deps.remoteData
 }
