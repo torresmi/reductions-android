@@ -4,8 +4,8 @@ import arrow.core.Either
 import io.kotlintest.properties.Gen
 
 class EitherGenerator<A, B>(
-        val leftGen: Gen<A>,
-        val rightGen: Gen<B>
+    val leftGen: Gen<A>,
+    val rightGen: Gen<B>
 ) : Gen<Either<A, B>> {
 
     override fun constants(): Iterable<Either<A, B>> =

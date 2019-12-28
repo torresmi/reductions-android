@@ -13,8 +13,8 @@ import arrow.core.Some
 import com.fuzzyfunctors.reductions.R
 
 class RemoteDataViewFlipper @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null
+    context: Context,
+    attrs: AttributeSet? = null
 ) : ViewFlipper(context, attrs), RemoteDataRenderer {
 
     var notAskedView: Option<View>
@@ -47,7 +47,6 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
             addView(loadingView, ViewType.LOADING.ordinal)
 
             addSpecifiedSuccessView(inflater, successId)
-
         } finally {
             a.recycle()
         }

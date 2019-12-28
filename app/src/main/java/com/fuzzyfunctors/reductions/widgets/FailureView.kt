@@ -8,14 +8,14 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.fuzzyfunctors.reductions.R
 import com.fuzzyfunctors.reductions.widgets.remotedata.ShowsFailure
+import kotlin.properties.Delegates
 import kotlinx.android.synthetic.main.include_error_view.view.errorTextView
 import kotlinx.android.synthetic.main.include_error_view.view.retryButton
-import kotlin.properties.Delegates
 
 class FailureView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle), ShowsFailure {
 
     interface Listener {
@@ -65,8 +65,7 @@ class FailureView @JvmOverloads constructor(
             retryText = a.getString(R.styleable.FailureView_retryText).orEmpty()
             retryColor = a.getColor(R.styleable.FailureView_retryColor, Color.BLACK)
             errorTextColor = a.getColor(R.styleable.FailureView_failureTextColor, Color.BLACK)
-        }
-        finally {
+        } finally {
             a.recycle()
         }
     }

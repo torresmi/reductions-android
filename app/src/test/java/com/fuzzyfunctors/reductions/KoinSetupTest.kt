@@ -7,7 +7,6 @@ import org.koin.test.check.checkModules
 
 class KoinSetupTest : DescribeSpec(), KoinTest {
 
-
     init {
         describe("Dependency resolution") {
 

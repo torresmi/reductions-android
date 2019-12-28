@@ -84,9 +84,7 @@ class GameDataRepositoryTest : DescribeSpec() {
                     sut.fetchGame(gameId).test()
                             .assertError(error)
                 }
-
             }
-
         }
 
         describe("getting a game") {

@@ -1,19 +1,19 @@
 package com.fuzzyfunctors.reductions.data.network
 
+import com.fuzzyfunctors.reductions.core.deal.Deal as CoreDeal
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.core.game.CheapestPriceEver
 import com.fuzzyfunctors.reductions.core.game.Game
+import com.fuzzyfunctors.reductions.core.game.GameBestDeal as CoreGameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
+import com.fuzzyfunctors.reductions.core.store.Store as CoreStore
 import com.fuzzyfunctors.reductions.data.deal.Deal
 import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
 import com.fuzzyfunctors.reductions.data.game.GameBestDeal
 import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
 import java.util.Date
-import com.fuzzyfunctors.reductions.core.deal.Deal as CoreDeal
-import com.fuzzyfunctors.reductions.core.game.GameBestDeal as CoreGameBestDeal
-import com.fuzzyfunctors.reductions.core.store.Store as CoreStore
 
 fun Store.toCore(): CoreStore {
     val images = images
@@ -136,10 +136,10 @@ fun GameBestDeal.toCore(): CoreGameBestDeal =
         )
 
 private fun steamData(
-        steamAppID: String?,
-        steamRatingCount: String?,
-        steamRatingText: String?,
-        steamRatingPercent: String?
+    steamAppID: String?,
+    steamRatingCount: String?,
+    steamRatingText: String?,
+    steamRatingPercent: String?
 ): CoreDeal.SteamData? =
         steamAppID?.let { id ->
             steamRatingCount?.let { count ->
@@ -157,8 +157,9 @@ private fun steamData(
         }
 
 private fun metacriticData(
-        metacriticLink: String?,
-        metacriticScore: String?): CoreDeal.MetacriticData? =
+    metacriticLink: String?,
+    metacriticScore: String?
+): CoreDeal.MetacriticData? =
         metacriticLink?.let { link ->
             metacriticScore?.let { score ->
                 CoreDeal.MetacriticData(
@@ -169,10 +170,11 @@ private fun metacriticData(
         }
 
 private fun saleData(
-        isOnSale: Boolean,
-        salePrice: String,
-        savings: String,
-        dealRating: String): CoreDeal.SaleData? =
+    isOnSale: Boolean,
+    salePrice: String,
+    savings: String,
+    dealRating: String
+): CoreDeal.SaleData? =
         if (!isOnSale) {
             null
         } else {

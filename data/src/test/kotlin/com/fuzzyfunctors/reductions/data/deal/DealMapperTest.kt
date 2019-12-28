@@ -92,7 +92,6 @@ class DealMapperTest : DescribeSpec() {
 
                     result.metacriticData shouldBe null
                     assertCommonProperties(notOnMetacritic, result)
-
                 }
             }
         }

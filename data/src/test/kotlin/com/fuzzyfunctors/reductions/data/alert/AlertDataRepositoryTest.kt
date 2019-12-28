@@ -63,7 +63,6 @@ class AlertDataRepositoryTest : DescribeSpec() {
                             .assertValue(remoteError)
                 }
             }
-
         }
 
         describe("unwatch game") {
@@ -74,7 +73,6 @@ class AlertDataRepositoryTest : DescribeSpec() {
                 sut.unwatchGame(gameId, email).test()
 
                 verify(exactly = 1) { mockAlertNetworkDataSource.unwatchGame(gameId, email) }
-
             }
 
             context("successful unwatch") {
@@ -106,7 +104,6 @@ class AlertDataRepositoryTest : DescribeSpec() {
                 }
             }
         }
-
     }
 
     private fun mockWatch(returnValue: Either<LoadingFailure.Remote, Unit>) {

@@ -19,9 +19,9 @@ interface RemoteDataRenderer {
     )
 
     fun <E : Any, A : Any> bind(
-            data: RemoteData<E, A>,
-            onFailure: (E) -> String?,
-            onSuccess: (A) -> Unit
+        data: RemoteData<E, A>,
+        onFailure: (E) -> String?,
+        onSuccess: (A) -> Unit
     ) {
         when (data) {
             is RemoteData.NotAsked -> {

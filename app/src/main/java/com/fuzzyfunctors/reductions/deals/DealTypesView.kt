@@ -6,9 +6,9 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.deal_types_view.view.*
 
 class DealTypesView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
 
     override fun onFinishInflate() {

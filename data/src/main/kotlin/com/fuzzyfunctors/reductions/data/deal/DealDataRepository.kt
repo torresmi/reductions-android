@@ -13,9 +13,10 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
 
-class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
-                         private val dealsMemoryReactiveStore: ReactiveStore<DealType, DealTypeData>,
-                         private val dealInfoMemoryReactiveStore: ReactiveStore<DealId, DealInfo>
+class DealDataRepository(
+    private val networkDataSource: DealNetworkDataSource,
+    private val dealsMemoryReactiveStore: ReactiveStore<DealType, DealTypeData>,
+    private val dealInfoMemoryReactiveStore: ReactiveStore<DealId, DealInfo>
 ) : DealRepository {
 
     // Keep requests ordered for pagination
@@ -74,8 +75,8 @@ class DealDataRepository(private val networkDataSource: DealNetworkDataSource,
     }
 
     private fun fetchDealsForType(
-            type: DealType,
-            options: DealRepository.Options
+        type: DealType,
+        options: DealRepository.Options
     ): Maybe<LoadingFailure.Remote> {
         val optionsWithOrder = options.copy(order = type.toOrder())
         val page = paginator.getPageforOptions(type, optionsWithOrder)

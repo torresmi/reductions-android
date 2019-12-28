@@ -14,8 +14,8 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 class GameDataRepository(
-        private val networkDataSource: GameNetworkDataSource,
-        private val memoryStore: ReactiveStore<GameId, Game>
+    private val networkDataSource: GameNetworkDataSource,
+    private val memoryStore: ReactiveStore<GameId, Game>
 ) : GameRepository {
 
     override fun getGame(id: GameId): Observable<Option<Game>> = memoryStore.get(id)
@@ -31,10 +31,10 @@ class GameDataRepository(
                     .flatMapMaybe { it.toMaybeLeft() }
 
     override fun searchGames(
-            title: String?,
-            steamAppId: String?,
-            limit: Int?,
-            exact: Boolean
+        title: String?,
+        steamAppId: String?,
+        limit: Int?,
+        exact: Boolean
     ): Single<Either<LoadingFailure.Remote, List<GameBestDeal>>> =
             networkDataSource.searchGames(title, steamAppId, limit, exact)
 }
