@@ -1,25 +1,28 @@
-apply plugin: 'kotlin'
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'org.junit.platform.gradle.plugin'
+import dependencies.Deps
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+apply plugin: 'kotlin'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+test {
+    useJUnitPlatform()
+}
 
 dependencies {
     compile project(':domain')
     compile project(':core')
 
-    compile arrowCore
-    compile kotlinStdLib
-    compile moshi
-    compile moshiConverter
-    compile remoteData
-    compile retrofit
-    compile rxJava
-    compile rxRelay
+    compile Deps.arrow
+    compile Deps.kotlin
+    compile Deps.moshi
+    compile Deps.Retrofit.moshiConverter
+    compile Deps.remoteData
+    compile Deps.Retrofit.core
+    compile Deps.RxJava.core
+    compile Deps.rxRelay
 
-    testCompile junit
-    testCompile kotlinTest
-    testCompile mockk
+    testCompile Deps.kotlinTest
+    testCompile Deps.mockk
     testCompile project(':test-util')
 }

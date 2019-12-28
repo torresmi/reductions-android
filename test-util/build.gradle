@@ -1,11 +1,17 @@
+import dependencies.Deps
+
 apply plugin: 'kotlin'
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+test {
+    useJUnitPlatform()
+}
 
 dependencies {
 
     compile project(':core')
-    compile kotlinTest
-    compile remoteData
+    compile Deps.kotlinTest
+    compile Deps.remoteData
 }
