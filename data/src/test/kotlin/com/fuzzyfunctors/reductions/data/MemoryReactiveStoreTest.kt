@@ -42,7 +42,6 @@ class MemoryReactiveStoreTest : DescribeSpec() {
 
                 ts.assertValueAt(1, Some(items))
             }
-
         }
 
         describe("store items") {
@@ -72,7 +71,6 @@ class MemoryReactiveStoreTest : DescribeSpec() {
 
                 ts.assertValueAt(1, Some(item))
             }
-
         }
 
         describe("item stream") {

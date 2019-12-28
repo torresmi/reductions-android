@@ -7,35 +7,34 @@ import java.util.Date
 typealias DealId = String
 
 data class Deal(
-        val id: DealId,
-        val storeId: StoreId,
-        val gameId: GameId,
-        val title: String,
-        val saleData: SaleData?,
-        val normalPrice: String,
-        val metacriticData: MetacriticData?,
-        val steamData: SteamData?,
-        val releaseDate: Date,
-        val lastChange: Date?,
-        val iconLink: String
+    val id: DealId,
+    val storeId: StoreId,
+    val gameId: GameId,
+    val title: String,
+    val saleData: SaleData?,
+    val normalPrice: String,
+    val metacriticData: MetacriticData?,
+    val steamData: SteamData?,
+    val releaseDate: Date,
+    val lastChange: Date?,
+    val iconLink: String
 ) {
 
     data class SaleData(
-            val price: String,
-            val savings: String,
-            val rating: String
+        val price: String,
+        val savings: String,
+        val rating: String
     )
 
     data class MetacriticData(
-            val link: String,
-            val score: String
+        val link: String,
+        val score: String
     )
 
     data class SteamData(
-            val appId: String,
-            val ratingText: String?,
-            val ratingCount: String,
-            val ratingPercent: String
+        val appId: String,
+        val ratingText: String?,
+        val ratingCount: String,
+        val ratingPercent: String
     )
-
 }

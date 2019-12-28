@@ -1,21 +1,21 @@
 package com.fuzzyfunctors.reductions.data.deal
 
 import arrow.core.Either
-import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.Deal
-import com.fuzzyfunctors.reductions.domain.deal.DealRepository.Options
+import com.fuzzyfunctors.reductions.core.deal.DealId
+import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.data.network.CheapSharkService
 import com.fuzzyfunctors.reductions.data.network.toCore
 import com.fuzzyfunctors.reductions.data.network.toEither
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import com.fuzzyfunctors.reductions.core.deal.DealInfo
+import com.fuzzyfunctors.reductions.domain.deal.DealRepository.Options
 import io.reactivex.Single
 
 class DealNetworkDataSource(private val networkService: CheapSharkService) {
 
     fun getDeals(
-            options: Options,
-            pageNumber: Int? = null
+        options: Options,
+        pageNumber: Int? = null
     ): Single<Either<LoadingFailure.Remote, List<Deal>>> {
         val params = toParams(options, pageNumber)
         return networkService.getDeals(
@@ -41,9 +41,9 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
                     }
 
     private data class Params(
-            val stringParams: Map<String, String>?,
-            val boolParams: Map<String, Boolean>?,
-            val intParams: Map<String, Int>?
+        val stringParams: Map<String, String>?,
+        val boolParams: Map<String, Boolean>?,
+        val intParams: Map<String, Int>?
     )
 
     private fun toParams(options: Options, pageNumber: Int? = null): Params {
@@ -111,5 +111,4 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         STORE("Store"),
         RECENT("recent")
     }
-
 }

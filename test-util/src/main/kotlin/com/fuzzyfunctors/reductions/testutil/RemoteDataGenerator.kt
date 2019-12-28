@@ -4,8 +4,8 @@ import io.kotlintest.properties.Gen
 import remotedata.RemoteData
 
 class RemoteDataGenerator<A : Any, B : Any>(
-        val errorGen: Gen<A>,
-        val successGen: Gen<B>
+    val errorGen: Gen<A>,
+    val successGen: Gen<B>
 ) : Gen<RemoteData<A, B>> {
 
     override fun constants(): Iterable<RemoteData<A, B>> =

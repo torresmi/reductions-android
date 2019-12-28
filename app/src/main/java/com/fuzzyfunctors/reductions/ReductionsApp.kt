@@ -15,5 +15,4 @@ class ReductionsApp : Application() {
             modules(Modules.get(false))
         }
     }
-
 }

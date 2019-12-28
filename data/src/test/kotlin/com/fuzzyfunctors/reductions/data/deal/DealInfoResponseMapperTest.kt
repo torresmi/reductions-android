@@ -2,7 +2,6 @@ package com.fuzzyfunctors.reductions.data.deal
 
 import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
-import com.fuzzyfunctors.reductions.data.deal.Deal as ApiDeal
 import com.fuzzyfunctors.reductions.data.network.toCore
 import com.fuzzyfunctors.reductions.testutil.randomString
 import io.kotlintest.shouldBe
@@ -90,7 +89,6 @@ class DealInfoResponseMapperTest : DescribeSpec() {
 
                     result.metacriticData shouldBe null
                     assertCommonProperties(notOnMetacritic, result)
-
                 }
             }
         }

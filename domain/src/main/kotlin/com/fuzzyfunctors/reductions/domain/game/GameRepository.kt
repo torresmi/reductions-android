@@ -17,9 +17,9 @@ interface GameRepository {
     fun fetchGame(id: GameId): Maybe<LoadingFailure.Remote>
 
     fun searchGames(
-            title: String?,
-            steamAppId: String? = null,
-            limit: Int? = null,
-            exact: Boolean = false
+        title: String?,
+        steamAppId: String? = null,
+        limit: Int? = null,
+        exact: Boolean = false
     ): Single<Either<LoadingFailure.Remote, List<GameBestDeal>>>
 }

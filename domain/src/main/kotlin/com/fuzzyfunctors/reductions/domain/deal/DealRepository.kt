@@ -32,10 +32,10 @@ interface DealRepository {
     fun fetchDealInfo(id: DealId): Maybe<LoadingFailure.Remote>
 
     data class Options(
-            val continuePagination: Boolean = true,
-            val limit: Int? = null,
-            val order: Order? = null,
-            val filters: Filters? = null
+        val continuePagination: Boolean = true,
+        val limit: Int? = null,
+        val order: Order? = null,
+        val filters: Filters? = null
     ) {
 
         enum class Order {
@@ -51,14 +51,14 @@ interface DealRepository {
         }
 
         data class Filters(
-                val storeId: Set<StoreId>? = null,
-                val minimumPrice: Int? = null,
-                val maximumPrice: Int? = null,
-                val minimumMetacriticRating: Int? = null,
-                val minimumSteamRating: Int? = null,
-                val tripleA: Boolean? = null,
-                val steamOnly: Boolean? = null,
-                val onSale: Boolean? = null
+            val storeId: Set<StoreId>? = null,
+            val minimumPrice: Int? = null,
+            val maximumPrice: Int? = null,
+            val minimumMetacriticRating: Int? = null,
+            val minimumSteamRating: Int? = null,
+            val tripleA: Boolean? = null,
+            val steamOnly: Boolean? = null,
+            val onSale: Boolean? = null
         )
 
         companion object {

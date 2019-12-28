@@ -72,7 +72,6 @@ class StoreDataRepositoryTest : DescribeSpec() {
                     verify(exactly = 0) { mockMemoryReactiveStore.store(any<Collection<Store>>()) }
                 }
             }
-
         }
 
         describe("getting a store") {
@@ -88,7 +87,6 @@ class StoreDataRepositoryTest : DescribeSpec() {
                     sut.getStore(storeId).test()
                             .assertValue(Some(store))
                 }
-
             }
 
             context("the store does not exist") {
@@ -116,7 +114,6 @@ class StoreDataRepositoryTest : DescribeSpec() {
                     sut.getStores().test()
                             .assertValue(Some(stores))
                 }
-
             }
 
             context("haven't found any stores yet") {
@@ -130,7 +127,6 @@ class StoreDataRepositoryTest : DescribeSpec() {
                 }
             }
         }
-
     }
 
     override fun afterTest(description: Description, result: TestResult) {

@@ -1,7 +1,6 @@
 package com.fuzzyfunctors.reductions.testutil
 
 import com.fuzzyfunctors.reductions.core.deal.Deal
-import com.fuzzyfunctors.reductions.core.game.CheapestPriceEver
 import io.kotlintest.properties.Gen
 
 class DealGenerator : Gen<Deal> {

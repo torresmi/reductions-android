@@ -11,8 +11,8 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 
 class StoreDataRepository(
-        private val networkDataSource: StoreNetworkDataSource,
-        private val memoryStore: ReactiveStore<StoreId, Store>
+    private val networkDataSource: StoreNetworkDataSource,
+    private val memoryStore: ReactiveStore<StoreId, Store>
 ) : StoreRepository {
 
     override fun getStore(id: StoreId): Observable<Option<Store>> = memoryStore.get(id)

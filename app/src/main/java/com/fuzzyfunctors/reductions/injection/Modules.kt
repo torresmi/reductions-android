@@ -30,7 +30,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 val appModule = module {
 }
 
@@ -48,7 +47,6 @@ val repositoryModule = module {
     }
 
     single<AlertRepository> { AlertDataRepository(get()) }
-
 }
 
 val localModule = module {
@@ -68,7 +66,6 @@ val localModule = module {
     factory<ReactiveStore<DealId, DealInfo>>(named(MEMORY_STORE_DEAL)) {
         MemoryReactiveStore { deal -> deal.id }
     }
-
 }
 
 val networkModule = module {
@@ -85,7 +82,6 @@ val networkModule = module {
     factory { DealNetworkDataSource(get()) }
 
     factory { AlertNetworkDataSource(get()) }
-
 }
 
 private fun buildRetrofit(): Retrofit {
@@ -112,4 +108,3 @@ object Modules {
         )
     }
 }
-
