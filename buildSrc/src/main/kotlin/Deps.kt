@@ -11,7 +11,6 @@ object Deps {
         val core = withArtifact("glide", Version.glide)
         val compiler = withArtifact("compiler", Version.glide)
     }
-    val junit = dependency("junit:junit", Version.junit)
     object Koin : Group("org.koin") {
         val android = withArtifact("koin-android", Version.koin)
         val test = withArtifact("koin-test", Version.koin)
@@ -37,7 +36,6 @@ object Deps {
 
 object Plugins {
     val androidTools = dependency("com.android.tools.build:gradle", Version.androidBuildTools)
-    val junit = dependency("org.junit.platform:junit-platform-gradle-plugin", Version.junitPlatform)
     val kotlin = dependency("org.jetbrains.kotlin:kotlin-gradle-plugin", Version.kotlin)
     val versions = dependency("com.github.ben-manes:gradle-versions-plugin", Version.gradleVersions)
 }
@@ -57,8 +55,6 @@ private object Version {
     val espresso = "3.0.2"
     val glide = "4.10.0"
     val gradleVersions = "0.20.0"
-    val junit = "4.13-rc-2"
-    val junitPlatform = "1.2.0"
     val koin = "2.1.0-alpha-8"
     val kotlin = "1.3.61"
     val kotlinTest = "3.4.2"

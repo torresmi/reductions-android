@@ -22,6 +22,12 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -47,7 +53,6 @@ dependencies {
     implementation Deps.RxJava.core
     implementation Deps.Retrofit.rxJavaCallAdapter
 
-    testImplementation Deps.junit
     testImplementation Deps.Koin.test
     testImplementation Deps.kotlinTest
     androidTestImplementation Deps.androidTestRunner

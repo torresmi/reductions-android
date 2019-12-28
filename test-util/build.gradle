@@ -5,6 +5,10 @@ apply plugin: 'kotlin'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
 
     compile project(':core')
