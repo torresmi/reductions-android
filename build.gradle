@@ -6,6 +6,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url "https://dl.bintray.com/arrow-kt/arrow-kt/" }
     }
     dependencies {
         classpath Plugins.androidTools
