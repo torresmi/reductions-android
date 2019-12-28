@@ -9,7 +9,7 @@ buildscript {
         maven { url "https://dl.bintray.com/arrow-kt/arrow-kt/" }
     }
     dependencies {
-        classpath Plugins.androidTools
+        classpath Plugins.android
         classpath Plugins.kotlin
         classpath Plugins.versions
     }

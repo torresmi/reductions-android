@@ -1,15 +1,18 @@
 import dependencies.Deps
+import dependencies.Version
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion Version.Sdk.compile
+
+    buildToolsVersion = Version.buildTools
     defaultConfig {
         applicationId "com.fuzzyfunctors.reductions"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion Version.Sdk.min
+        targetSdkVersion Version.Sdk.target
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

@@ -1,7 +1,6 @@
 package dependencies
 
 object Deps {
-
     val androidTestRunner = dependency("com.android.support.test:runner", Version.androidTestRunner)
     val appCompat = dependency("androidx.appcompat:appcompat", Version.appCompat)
     val arrow = dependency("io.arrow-kt:arrow-core", Version.arrow)
@@ -35,7 +34,7 @@ object Deps {
 }
 
 object Plugins {
-    val androidTools = dependency("com.android.tools.build:gradle", Version.androidBuildTools)
+    val android = dependency("com.android.tools.build:gradle", Version.androidGradle)
     val kotlin = dependency("org.jetbrains.kotlin:kotlin-gradle-plugin", Version.kotlin)
     val versions = dependency("com.github.ben-manes:gradle-versions-plugin", Version.gradleVersions)
 }
@@ -46,11 +45,12 @@ abstract class Group(val group: String) {
 
 private fun dependency(path: String, version: String) = "$path:$version"
 
-private object Version {
-    val androidBuildTools = "3.5.3"
+object Version {
+    val androidGradle = "3.5.3"
     val appCompat = "1.2.0-alpha01"
     val arrow = "0.10.4"
     val androidTestRunner = "1.1.0"
+    val buildTools = "29.0.2"
     val constraintLayout = "2.0.0-beta4"
     val espresso = "3.1.0"
     val glide = "4.10.0"
@@ -67,4 +67,10 @@ private object Version {
     val rxAndroid = "2.1.1"
     val rxJava = "2.2.16"
     val rxRelay = "2.1.1"
+
+    object Sdk {
+        val min = 23
+        val target = 29
+        val compile = 29
+    }
 }
