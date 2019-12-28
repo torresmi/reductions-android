@@ -36,6 +36,7 @@ object Deps {
 object Plugins {
     val android = dependency("com.android.tools.build:gradle", Version.androidGradle)
     val kotlin = dependency("org.jetbrains.kotlin:kotlin-gradle-plugin", Version.kotlin)
+    val ktlint = dependency("org.jlleitschuh.gradle:ktlint-gradle", Version.ktlintGradle)
     val versions = dependency("com.github.ben-manes:gradle-versions-plugin", Version.gradleVersions)
 }
 
@@ -58,6 +59,7 @@ object Version {
     val koin = "2.1.0-alpha-8"
     val kotlin = "1.3.61"
     val kotlinTest = "3.4.2"
+    val ktlintGradle = "9.1.1"
     val material = "1.2.0-alpha03"
     val materialValues = "1.1.1"
     val mockk = "1.9.3"

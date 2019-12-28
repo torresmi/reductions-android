@@ -7,10 +7,12 @@ buildscript {
         google()
         jcenter()
         maven { url "https://dl.bintray.com/arrow-kt/arrow-kt/" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath Plugins.android
         classpath Plugins.kotlin
+        classpath Plugins.ktlint
         classpath Plugins.versions
     }
 }
@@ -22,6 +24,7 @@ allprojects {
     }
 
     apply plugin: 'com.github.ben-manes.versions'
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
 
 }
 
