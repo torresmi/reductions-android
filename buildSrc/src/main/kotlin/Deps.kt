@@ -5,11 +5,8 @@ object Deps {
     val appCompat = dependency("androidx.appcompat:appcompat", Version.appCompat)
     val arrow = dependency("io.arrow-kt:arrow-core", Version.arrow)
     val constraintLayout = dependency("androidx.constraintlayout:constraintlayout", Version.constraintLayout)
+    val coil = dependency("io.coil-kt:coil", Version.coil)
     val espresso = dependency("com.android.support.test.espresso:espresso-core", Version.espresso)
-    object Glide : Group("com.github.bumptech.glide") {
-        val core = withArtifact("glide", Version.glide)
-        val compiler = withArtifact("compiler", Version.glide)
-    }
     object Koin : Group("org.koin") {
         val android = withArtifact("koin-android", Version.koin)
         val test = withArtifact("koin-test", Version.koin)
@@ -53,10 +50,10 @@ object Version {
     val arrow = "0.10.4"
     val androidTestRunner = "1.1.0"
     val buildTools = "29.0.2"
+    val coil = "0.8.0"
     val constraintLayout = "2.0.0-beta4"
     val detektGradle = "1.3.0"
     val espresso = "3.1.0"
-    val glide = "4.10.0"
     val gradleVersions = "0.27.0"
     val koin = "2.1.0-alpha-8"
     val kotlin = "1.3.61"

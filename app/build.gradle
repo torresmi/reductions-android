@@ -43,10 +43,7 @@ dependencies {
     implementation Deps.appCompat
     implementation Deps.arrow
     implementation Deps.constraintLayout
-    implementation (Deps.Glide.core) {
-        exclude group: "com.android.support"
-    }
-    annotationProcessor Deps.Glide.compiler
+    implementation Deps.coil
     implementation Deps.Koin.android
     implementation Deps.kotlin
     implementation Deps.material
