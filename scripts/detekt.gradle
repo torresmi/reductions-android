@@ -1,0 +1,20 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+detekt {
+    config = files("$rootDir/config/detekt/detekt.yml")
+    parallel = true
+}
+
+task getAnalysis(type: Exec, dependsOn: 'detekt') {
+    def output = "$buildDir/reports/detekt/detekt.html"
+
+    if (Os.isFamily(Os.FAMILY_MAC)) {
+        commandLine "open", output
+    } else if (Os.isFamily(Os.FAMILY_UNIX)) {
+        commandLine "xdg-open", output
+    } else if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine "start", output
+    }
+}

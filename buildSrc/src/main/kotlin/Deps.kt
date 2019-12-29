@@ -35,6 +35,7 @@ object Deps {
 
 object Plugins {
     val android = dependency("com.android.tools.build:gradle", Version.androidGradle)
+    val detekt = dependency("io.gitlab.arturbosch.detekt:detekt-gradle-plugin", Version.detektGradle)
     val kotlin = dependency("org.jetbrains.kotlin:kotlin-gradle-plugin", Version.kotlin)
     val ktlint = dependency("org.jlleitschuh.gradle:ktlint-gradle", Version.ktlintGradle)
     val versions = dependency("com.github.ben-manes:gradle-versions-plugin", Version.gradleVersions)
@@ -53,6 +54,7 @@ object Version {
     val androidTestRunner = "1.1.0"
     val buildTools = "29.0.2"
     val constraintLayout = "2.0.0-beta4"
+    val detektGradle = "1.3.0"
     val espresso = "3.1.0"
     val glide = "4.10.0"
     val gradleVersions = "0.27.0"
