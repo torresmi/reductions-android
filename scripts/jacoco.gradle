@@ -1,0 +1,29 @@
+import dependencies.Version
+
+apply plugin: "com.vanniktech.android.junit.jacoco"
+
+junitJacoco {
+    jacocoVersion = Version.jacoco
+    ignoreProjects = [
+            'test-util'
+    ]
+    excludes = [
+            '**/widgets/*',
+            '**/coil/*',
+            '**/*$ViewBinder*.*',
+            '**/com/google/**',
+            '**/androidx/*',
+            '**/*Controller.*',
+            '**/*Adapter.*',
+            '**/*Adapter*.*',
+            '**/*View.*',
+            '**/*Activity.*',
+            '**/*App*.*',
+            '**/*R.class',
+            '**/*R$*.class',
+            '**/BuildConfig.*',
+            '**/injection/**',
+            '**/Lambda$*.class',
+            '**/Lambda.class',
+    ]
+}
