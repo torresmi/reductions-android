@@ -13,8 +13,10 @@ dependencies {
     compile project(':domain')
 
     compile Deps.arrow
-    compile Deps.arrow
+    compile Deps.Coroutines.core
+    compile Deps.Coroutines.rx
 
+    testCompile Deps.Coroutines.test
     testCompile Deps.kotlinTest
     testCompile Deps.mockk
     testCompile project(':test-util')

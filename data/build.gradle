@@ -14,6 +14,8 @@ dependencies {
     compile project(':core')
 
     compile Deps.arrow
+    compile Deps.Coroutines.core
+    compile Deps.Coroutines.rx
     compile Deps.kotlin
     compile Deps.moshi
     compile Deps.Retrofit.moshiConverter
@@ -22,6 +24,7 @@ dependencies {
     compile Deps.RxJava.core
     compile Deps.rxRelay
 
+    testCompile Deps.Coroutines.test
     testCompile Deps.kotlinTest
     testCompile Deps.mockk
     testCompile project(':test-util')

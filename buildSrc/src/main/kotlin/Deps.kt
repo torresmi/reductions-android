@@ -6,6 +6,12 @@ object Deps {
     val arrow = dependency("io.arrow-kt:arrow-core", Version.arrow)
     val constraintLayout = dependency("androidx.constraintlayout:constraintlayout", Version.constraintLayout)
     val coil = dependency("io.coil-kt:coil", Version.coil)
+    object Coroutines : Group("org.jetbrains.kotlinx") {
+        val android = withArtifact("kotlinx-coroutines-android", Version.coroutines)
+        val core = withArtifact("kotlinx-coroutines-core", Version.coroutines)
+        val rx = withArtifact("kotlinx-coroutines-rx2", Version.coroutines)
+        val test = withArtifact("kotlinx-coroutines-test", Version.coroutines)
+    }
     val espresso = dependency("com.android.support.test.espresso:espresso-core", Version.espresso)
 
     object Koin : Group("org.koin") {
@@ -58,6 +64,7 @@ object Version {
     val buildTools = "29.0.2"
     val coil = "0.8.0"
     val constraintLayout = "2.0.0-beta4"
+    val coroutines = "1.3.3"
     val detektGradle = "1.3.0"
     val espresso = "3.1.0"
     val gradleVersions = "0.27.0"
