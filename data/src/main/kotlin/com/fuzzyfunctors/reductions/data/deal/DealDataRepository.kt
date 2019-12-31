@@ -1,6 +1,7 @@
 package com.fuzzyfunctors.reductions.data.deal
 
 import arrow.core.Option
+import arrow.core.toOption
 import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
@@ -12,6 +13,8 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.rx2.asObservable
 
 class DealDataRepository(
     private val networkDataSource: DealNetworkDataSource,
@@ -55,6 +58,8 @@ class DealDataRepository(
 
     override fun getDealInfo(id: DealId): Observable<Option<DealInfo>> =
         dealInfoMemoryReactiveStore.get(id)
+            .map { it.toOption() }
+            .asObservable()
 
     override fun fetchDealInfo(id: DealId): Maybe<LoadingFailure.Remote> =
         networkDataSource.getDeal(id)
@@ -68,6 +73,8 @@ class DealDataRepository(
 
     private fun getDealsForType(type: DealType): Observable<Option<List<Deal>>> =
         dealsMemoryReactiveStore.get(type)
+            .map { it.toOption() }
+            .asObservable()
             .map(getDeals)
 
     private val getDeals = { data: Option<DealTypeData> ->

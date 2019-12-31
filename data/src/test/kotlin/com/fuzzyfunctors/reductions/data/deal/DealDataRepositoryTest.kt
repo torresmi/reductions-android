@@ -4,7 +4,6 @@ import arrow.core.Either
 import arrow.core.None
 import arrow.core.Option
 import arrow.core.Some
-import arrow.core.toOption
 import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
@@ -24,6 +23,7 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.net.HttpURLConnection
+import kotlinx.coroutines.flow.flowOf
 
 class DealDataRepositoryTest : DescribeSpec() {
 
@@ -155,7 +155,7 @@ class DealDataRepositoryTest : DescribeSpec() {
             context("deals exist") {
 
                 every { mockDealsReactiveStore.get(any()) } returns
-                    Observable.just(DealTypeData(DealType.TOP, deals).toOption())
+                    flowOf(DealTypeData(DealType.TOP, deals))
 
                 it("returns deals") {
                     forall(*getRequests.value) { request: Observable<Option<List<Deal>>> ->
@@ -167,8 +167,7 @@ class DealDataRepositoryTest : DescribeSpec() {
 
             context("deals do not exist") {
 
-                every { mockDealsReactiveStore.get(any()) } returns
-                    Observable.just(None)
+                every { mockDealsReactiveStore.get(any()) } returns flowOf(null)
 
                 it("should return nothing") {
                     forall(*getRequests.value) { request: Observable<Option<List<Deal>>> ->

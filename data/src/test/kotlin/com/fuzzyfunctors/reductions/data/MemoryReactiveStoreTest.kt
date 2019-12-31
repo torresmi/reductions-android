@@ -1,14 +1,18 @@
 package com.fuzzyfunctors.reductions.data
 
-import arrow.core.None
-import arrow.core.Some
+import io.kotlintest.IsolationMode
+import io.kotlintest.shouldBe
 import io.kotlintest.specs.DescribeSpec
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 
 class MemoryReactiveStoreTest : DescribeSpec() {
 
-    override fun isInstancePerTest(): Boolean = true
+    override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
     init {
 
@@ -23,85 +27,98 @@ class MemoryReactiveStoreTest : DescribeSpec() {
             it("adds to the cache") {
                 sut.store(item)
 
-                sut.get(key).test()
-                    .assertValue(Some(item))
+                val result = sut.get(key).first()
+                result shouldBe item
             }
 
             it("updates a watching observer") {
-                val ts = sut.get(key).test()
+                val result = waitForSubscribers(
+                    subscription = {
+                        sut.get(key)
+                            .take(2)
+                            .toList()
+                    },
+                    action = {
+                        sut.store(item)
+                    }
+                )
 
-                sut.store(item)
-
-                ts.assertValueAt(1, Some(item))
+                result shouldBe listOf(null, item)
             }
 
             it("updates a watching observer for all items") {
-                val ts = sut.get().test()
+                val result = waitForSubscribers(
+                    subscription = {
+                        sut.get()
+                            .take(2)
+                            .toList()
+                    },
+                    action = {
+                        sut.store(item)
+                    }
+                )
 
-                sut.store(item)
-
-                ts.assertValueAt(1, Some(items))
+                result shouldBe listOf(null, items)
             }
         }
 
         describe("store items") {
 
-            RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-
             it("adds items to the cache") {
-                val ts = sut.get().test()
-
                 sut.store(items)
 
-                ts.assertValueAt(1, Some(items))
+                val result = sut.get().first()
+
+                result shouldBe items
             }
 
             it("updates a watching observer") {
-                val ts = sut.get().test()
+                val result = waitForSubscribers(
+                    subscription = {
+                        sut.get()
+                            .take(2)
+                            .toList()
+                    },
+                    action = {
+                        sut.store(items)
+                    }
+                )
 
-                sut.store(items)
-
-                ts.assertValueAt(1, Some(items))
+                result shouldBe listOf(null, items)
             }
 
             it("Updates individual item observers") {
-                val ts = sut.get(key).test()
 
-                sut.store(item)
+                val result = waitForSubscribers(
+                    subscription = {
+                        sut.get(key)
+                            .take(2)
+                            .toList()
+                    },
+                    action = {
+                        sut.store(item)
+                    }
+                )
 
-                ts.assertValueAt(1, Some(item))
+                result shouldBe listOf(null, item)
             }
         }
 
         describe("item stream") {
 
-            it("starts with nothing") {
-                sut.get(key).test()
-                    .assertValue(None)
-            }
+            it("starts with null") {
+                val result = sut.get(key).first()
 
-            it("does not terminate") {
-                val ts = sut.get(key).test()
-
-                sut.store(item)
-
-                ts.assertNotTerminated()
+                result shouldBe null
             }
         }
 
         describe("items stream") {
 
-            it("starts with nothing") {
-                sut.get().test()
-                    .assertValue(None)
-            }
+            it("starts with null") {
+                val result = sut.get().first()
 
-            it("does not terminate") {
-                val ts = sut.get().test()
-
-                sut.store(items)
-
-                ts.assertNotTerminated()
+                result shouldBe null
             }
         }
 
@@ -112,9 +129,23 @@ class MemoryReactiveStoreTest : DescribeSpec() {
 
                 sut.clear()
 
-                sut.get().test()
-                    .assertValue(None)
+                val result = sut.get().first()
+
+                result shouldBe null
             }
         }
     }
+}
+
+private suspend fun <A> CoroutineScope.waitForSubscribers(
+    subscription: suspend CoroutineScope.() -> A,
+    action: suspend CoroutineScope.() -> Unit
+): A {
+    val subscriptionTask = async(block = subscription)
+
+    // TODO: This is probably flaky, and delays the call enough to start the subscription.
+    // - This will be changed later when we refactor the store to use suspension functions
+    launch(block = action)
+
+    return subscriptionTask.await()
 }

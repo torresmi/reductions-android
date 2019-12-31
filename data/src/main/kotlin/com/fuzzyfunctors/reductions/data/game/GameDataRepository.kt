@@ -2,6 +2,7 @@ package com.fuzzyfunctors.reductions.data.game
 
 import arrow.core.Either
 import arrow.core.Option
+import arrow.core.toOption
 import com.fuzzyfunctors.reductions.core.game.Game
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
@@ -12,6 +13,8 @@ import com.fuzzyfunctors.reductions.domain.toMaybeLeft
 import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.rx2.asObservable
 
 class GameDataRepository(
     private val networkDataSource: GameNetworkDataSource,
@@ -19,6 +22,8 @@ class GameDataRepository(
 ) : GameRepository {
 
     override fun getGame(id: GameId): Observable<Option<Game>> = memoryStore.get(id)
+        .map { it.toOption() }
+        .asObservable()
 
     override fun fetchGame(id: GameId): Maybe<LoadingFailure.Remote> =
         networkDataSource.getGameInfo(id)

@@ -1,81 +1,67 @@
 package com.fuzzyfunctors.reductions.data
 
-import arrow.core.Option
-import arrow.core.toOption
-import com.jakewharton.rxrelay2.PublishRelay
-import com.jakewharton.rxrelay2.Relay
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
+import com.fuzzyfunctors.reductions.domain.safeOffer
 import java.util.concurrent.ConcurrentHashMap
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.onStart
 
 class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : ReactiveStore<K, V> {
 
     private val cache = ConcurrentHashMap<K, V>()
 
-    private val itemsRelay = PublishRelay.create<Option<Set<V>>>()
-        .toSerialized()
+    private val itemsChannel = BroadcastChannel<Set<V>?>(1)
 
-    private val itemRelays = ConcurrentHashMap<K, Relay<Option<V>>>()
+    private val itemChannels = ConcurrentHashMap<K, BroadcastChannel<V?>>()
 
     override fun store(item: V) {
         val key = keyForItem(item)
         cache[key] = item
 
-        getOrCreatePublisher(key).accept(item.toOption())
-        itemsRelay.accept(getAllItems())
+        getOrCreateChannel(key).safeOffer(item)
+        itemsChannel.safeOffer(getAllItems())
     }
 
-    @Suppress("CheckResult")
     override fun store(items: Collection<V>) {
-        Observable.just(items)
-            .subscribeOn(Schedulers.computation())
-            .subscribe {
-                val keyValue = it.associateBy(keyForItem)
-                cache.putAll(keyValue)
-                itemsRelay.accept(getAllItems())
-
-                updateExistingPublishers()
-            }
+        val keyValue = items.associateBy(keyForItem)
+        cache.putAll(keyValue)
+        itemsChannel.safeOffer(getAllItems())
+        updateExistingChannels()
     }
 
-    override fun get(key: K): Observable<Option<V>> =
-        Observable
-            .defer {
-                val item = cache[key].toOption()
-                getOrCreatePublisher(key).startWith(item)
+    override fun get(key: K): Flow<V?> =
+        getOrCreateChannel(key).asFlow()
+            .onStart {
+                val item = cache[key]
+                emit(item)
             }
 
-    override fun get(): Observable<Option<Set<V>>> =
-        Observable
-            .defer {
-                val allItems = getAllItems()
-                itemsRelay.startWith(allItems)
-            }
+    override fun get(): Flow<Set<V>?> = itemsChannel.asFlow()
+        .onStart { emit(getAllItems()) }
+
+//    override fun get(): Flow<Set<V>?> = flow {
+//        emit(getAllItems())
+//        emitAll(itemsChannel.openSubscription())
+//    }
 
     override fun clear() = cache.clear()
 
-    private fun getAllItems(): Option<Set<V>> = cache.values.toSet()
-        .toOption()
-        .filterNot { it.isEmpty() }
+    private fun getAllItems(): Set<V>? = cache.values.toSet()
+        .takeIf { cache.isNotEmpty() }
 
-    private fun getOrCreatePublisher(key: K): Relay<Option<V>> =
-        itemRelays.getOrPut(key) {
-            PublishRelay.create<Option<V>>().toSerialized()
-        }
+    private fun getOrCreateChannel(key: K): BroadcastChannel<V?> =
+        itemChannels.getOrPut(key) { BroadcastChannel(1) }
 
-    private fun updateExistingPublishers() {
-        val keys = itemRelays.keys().toList().toSet()
+    private fun updateExistingChannels() {
+        val keys = itemChannels.keys().toList()
         keys.forEach {
-            val item = cache[it].toOption()
-            updateItemPublisher(it, item)
+            val item = cache[it]
+            updateItemChannel(it, item)
         }
     }
 
-    private fun updateItemPublisher(key: K, item: Option<V>) {
-        val publisher = itemRelays.get(key).toOption()
-        publisher.fold(
-            {},
-            { it.accept(item) }
-        )
+    private fun updateItemChannel(key: K, item: V?) {
+        itemChannels[key]?.safeOffer(item)
     }
 }

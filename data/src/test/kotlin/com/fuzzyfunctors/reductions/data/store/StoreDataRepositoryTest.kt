@@ -16,8 +16,8 @@ import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Observable
 import io.reactivex.Single
+import kotlinx.coroutines.flow.flowOf
 
 class StoreDataRepositoryTest : DescribeSpec() {
 
@@ -80,8 +80,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
             context("the store exists") {
 
-                every { mockMemoryReactiveStore.get(storeId) } returns
-                    Observable.just(Some(store))
+                every { mockMemoryReactiveStore.get(storeId) } returns flowOf(store)
 
                 it("should return the store") {
                     sut.getStore(storeId).test()
@@ -91,8 +90,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
             context("the store does not exist") {
 
-                every { mockMemoryReactiveStore.get(any()) } returns
-                    Observable.just(None)
+                every { mockMemoryReactiveStore.get(any()) } returns flowOf(null)
 
                 it("should return nothing") {
                     sut.getStore(storeId).test()
@@ -107,8 +105,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
                 val stores = setOf(store)
 
-                every { mockMemoryReactiveStore.get() } returns
-                    Observable.just(Some(stores))
+                every { mockMemoryReactiveStore.get() } returns flowOf(stores)
 
                 it("should return the store") {
                     sut.getStores().test()
@@ -118,8 +115,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
             context("haven't found any stores yet") {
 
-                every { mockMemoryReactiveStore.get() } returns
-                    Observable.just(None)
+                every { mockMemoryReactiveStore.get() } returns flowOf(null)
 
                 it("should return nothing") {
                     sut.getStores().test()

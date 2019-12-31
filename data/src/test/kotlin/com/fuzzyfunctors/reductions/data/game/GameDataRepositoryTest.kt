@@ -17,9 +17,9 @@ import io.kotlintest.specs.DescribeSpec
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Observable
 import io.reactivex.Single
 import java.net.HttpURLConnection
+import kotlinx.coroutines.flow.flowOf
 
 class GameDataRepositoryTest : DescribeSpec() {
 
@@ -155,8 +155,7 @@ class GameDataRepositoryTest : DescribeSpec() {
     }
 
     private fun mockStoreGet(response: Option<Game>) {
-        every { mockMemoryReactiveStore.get(any()) } returns
-            Observable.just(response)
+        every { mockMemoryReactiveStore.get(any()) } returns flowOf(response.orNull())
     }
 
     private fun mockSearchGames(response: Either<LoadingFailure.Remote, List<GameBestDeal>>) {
