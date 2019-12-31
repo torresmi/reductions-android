@@ -9,11 +9,11 @@ class GameGenerator : Gen<Game> {
 
     override fun random(): Sequence<Game> = generateSequence {
         Game(
-                id = randomString(),
-                steamAppId = randomString(),
-                title = randomString(),
-                cheapestPriceEver = CheapestPriceEverGenerator().firstRandom(),
-                deals = Gen.map(Gen.string(), DealInfoGenerator()).firstRandom()
+            id = randomString(),
+            steamAppId = randomString(),
+            title = randomString(),
+            cheapestPriceEver = CheapestPriceEverGenerator().firstRandom(),
+            deals = Gen.map(Gen.string(), DealInfoGenerator()).firstRandom()
         )
     }
 
@@ -23,11 +23,11 @@ class GameGenerator : Gen<Game> {
 
         override fun random(): Sequence<Game.DealInfo> = generateSequence {
             Game.DealInfo(
-                    dealId = randomString(),
-                    storeId = randomString(),
-                    price = randomString(),
-                    retailPrice = randomString(),
-                    savings = randomString()
+                dealId = randomString(),
+                storeId = randomString(),
+                price = randomString(),
+                retailPrice = randomString(),
+                savings = randomString()
             )
         }
     }

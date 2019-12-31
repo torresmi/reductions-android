@@ -21,6 +21,7 @@ class FailureView @JvmOverloads constructor(
     interface Listener {
         fun onRetryClicked()
     }
+
     var listener: Listener? = null
 
     var showRetry: Boolean by Delegates.observable(false) { _, old, new ->

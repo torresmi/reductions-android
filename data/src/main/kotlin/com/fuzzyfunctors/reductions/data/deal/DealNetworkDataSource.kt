@@ -19,26 +19,26 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
     ): Single<Either<LoadingFailure.Remote, List<Deal>>> {
         val params = toParams(options, pageNumber)
         return networkService.getDeals(
-                params.stringParams.orEmpty(),
-                params.intParams.orEmpty(),
-                params.boolParams.orEmpty()
+            params.stringParams.orEmpty(),
+            params.intParams.orEmpty(),
+            params.boolParams.orEmpty()
         )
-                .map { it.toEither() }
-                .map {
-                    it.map { deals ->
-                        deals.map { it.toCore() }
-                    }
+            .map { it.toEither() }
+            .map {
+                it.map { deals ->
+                    deals.map { it.toCore() }
                 }
+            }
     }
 
     fun getDeal(dealId: DealId): Single<Either<LoadingFailure.Remote, DealInfo>> =
-            networkService.getDeal(dealId)
-                    .map { it.toEither() }
-                    .map {
-                        it.map { response ->
-                            response.toCore(dealId)
-                        }
-                    }
+        networkService.getDeal(dealId)
+            .map { it.toEither() }
+            .map {
+                it.map { response ->
+                    response.toCore(dealId)
+                }
+            }
 
     private data class Params(
         val stringParams: Map<String, String>?,
@@ -67,24 +67,24 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         pageNumber?.also { intParams[Param.PAGE_NUMBER.paramName] = it }
 
         return Params(
-                stringParams,
-                boolParams,
-                intParams
+            stringParams,
+            boolParams,
+            intParams
         )
     }
 
     private fun orderParamName(order: Options.Order): String =
-            when (order) {
-                Options.Order.DEAL_RATING -> OrderParam.DEAL_RATING.paramName
-                Options.Order.TITLE -> OrderParam.TITLE.paramName
-                Options.Order.SAVINGS -> OrderParam.SAVINGS.paramName
-                Options.Order.PRICE -> OrderParam.PRICE.paramName
-                Options.Order.METACRITIC -> OrderParam.METACRITIC.paramName
-                Options.Order.REVIEWS -> OrderParam.REVIEWS.paramName
-                Options.Order.RELEASE -> OrderParam.RELEASE.paramName
-                Options.Order.STORE -> OrderParam.STORE.paramName
-                Options.Order.RECENT -> OrderParam.RECENT.paramName
-            }
+        when (order) {
+            Options.Order.DEAL_RATING -> OrderParam.DEAL_RATING.paramName
+            Options.Order.TITLE -> OrderParam.TITLE.paramName
+            Options.Order.SAVINGS -> OrderParam.SAVINGS.paramName
+            Options.Order.PRICE -> OrderParam.PRICE.paramName
+            Options.Order.METACRITIC -> OrderParam.METACRITIC.paramName
+            Options.Order.REVIEWS -> OrderParam.REVIEWS.paramName
+            Options.Order.RELEASE -> OrderParam.RELEASE.paramName
+            Options.Order.STORE -> OrderParam.STORE.paramName
+            Options.Order.RECENT -> OrderParam.RECENT.paramName
+        }
 
     private enum class Param(val paramName: String) {
         STORE_ID("storeID"),

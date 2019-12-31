@@ -10,11 +10,11 @@ class AlertDataRepository(private val networkDataSource: AlertNetworkDataSource)
 
     override fun watchGame(gameId: GameId, email: String, price: Double?): Maybe<LoadingFailure.Remote> {
         return networkDataSource.watchGame(gameId, email, price)
-                .flatMapMaybe { it.toMaybeLeft() }
+            .flatMapMaybe { it.toMaybeLeft() }
     }
 
     override fun unwatchGame(gameId: GameId, email: String): Maybe<LoadingFailure.Remote> {
         return networkDataSource.unwatchGame(gameId, email)
-                .flatMapMaybe { it.toMaybeLeft() }
+            .flatMapMaybe { it.toMaybeLeft() }
     }
 }

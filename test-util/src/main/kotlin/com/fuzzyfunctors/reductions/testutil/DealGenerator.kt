@@ -5,27 +5,27 @@ import io.kotlintest.properties.Gen
 
 class DealGenerator : Gen<Deal> {
     override fun constants(): Iterable<Deal> = listOf(
-            random().first().copy(
-                    saleData = null,
-                    metacriticData = null,
-                    steamData = null,
-                    lastChange = null
-            )
+        random().first().copy(
+            saleData = null,
+            metacriticData = null,
+            steamData = null,
+            lastChange = null
+        )
     )
 
     override fun random(): Sequence<Deal> = generateSequence {
         Deal(
-                id = randomString(),
-                storeId = randomString(),
-                gameId = randomString(),
-                title = randomString(),
-                saleData = NullableGenerator(SaleDataGenerator()).firstRandom(),
-                normalPrice = randomString(),
-                metacriticData = NullableGenerator(MetacriticDataGenerator()).firstRandom(),
-                steamData = NullableGenerator(SteamDataGenerator()).firstRandom(),
-                releaseDate = randomDate(),
-                lastChange = randomDate(),
-                iconLink = randomString()
+            id = randomString(),
+            storeId = randomString(),
+            gameId = randomString(),
+            title = randomString(),
+            saleData = NullableGenerator(SaleDataGenerator()).firstRandom(),
+            normalPrice = randomString(),
+            metacriticData = NullableGenerator(MetacriticDataGenerator()).firstRandom(),
+            steamData = NullableGenerator(SteamDataGenerator()).firstRandom(),
+            releaseDate = randomDate(),
+            lastChange = randomDate(),
+            iconLink = randomString()
         )
     }
 
@@ -34,9 +34,9 @@ class DealGenerator : Gen<Deal> {
 
         override fun random(): Sequence<Deal.SaleData> = generateSequence {
             Deal.SaleData(
-                    price = randomString(),
-                    savings = randomString(),
-                    rating = Gen.choose(0, 100).firstRandom().toString()
+                price = randomString(),
+                savings = randomString(),
+                rating = Gen.choose(0, 100).firstRandom().toString()
             )
         }
     }
@@ -46,10 +46,10 @@ class DealGenerator : Gen<Deal> {
 
         override fun random(): Sequence<Deal.SteamData> = generateSequence {
             Deal.SteamData(
-                    appId = randomString(),
-                    ratingText = randomString(),
-                    ratingCount = randomString(),
-                    ratingPercent = randomPercent()
+                appId = randomString(),
+                ratingText = randomString(),
+                ratingCount = randomString(),
+                ratingPercent = randomPercent()
             )
         }
     }
@@ -59,8 +59,8 @@ class DealGenerator : Gen<Deal> {
 
         override fun random(): Sequence<Deal.MetacriticData> = generateSequence {
             Deal.MetacriticData(
-                    link = randomString(),
-                    score = Gen.choose(0, 100).firstRandom().toString()
+                link = randomString(),
+                score = Gen.choose(0, 100).firstRandom().toString()
             )
         }
     }

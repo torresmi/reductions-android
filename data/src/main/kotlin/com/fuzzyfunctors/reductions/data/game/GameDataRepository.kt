@@ -21,14 +21,14 @@ class GameDataRepository(
     override fun getGame(id: GameId): Observable<Option<Game>> = memoryStore.get(id)
 
     override fun fetchGame(id: GameId): Maybe<LoadingFailure.Remote> =
-            networkDataSource.getGameInfo(id)
-                    .doOnSuccess { response ->
-                        response.fold(
-                                {},
-                                { memoryStore.store(it) }
-                        )
-                    }
-                    .flatMapMaybe { it.toMaybeLeft() }
+        networkDataSource.getGameInfo(id)
+            .doOnSuccess { response ->
+                response.fold(
+                    {},
+                    { memoryStore.store(it) }
+                )
+            }
+            .flatMapMaybe { it.toMaybeLeft() }
 
     override fun searchGames(
         title: String?,
@@ -36,5 +36,5 @@ class GameDataRepository(
         limit: Int?,
         exact: Boolean
     ): Single<Either<LoadingFailure.Remote, List<GameBestDeal>>> =
-            networkDataSource.searchGames(title, steamAppId, limit, exact)
+        networkDataSource.searchGames(title, steamAppId, limit, exact)
 }

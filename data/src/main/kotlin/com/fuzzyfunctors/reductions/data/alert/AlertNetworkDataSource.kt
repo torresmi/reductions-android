@@ -13,24 +13,24 @@ import retrofit2.Response
 class AlertNetworkDataSource(private val networkService: CheapSharkService) {
 
     fun watchGame(gameId: GameId, email: String, price: Double?): Single<Either<LoadingFailure.Remote, Unit>> =
-            networkService
-                    .updateAlert(
-                            ACTION_SET,
-                            email,
-                            gameId,
-                            price
-                    )
-                    .map(responseMapper)
+        networkService
+            .updateAlert(
+                ACTION_SET,
+                email,
+                gameId,
+                price
+            )
+            .map(responseMapper)
 
     fun unwatchGame(gameId: GameId, email: String): Single<Either<LoadingFailure.Remote, Unit>> =
-            networkService
-                    .updateAlert(
-                            ACTION_DELETE,
-                            email,
-                            gameId,
-                            null
-                    )
-                    .map(responseMapper)
+        networkService
+            .updateAlert(
+                ACTION_DELETE,
+                email,
+                gameId,
+                null
+            )
+            .map(responseMapper)
 
     private val responseMapper = { response: Response<Boolean> ->
         response.toEither().flatMap { isSuccess ->

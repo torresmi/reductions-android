@@ -8,8 +8,8 @@ class CheapestPriceEverGenerator : Gen<CheapestPriceEver> {
 
     override fun random(): Sequence<CheapestPriceEver> = generateSequence {
         CheapestPriceEver(
-                price = randomString(),
-                date = randomDate()
+            price = randomString(),
+            date = randomDate()
         )
     }
 }

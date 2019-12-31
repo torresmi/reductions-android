@@ -3,7 +3,8 @@ package com.fuzzyfunctors.reductions.deals
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.deal_types_view.view.*
+import kotlinx.android.synthetic.main.deal_types_view.view.tabLayout
+import kotlinx.android.synthetic.main.deal_types_view.view.viewPager
 
 class DealTypesView @JvmOverloads constructor(
     context: Context,

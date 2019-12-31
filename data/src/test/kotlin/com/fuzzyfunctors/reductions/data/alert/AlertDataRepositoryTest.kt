@@ -39,8 +39,8 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 it("returns no errors") {
                     sut.watchGame(gameId, email, price).test()
-                            .assertNoValues()
-                            .assertNoErrors()
+                        .assertNoValues()
+                        .assertNoErrors()
                 }
             }
 
@@ -48,11 +48,11 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 val error = RuntimeException()
                 every { mockAlertNetworkDataSource.watchGame(any(), any(), any()) } returns
-                        Single.error(error)
+                    Single.error(error)
 
                 it("returns onError for io error") {
                     sut.watchGame(gameId, email, price).test()
-                            .assertError(error)
+                        .assertError(error)
                 }
 
                 val remoteError = LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR)
@@ -60,7 +60,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 it("returns network error") {
                     sut.watchGame(gameId, email, price).test()
-                            .assertValue(remoteError)
+                        .assertValue(remoteError)
                 }
             }
         }
@@ -79,8 +79,8 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 it("returns no errors") {
                     sut.unwatchGame(gameId, email).test()
-                            .assertNoValues()
-                            .assertNoErrors()
+                        .assertNoValues()
+                        .assertNoErrors()
                 }
             }
 
@@ -88,11 +88,11 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 val error = RuntimeException()
                 every { mockAlertNetworkDataSource.unwatchGame(any(), any()) } returns
-                        Single.error(error)
+                    Single.error(error)
 
                 it("returns onError for io error") {
                     sut.unwatchGame(gameId, email).test()
-                            .assertError(error)
+                        .assertError(error)
                 }
 
                 val remoteError = LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR)
@@ -100,7 +100,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 it("returns network error") {
                     sut.unwatchGame(gameId, email).test()
-                            .assertValue(remoteError)
+                        .assertValue(remoteError)
                 }
             }
         }
@@ -108,11 +108,11 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
     private fun mockWatch(returnValue: Either<LoadingFailure.Remote, Unit>) {
         every { mockAlertNetworkDataSource.watchGame(any(), any(), any()) } returns
-                Single.just(returnValue)
+            Single.just(returnValue)
     }
 
     private fun mockUnwatch(returnValue: Either<LoadingFailure.Remote, Unit>) {
         every { mockAlertNetworkDataSource.unwatchGame(any(), any()) } returns
-                Single.just(returnValue)
+            Single.just(returnValue)
     }
 }

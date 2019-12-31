@@ -30,45 +30,45 @@ class DealDataRepository(
     override fun getTopDeals(): Observable<Option<List<Deal>>> = getDealsForType(DealType.TOP)
 
     override fun fetchTopDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-            fetchDealsForType(DealType.TOP, options)
-                    .subscribeOn(topDealsScheduler)
+        fetchDealsForType(DealType.TOP, options)
+            .subscribeOn(topDealsScheduler)
 
     override fun getNewestGamesDeals(): Observable<Option<List<Deal>>> =
-            getDealsForType(DealType.NEWEST_GAMES)
+        getDealsForType(DealType.NEWEST_GAMES)
 
     override fun fetchNewestGamesDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-            fetchDealsForType(DealType.NEWEST_GAMES, options)
-                    .subscribeOn(newestGameDealsScheduler)
+        fetchDealsForType(DealType.NEWEST_GAMES, options)
+            .subscribeOn(newestGameDealsScheduler)
 
     override fun getLatestDeals(): Observable<Option<List<Deal>>> = getDealsForType(DealType.LATEST)
 
     override fun fetchLatestDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-            fetchDealsForType(DealType.LATEST, options)
-                    .subscribeOn(latestGameDealsScheduler)
+        fetchDealsForType(DealType.LATEST, options)
+            .subscribeOn(latestGameDealsScheduler)
 
     override fun getMostSavingsDeals(): Observable<Option<List<Deal>>> =
-            getDealsForType(DealType.MOST_SAVINGS)
+        getDealsForType(DealType.MOST_SAVINGS)
 
     override fun fetchMostSavingsDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-            fetchDealsForType(DealType.MOST_SAVINGS, options)
-                    .subscribeOn(mostSavingsDealsScheduler)
+        fetchDealsForType(DealType.MOST_SAVINGS, options)
+            .subscribeOn(mostSavingsDealsScheduler)
 
     override fun getDealInfo(id: DealId): Observable<Option<DealInfo>> =
-            dealInfoMemoryReactiveStore.get(id)
+        dealInfoMemoryReactiveStore.get(id)
 
     override fun fetchDealInfo(id: DealId): Maybe<LoadingFailure.Remote> =
-            networkDataSource.getDeal(id)
-                    .doAfterSuccess { response ->
-                        response.fold(
-                                {},
-                                { dealInfoMemoryReactiveStore.store(it) }
-                        )
-                    }
-                    .flatMapMaybe { it.toMaybeLeft() }
+        networkDataSource.getDeal(id)
+            .doAfterSuccess { response ->
+                response.fold(
+                    {},
+                    { dealInfoMemoryReactiveStore.store(it) }
+                )
+            }
+            .flatMapMaybe { it.toMaybeLeft() }
 
     private fun getDealsForType(type: DealType): Observable<Option<List<Deal>>> =
-            dealsMemoryReactiveStore.get(type)
-                    .map(getDeals)
+        dealsMemoryReactiveStore.get(type)
+            .map(getDeals)
 
     private val getDeals = { data: Option<DealTypeData> ->
         data.map { it.deals }
@@ -81,21 +81,21 @@ class DealDataRepository(
         val optionsWithOrder = options.copy(order = type.toOrder())
         val page = paginator.getPageforOptions(type, optionsWithOrder)
         return networkDataSource.getDeals(optionsWithOrder, page)
-                .map { response -> response.map { DealTypeData(type, it) } }
-                .doOnSuccess { response ->
-                    response.fold(
-                            {},
-                            {
-                                paginator.onSuccessfulResponse(type, optionsWithOrder)
-                                dealsMemoryReactiveStore.store(it)
-                            }
-                    )
-                }
-                .flatMapMaybe { it.toMaybeLeft() }
+            .map { response -> response.map { DealTypeData(type, it) } }
+            .doOnSuccess { response ->
+                response.fold(
+                    {},
+                    {
+                        paginator.onSuccessfulResponse(type, optionsWithOrder)
+                        dealsMemoryReactiveStore.store(it)
+                    }
+                )
+            }
+            .flatMapMaybe { it.toMaybeLeft() }
     }
 
     private fun createNewSingleThreadScheduler() =
-            Schedulers.from(Executors.newSingleThreadExecutor())
+        Schedulers.from(Executors.newSingleThreadExecutor())
 
     private fun DealType.toOrder(): DealRepository.Options.Order = when (this) {
         DealType.MOST_SAVINGS -> DealRepository.Options.Order.SAVINGS

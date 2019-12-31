@@ -9,14 +9,14 @@ class StoreGenerator : Gen<Store> {
 
     override fun random(): Sequence<Store> = generateSequence {
         Store(
-                id = randomString(),
-                name = randomString(),
-                isActive = randomBool(),
-                images = Store.Images(
-                        banner = randomString(),
-                        logo = randomString(),
-                        icon = randomString()
-                )
+            id = randomString(),
+            name = randomString(),
+            isActive = randomBool(),
+            images = Store.Images(
+                banner = randomString(),
+                logo = randomString(),
+                icon = randomString()
+            )
         )
     }
 }

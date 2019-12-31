@@ -13,7 +13,7 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
     private val cache = ConcurrentHashMap<K, V>()
 
     private val itemsRelay = PublishRelay.create<Option<Set<V>>>()
-            .toSerialized()
+        .toSerialized()
 
     private val itemRelays = ConcurrentHashMap<K, Relay<Option<V>>>()
 
@@ -28,40 +28,40 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
     @Suppress("CheckResult")
     override fun store(items: Collection<V>) {
         Observable.just(items)
-                .subscribeOn(Schedulers.computation())
-                .subscribe {
-                    val keyValue = it.associateBy(keyForItem)
-                    cache.putAll(keyValue)
-                    itemsRelay.accept(getAllItems())
+            .subscribeOn(Schedulers.computation())
+            .subscribe {
+                val keyValue = it.associateBy(keyForItem)
+                cache.putAll(keyValue)
+                itemsRelay.accept(getAllItems())
 
-                    updateExistingPublishers()
-                }
+                updateExistingPublishers()
+            }
     }
 
     override fun get(key: K): Observable<Option<V>> =
-            Observable
-                    .defer {
-                        val item = cache[key].toOption()
-                        getOrCreatePublisher(key).startWith(item)
-                    }
+        Observable
+            .defer {
+                val item = cache[key].toOption()
+                getOrCreatePublisher(key).startWith(item)
+            }
 
     override fun get(): Observable<Option<Set<V>>> =
-            Observable
-                    .defer {
-                        val allItems = getAllItems()
-                        itemsRelay.startWith(allItems)
-                    }
+        Observable
+            .defer {
+                val allItems = getAllItems()
+                itemsRelay.startWith(allItems)
+            }
 
     override fun clear() = cache.clear()
 
     private fun getAllItems(): Option<Set<V>> = cache.values.toSet()
-            .toOption()
-            .filterNot { it.isEmpty() }
+        .toOption()
+        .filterNot { it.isEmpty() }
 
     private fun getOrCreatePublisher(key: K): Relay<Option<V>> =
-            itemRelays.getOrPut(key) {
-                PublishRelay.create<Option<V>>().toSerialized()
-            }
+        itemRelays.getOrPut(key) {
+            PublishRelay.create<Option<V>>().toSerialized()
+        }
 
     private fun updateExistingPublishers() {
         val keys = itemRelays.keys().toList().toSet()
@@ -74,8 +74,8 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
     private fun updateItemPublisher(key: K, item: Option<V>) {
         val publisher = itemRelays.get(key).toOption()
         publisher.fold(
-                {},
-                { it.accept(item) }
+            {},
+            { it.accept(item) }
         )
     }
 }
