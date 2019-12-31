@@ -11,6 +11,5 @@ test {
 
 dependencies {
     compile Deps.Coroutines.core
-    compile Deps.Coroutines.rx
     compile Deps.kotlin
 }

@@ -14,7 +14,6 @@ dependencies {
 
     compile Deps.Arrow.core
     compile Deps.Coroutines.core
-    compile Deps.Coroutines.rx
 
     testCompile Deps.Coroutines.test
     testCompile Deps.kotlinTest

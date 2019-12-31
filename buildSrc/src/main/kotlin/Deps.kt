@@ -3,19 +3,21 @@ package dependencies
 object Deps {
     val androidTestRunner = dependency("com.android.support.test:runner", Version.androidTestRunner)
     val appCompat = dependency("androidx.appcompat:appcompat", Version.appCompat)
+
     object Arrow : Group("io.arrow-kt") {
         val core = withArtifact("arrow-core", Version.arrow)
         val syntax = withArtifact("arrow-syntax", Version.arrow)
     }
-    val arrow = dependency("io.arrow-kt:arrow-core", Version.arrow)
+
     val constraintLayout = dependency("androidx.constraintlayout:constraintlayout", Version.constraintLayout)
     val coil = dependency("io.coil-kt:coil", Version.coil)
+
     object Coroutines : Group("org.jetbrains.kotlinx") {
         val android = withArtifact("kotlinx-coroutines-android", Version.coroutines)
         val core = withArtifact("kotlinx-coroutines-core", Version.coroutines)
-        val rx = withArtifact("kotlinx-coroutines-rx2", Version.coroutines)
         val test = withArtifact("kotlinx-coroutines-test", Version.coroutines)
     }
+
     val espresso = dependency("com.android.support.test.espresso:espresso-core", Version.espresso)
 
     object Koin : Group("org.koin") {
@@ -34,15 +36,7 @@ object Deps {
     object Retrofit : Group("com.squareup.retrofit2") {
         val core = withArtifact("retrofit", Version.retrofit)
         val moshiConverter = withArtifact("converter-moshi", Version.retrofit)
-        val rxJavaCallAdapter = withArtifact("adapter-rxjava2", Version.retrofit)
     }
-
-    object RxJava : Group("io.reactivex.rxjava2") {
-        val android = withArtifact("rxandroid", Version.rxAndroid)
-        val core = withArtifact("rxjava", Version.rxJava)
-    }
-
-    val rxRelay = dependency("com.jakewharton.rxrelay2:rxrelay", Version.rxRelay)
 }
 
 object Plugins {
@@ -84,9 +78,6 @@ object Version {
     val moshi = "1.9.2"
     val remoteData = "1.1"
     val retrofit = "2.7.0"
-    val rxAndroid = "2.1.1"
-    val rxJava = "2.2.16"
-    val rxRelay = "2.1.1"
 
     object Sdk {
         val min = 23

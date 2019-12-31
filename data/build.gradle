@@ -16,14 +16,11 @@ dependencies {
     compile Deps.Arrow.core
     compile Deps.Arrow.syntax
     compile Deps.Coroutines.core
-    compile Deps.Coroutines.rx
     compile Deps.kotlin
     compile Deps.moshi
     compile Deps.Retrofit.moshiConverter
     compile Deps.remoteData
     compile Deps.Retrofit.core
-    compile Deps.RxJava.core
-    compile Deps.rxRelay
 
     testCompile Deps.Coroutines.test
     testCompile Deps.kotlinTest

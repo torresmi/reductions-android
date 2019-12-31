@@ -52,14 +52,10 @@ dependencies {
     implementation Deps.coil
     implementation Deps.Coroutines.android
     implementation Deps.Coroutines.core
-    implementation Deps.Coroutines.rx
     implementation Deps.Koin.android
     implementation Deps.kotlin
     implementation Deps.material
     implementation Deps.materialValues
-    implementation Deps.RxJava.android
-    implementation Deps.RxJava.core
-    implementation Deps.Retrofit.rxJavaCallAdapter
 
     testImplementation Deps.Coroutines.test
     testImplementation Deps.Koin.test

@@ -14,10 +14,8 @@ dependencies {
 
     compile Deps.Arrow.core
     compile Deps.Coroutines.core
-    compile Deps.Coroutines.rx
     compile Deps.kotlin
     compile Deps.remoteData
-    compile Deps.RxJava.core
 
     testCompile Deps.Coroutines.test
     testCompile Deps.kotlinTest
