@@ -37,7 +37,7 @@ interface CheapSharkService {
     fun getGame(@Query("id") gameId: GameId): Single<Response<GameInfoResponse>>
 
     @GET("stores")
-    fun getStores(): Single<Response<List<Store>>>
+    suspend fun getStores(): Response<List<Store>>
 
     @GET("alerts")
     fun updateAlert(
