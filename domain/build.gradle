@@ -12,7 +12,7 @@ test {
 dependencies {
     compile project(':core')
 
-    compile Deps.arrow
+    compile Deps.Arrow.core
     compile Deps.Coroutines.core
     compile Deps.Coroutines.rx
     compile Deps.kotlin

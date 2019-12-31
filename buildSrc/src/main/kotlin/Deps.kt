@@ -3,6 +3,10 @@ package dependencies
 object Deps {
     val androidTestRunner = dependency("com.android.support.test:runner", Version.androidTestRunner)
     val appCompat = dependency("androidx.appcompat:appcompat", Version.appCompat)
+    object Arrow : Group("io.arrow-kt") {
+        val core = withArtifact("arrow-core", Version.arrow)
+        val syntax = withArtifact("arrow-syntax", Version.arrow)
+    }
     val arrow = dependency("io.arrow-kt:arrow-core", Version.arrow)
     val constraintLayout = dependency("androidx.constraintlayout:constraintlayout", Version.constraintLayout)
     val coil = dependency("io.coil-kt:coil", Version.coil)

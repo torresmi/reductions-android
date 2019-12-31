@@ -47,7 +47,7 @@ dependencies {
     implementation project(':presentation')
 
     implementation Deps.appCompat
-    implementation Deps.arrow
+    implementation Deps.Arrow.core
     implementation Deps.constraintLayout
     implementation Deps.coil
     implementation Deps.Coroutines.android
