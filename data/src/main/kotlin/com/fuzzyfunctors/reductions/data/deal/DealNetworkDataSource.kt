@@ -9,36 +9,29 @@ import com.fuzzyfunctors.reductions.data.network.toCore
 import com.fuzzyfunctors.reductions.data.network.toEither
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository.Options
-import io.reactivex.Single
 
 class DealNetworkDataSource(private val networkService: CheapSharkService) {
 
-    fun getDeals(
+    suspend fun getDeals(
         options: Options,
         pageNumber: Int? = null
-    ): Single<Either<LoadingFailure.Remote, List<Deal>>> {
+    ): Either<LoadingFailure.Remote, List<Deal>> {
         val params = toParams(options, pageNumber)
         return networkService.getDeals(
             params.stringParams.orEmpty(),
             params.intParams.orEmpty(),
             params.boolParams.orEmpty()
         )
-            .map { it.toEither() }
-            .map {
-                it.map { deals ->
-                    deals.map { it.toCore() }
-                }
+            .toEither()
+            .map { deals ->
+                deals.map { it.toCore() }
             }
     }
 
-    fun getDeal(dealId: DealId): Single<Either<LoadingFailure.Remote, DealInfo>> =
+    suspend fun getDeal(dealId: DealId): Either<LoadingFailure.Remote, DealInfo> =
         networkService.getDeal(dealId)
-            .map { it.toEither() }
-            .map {
-                it.map { response ->
-                    response.toCore(dealId)
-                }
-            }
+            .toEither()
+            .map { it.toCore(dealId) }
 
     private data class Params(
         val stringParams: Map<String, String>?,

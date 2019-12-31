@@ -1,35 +1,33 @@
 package com.fuzzyfunctors.reductions.domain.deal
 
-import arrow.core.Option
 import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.core.store.StoreId
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import io.reactivex.Maybe
-import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 
 interface DealRepository {
 
-    fun getTopDeals(): Observable<Option<List<Deal>>>
+    fun getTopDeals(): Flow<List<Deal>?>
 
-    fun fetchTopDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
+    suspend fun fetchTopDeals(options: Options = Options()): LoadingFailure.Remote?
 
-    fun getNewestGamesDeals(): Observable<Option<List<Deal>>>
+    fun getNewestGamesDeals(): Flow<List<Deal>?>
 
-    fun fetchNewestGamesDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
+    suspend fun fetchNewestGamesDeals(options: Options = Options()): LoadingFailure.Remote?
 
-    fun getLatestDeals(): Observable<Option<List<Deal>>>
+    fun getLatestDeals(): Flow<List<Deal>?>
 
-    fun fetchLatestDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
+    suspend fun fetchLatestDeals(options: Options = Options()): LoadingFailure.Remote?
 
-    fun getMostSavingsDeals(): Observable<Option<List<Deal>>>
+    fun getMostSavingsDeals(): Flow<List<Deal>?>
 
-    fun fetchMostSavingsDeals(options: Options = Options()): Maybe<LoadingFailure.Remote>
+    suspend fun fetchMostSavingsDeals(options: Options = Options()): LoadingFailure.Remote?
 
-    fun getDealInfo(id: DealId): Observable<Option<DealInfo>>
+    fun getDealInfo(id: DealId): Flow<DealInfo?>
 
-    fun fetchDealInfo(id: DealId): Maybe<LoadingFailure.Remote>
+    suspend fun fetchDealInfo(id: DealId): LoadingFailure.Remote?
 
     data class Options(
         val continuePagination: Boolean = true,
