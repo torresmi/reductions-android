@@ -7,10 +7,12 @@ object Deps {
     val constraintLayout = dependency("androidx.constraintlayout:constraintlayout", Version.constraintLayout)
     val coil = dependency("io.coil-kt:coil", Version.coil)
     val espresso = dependency("com.android.support.test.espresso:espresso-core", Version.espresso)
+
     object Koin : Group("org.koin") {
         val android = withArtifact("koin-android", Version.koin)
         val test = withArtifact("koin-test", Version.koin)
     }
+
     val kotlin = dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8", Version.kotlin)
     val kotlinTest = dependency("io.kotlintest:kotlintest-runner-junit5", Version.kotlinTest)
     val material = dependency("com.google.android.material:material", Version.material)
@@ -18,15 +20,18 @@ object Deps {
     val mockk = dependency("io.mockk:mockk", Version.mockk)
     val moshi = dependency("com.squareup.moshi:moshi", Version.moshi)
     val remoteData = dependency("com.github.torresmi:remotedata", Version.remoteData)
+
     object Retrofit : Group("com.squareup.retrofit2") {
         val core = withArtifact("retrofit", Version.retrofit)
         val moshiConverter = withArtifact("converter-moshi", Version.retrofit)
         val rxJavaCallAdapter = withArtifact("adapter-rxjava2", Version.retrofit)
     }
+
     object RxJava : Group("io.reactivex.rxjava2") {
         val android = withArtifact("rxandroid", Version.rxAndroid)
         val core = withArtifact("rxjava", Version.rxJava)
     }
+
     val rxRelay = dependency("com.jakewharton.rxrelay2:rxrelay", Version.rxRelay)
 }
 

@@ -20,12 +20,12 @@ class StoreDataRepository(
     override fun getStores(): Observable<Option<Set<Store>>> = memoryStore.get()
 
     override fun fetchStores(): Maybe<LoadingFailure.Remote> =
-            networkDataSource.getStores()
-                    .doOnSuccess { response ->
-                        response.fold(
-                                {},
-                                { memoryStore.store(it) }
-                        )
-                    }
-                    .flatMapMaybe { it.toMaybeLeft() }
+        networkDataSource.getStores()
+            .doOnSuccess { response ->
+                response.fold(
+                    {},
+                    { memoryStore.store(it) }
+                )
+            }
+            .flatMapMaybe { it.toMaybeLeft() }
 }

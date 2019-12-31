@@ -48,10 +48,10 @@ class DealInfoResponseMapperTest : DescribeSpec() {
                     val result = onSteam.toCore(dealId)
 
                     val expected = Deal.SteamData(
-                            appId = onSteam.gameInfo.steamAppID!!,
-                            ratingText = onSteam.gameInfo.steamRatingText!!,
-                            ratingCount = onSteam.gameInfo.steamRatingCount!!,
-                            ratingPercent = onSteam.gameInfo.steamRatingPercent!!
+                        appId = onSteam.gameInfo.steamAppID!!,
+                        ratingText = onSteam.gameInfo.steamRatingText!!,
+                        ratingCount = onSteam.gameInfo.steamRatingCount!!,
+                        ratingPercent = onSteam.gameInfo.steamRatingPercent!!
                     )
 
                     result.steamData shouldBe expected

@@ -26,8 +26,8 @@
             android:layout_height="wrap_content"
             android:background="@color/primary"
             app:elevation="@dimen/tab_bar_elevation"
-            app:tabTextColor="@color/material_color_white_70_percent"
             app:tabSelectedTextColor="@color/material_color_white"
+            app:tabTextColor="@color/material_color_white_70_percent"
             >
 
         </com.google.android.material.tabs.TabLayout>

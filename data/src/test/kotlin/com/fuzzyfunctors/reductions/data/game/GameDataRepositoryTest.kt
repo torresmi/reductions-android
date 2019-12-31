@@ -55,8 +55,8 @@ class GameDataRepositoryTest : DescribeSpec() {
 
                 it("does not return any errors") {
                     sut.fetchGame(gameId).test()
-                            .assertNoValues()
-                            .assertNoErrors()
+                        .assertNoValues()
+                        .assertNoErrors()
                 }
             }
 
@@ -73,16 +73,16 @@ class GameDataRepositoryTest : DescribeSpec() {
 
                 it("returns an error") {
                     sut.fetchGame(gameId).test()
-                            .assertValue(remoteError)
+                        .assertValue(remoteError)
                 }
 
                 val error = RuntimeException()
                 every { mockGameNetworkDataSource.getGameInfo(any()) } returns
-                        Single.error(error)
+                    Single.error(error)
 
                 it("calls onError with an io error") {
                     sut.fetchGame(gameId).test()
-                            .assertError(error)
+                        .assertError(error)
                 }
             }
         }
@@ -95,7 +95,7 @@ class GameDataRepositoryTest : DescribeSpec() {
 
                 it("should return the game") {
                     sut.getGame(gameId).test()
-                            .assertValue(Some(game))
+                        .assertValue(Some(game))
                 }
             }
 
@@ -105,7 +105,7 @@ class GameDataRepositoryTest : DescribeSpec() {
 
                 it("should return nothing") {
                     sut.getGame(gameId).test()
-                            .assertValue(None)
+                        .assertValue(None)
                 }
             }
         }
@@ -123,7 +123,7 @@ class GameDataRepositoryTest : DescribeSpec() {
 
                 it("returns the results") {
                     sut.searchGames(title, steamAppId, limit, exact).test()
-                            .assertValue(Either.right(results))
+                        .assertValue(Either.right(results))
                 }
             }
 
@@ -134,16 +134,16 @@ class GameDataRepositoryTest : DescribeSpec() {
 
                 it("returns the error response") {
                     sut.searchGames(title, steamAppId, limit, exact).test()
-                            .assertValue(Either.left(remoteError))
+                        .assertValue(Either.left(remoteError))
                 }
 
                 val error = java.lang.RuntimeException()
                 every { mockGameNetworkDataSource.searchGames(any(), any(), any(), any()) } returns
-                        Single.error(error)
+                    Single.error(error)
 
                 it("calls onError with an io error") {
                     sut.searchGames(title, steamAppId, limit, exact).test()
-                            .assertError(error)
+                        .assertError(error)
                 }
             }
         }
@@ -151,16 +151,16 @@ class GameDataRepositoryTest : DescribeSpec() {
 
     private fun mockFetchGame(response: Either<LoadingFailure.Remote, Game>) {
         every { mockGameNetworkDataSource.getGameInfo(any()) } returns
-                Single.just(response)
+            Single.just(response)
     }
 
     private fun mockStoreGet(response: Option<Game>) {
         every { mockMemoryReactiveStore.get(any()) } returns
-                Observable.just(response)
+            Observable.just(response)
     }
 
     private fun mockSearchGames(response: Either<LoadingFailure.Remote, List<GameBestDeal>>) {
         every { mockGameNetworkDataSource.searchGames(any(), any(), any(), any()) } returns
-                Single.just(response)
+            Single.just(response)
     }
 }

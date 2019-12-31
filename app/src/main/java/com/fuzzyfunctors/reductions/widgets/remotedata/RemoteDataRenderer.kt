@@ -13,9 +13,9 @@ interface RemoteDataRenderer {
     fun showFailure(failureMessage: String? = null)
 
     fun <E : Any, A : Any> bind(data: RemoteData<E, A>, onSuccess: (A) -> Unit) = bind(
-            data,
-            { null },
-            onSuccess
+        data,
+        { null },
+        onSuccess
     )
 
     fun <E : Any, A : Any> bind(

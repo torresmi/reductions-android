@@ -5,7 +5,7 @@ import io.reactivex.Maybe
 import remotedata.RemoteData
 
 fun <A : Any, B : Any> Either<A, B>.toRemoteData(): RemoteData<A, B> =
-        fold({ RemoteData.fail(it) }, { RemoteData.succeed(it) })
+    fold({ RemoteData.fail(it) }, { RemoteData.succeed(it) })
 
 fun <A : Any, B : Any> Either<A, B>.toMaybeLeft(): Maybe<A> =
-        fold({ Maybe.just(it) }, { Maybe.empty() })
+    fold({ Maybe.just(it) }, { Maybe.empty() })

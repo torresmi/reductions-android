@@ -9,10 +9,10 @@ class EitherGenerator<A, B>(
 ) : Gen<Either<A, B>> {
 
     override fun constants(): Iterable<Either<A, B>> =
-            listOf(
-                    Either.left(leftGen.firstRandom()),
-                    Either.right(rightGen.firstRandom())
-            )
+        listOf(
+            Either.left(leftGen.firstRandom()),
+            Either.right(rightGen.firstRandom())
+        )
 
     override fun random(): Sequence<Either<A, B>> = generateSequence {
         Either.right(rightGen.firstRandom())

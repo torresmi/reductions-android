@@ -94,7 +94,7 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
 
         if (!successViewSpecified) {
             successView = getChildAt(ViewType.SUCCESS.ordinal)
-                    ?: throw IllegalArgumentException("RemoteDataFlipper needs a success view")
+                ?: throw IllegalArgumentException("RemoteDataFlipper needs a success view")
 
             addNotAskedView()
         }

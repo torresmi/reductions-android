@@ -27,4 +27,4 @@ android:
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-28
 script:
-    - ./gradlew build check
+  - ./gradlew build check

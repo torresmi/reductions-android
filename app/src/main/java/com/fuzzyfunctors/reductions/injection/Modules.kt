@@ -41,9 +41,9 @@ val repositoryModule = module {
 
     single<DealRepository> {
         DealDataRepository(
-                get(),
-                get(named(MEMORY_STORE_DEALS)),
-                get(named(MEMORY_STORE_DEAL)))
+            get(),
+            get(named(MEMORY_STORE_DEALS)),
+            get(named(MEMORY_STORE_DEAL)))
     }
 
     single<AlertRepository> { AlertDataRepository(get()) }
@@ -86,10 +86,10 @@ val networkModule = module {
 
 private fun buildRetrofit(): Retrofit {
     return Retrofit.Builder()
-            .baseUrl(CheapSharkService.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
+        .baseUrl(CheapSharkService.BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .build()
 }
 
 private const val MEMORY_STORE_STORE = "storeMemoryStore"
@@ -101,10 +101,10 @@ object Modules {
 
     fun get(isDebug: Boolean): List<Module> {
         return listOf(
-                appModule,
-                networkModule,
-                localModule,
-                repositoryModule
+            appModule,
+            networkModule,
+            localModule,
+            repositoryModule
         )
     }
 }

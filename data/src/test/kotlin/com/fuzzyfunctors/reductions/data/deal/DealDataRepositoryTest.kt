@@ -41,23 +41,23 @@ class DealDataRepositoryTest : DescribeSpec() {
             val deals = DealGenerator().random().take(3).toList()
             val fetches = lazy {
                 arrayOf(
-                        row(sut.fetchTopDeals()),
-                        row(sut.fetchLatestDeals()),
-                        row(sut.fetchMostSavingsDeals()),
-                        row(sut.fetchNewestGamesDeals())
+                    row(sut.fetchTopDeals()),
+                    row(sut.fetchLatestDeals()),
+                    row(sut.fetchMostSavingsDeals()),
+                    row(sut.fetchNewestGamesDeals())
                 )
             }
 
             context("successful response") {
 
                 every { mockDealNetworkDataSource.getDeals(any()) } returns
-                        Single.just(Either.right(deals))
+                    Single.just(Either.right(deals))
 
                 it("returns no errors") {
                     forall(*fetches.value) { deals: Maybe<LoadingFailure.Remote> ->
                         deals.test()
-                                .await()
-                                .assertNoValues()
+                            .await()
+                            .assertNoValues()
                     }
                 }
 
@@ -72,25 +72,25 @@ class DealDataRepositoryTest : DescribeSpec() {
 
                 val error = LoadingFailure.Remote(HttpURLConnection.HTTP_NOT_FOUND)
                 every { mockDealNetworkDataSource.getDeals(any()) } returns
-                        Single.just(Either.left(error))
+                    Single.just(Either.left(error))
 
                 it("returns an api error") {
                     forall(*fetches.value) { deals: Maybe<LoadingFailure.Remote> ->
                         deals.test()
-                                .await()
-                                .assertValue(error)
+                            .await()
+                            .assertValue(error)
                     }
                 }
 
                 val ioError = RuntimeException()
                 every { mockDealNetworkDataSource.getDeals(any()) } returns
-                        Single.error(ioError)
+                    Single.error(ioError)
 
                 it("returns an io error") {
                     forall(*fetches.value) { deals: Maybe<LoadingFailure.Remote> ->
                         deals.test()
-                                .await()
-                                .assertError(ioError)
+                            .await()
+                            .assertError(ioError)
                     }
                 }
             }
@@ -102,12 +102,12 @@ class DealDataRepositoryTest : DescribeSpec() {
             context("successful response") {
 
                 every { mockDealNetworkDataSource.getDeal(any()) } returns
-                        Single.just(Either.right(deal))
+                    Single.just(Either.right(deal))
 
                 it("returns no errors") {
                     sut.fetchDealInfo(deal.id).test()
-                            .await()
-                            .assertNoValues()
+                        .await()
+                        .assertNoValues()
                 }
 
                 it("updates the memory store with the new deals") {
@@ -121,22 +121,22 @@ class DealDataRepositoryTest : DescribeSpec() {
 
                 val error = LoadingFailure.Remote(HttpURLConnection.HTTP_NOT_FOUND)
                 every { mockDealNetworkDataSource.getDeal(any()) } returns
-                        Single.just(Either.left(error))
+                    Single.just(Either.left(error))
 
                 it("returns an api error") {
                     sut.fetchDealInfo(deal.id).test()
-                            .await()
-                            .assertValue(error)
+                        .await()
+                        .assertValue(error)
                 }
 
                 val ioError = RuntimeException()
                 every { mockDealNetworkDataSource.getDeal(any()) } returns
-                        Single.error(ioError)
+                    Single.error(ioError)
 
                 it("returns an io error") {
                     sut.fetchDealInfo(deal.id).test()
-                            .await()
-                            .assertError(ioError)
+                        .await()
+                        .assertError(ioError)
                 }
             }
         }
@@ -145,22 +145,22 @@ class DealDataRepositoryTest : DescribeSpec() {
             val deals = DealGenerator().random().take(3).toList()
             val getRequests = lazy {
                 arrayOf(
-                        row(sut.getTopDeals()),
-                        row(sut.getLatestDeals()),
-                        row(sut.getMostSavingsDeals()),
-                        row(sut.getNewestGamesDeals())
+                    row(sut.getTopDeals()),
+                    row(sut.getLatestDeals()),
+                    row(sut.getMostSavingsDeals()),
+                    row(sut.getNewestGamesDeals())
                 )
             }
 
             context("deals exist") {
 
                 every { mockDealsReactiveStore.get(any()) } returns
-                        Observable.just(DealTypeData(DealType.TOP, deals).toOption())
+                    Observable.just(DealTypeData(DealType.TOP, deals).toOption())
 
                 it("returns deals") {
                     forall(*getRequests.value) { request: Observable<Option<List<Deal>>> ->
                         request.test()
-                                .assertValue(Some(deals))
+                            .assertValue(Some(deals))
                     }
                 }
             }
@@ -168,12 +168,12 @@ class DealDataRepositoryTest : DescribeSpec() {
             context("deals do not exist") {
 
                 every { mockDealsReactiveStore.get(any()) } returns
-                        Observable.just(None)
+                    Observable.just(None)
 
                 it("should return nothing") {
                     forall(*getRequests.value) { request: Observable<Option<List<Deal>>> ->
                         request.test()
-                                .assertValue(None)
+                            .assertValue(None)
                     }
                 }
             }

@@ -14,13 +14,13 @@ import io.reactivex.Single
 class GameNetworkDataSource(private val networkService: CheapSharkService) {
 
     fun getGameInfo(gameId: GameId): Single<Either<LoadingFailure.Remote, Game>> =
-            networkService.getGame(gameId)
-                    .map { it.toEither() }
-                    .map {
-                        it.map { game ->
-                            game.toCoreGame(gameId)
-                        }
-                    }
+        networkService.getGame(gameId)
+            .map { it.toEither() }
+            .map {
+                it.map { game ->
+                    game.toCoreGame(gameId)
+                }
+            }
 
     fun searchGames(
         title: String?,
@@ -29,11 +29,11 @@ class GameNetworkDataSource(private val networkService: CheapSharkService) {
         exact: Boolean?
     ): Single<Either<LoadingFailure.Remote, List<GameBestDeal>>> {
         return networkService.searchGames(title, steamAppId?.toInt(), limit, exact)
-                .map { it.toEither() }
-                .map { response ->
-                    response.map { results ->
-                        results.map { it.toCore() }
-                    }
+            .map { it.toEither() }
+            .map { response ->
+                response.map { results ->
+                    results.map { it.toCore() }
                 }
+            }
     }
 }

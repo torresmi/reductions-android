@@ -9,12 +9,12 @@ class GameBestDealGenerator : Gen<GameBestDeal> {
 
     override fun random(): Sequence<GameBestDeal> = generateSequence {
         GameBestDeal(
-                gameId = randomString(),
-                steamAppId = NullableGenerator(Gen.string()).firstRandom(),
-                cheapest = randomString(),
-                cheapestDealId = randomString(),
-                title = randomString(),
-                thumb = randomString()
+            gameId = randomString(),
+            steamAppId = NullableGenerator(Gen.string()).firstRandom(),
+            cheapest = randomString(),
+            cheapestDealId = randomString(),
+            title = randomString(),
+            thumb = randomString()
         )
     }
 }

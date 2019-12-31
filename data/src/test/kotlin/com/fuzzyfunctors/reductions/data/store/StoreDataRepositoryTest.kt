@@ -38,7 +38,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
                 val responseValue = listOf(store)
                 every { mockStoreNetworkDataSource.getStores() } returns
-                        Single.just(Either.right(responseValue) as Either<LoadingFailure.Remote, List<Store>>)
+                    Single.just(Either.right(responseValue) as Either<LoadingFailure.Remote, List<Store>>)
 
                 it("makes the network call") {
                     sut.fetchStores().test()
@@ -58,7 +58,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
                 val statusCode = 404
                 val responseValue = LoadingFailure.Remote(statusCode)
                 every { mockStoreNetworkDataSource.getStores() } returns
-                        Single.just(Either.left(responseValue) as Either<LoadingFailure.Remote, List<Store>>)
+                    Single.just(Either.left(responseValue) as Either<LoadingFailure.Remote, List<Store>>)
 
                 it("makes the network call") {
                     sut.fetchStores().test()
@@ -81,22 +81,22 @@ class StoreDataRepositoryTest : DescribeSpec() {
             context("the store exists") {
 
                 every { mockMemoryReactiveStore.get(storeId) } returns
-                        Observable.just(Some(store))
+                    Observable.just(Some(store))
 
                 it("should return the store") {
                     sut.getStore(storeId).test()
-                            .assertValue(Some(store))
+                        .assertValue(Some(store))
                 }
             }
 
             context("the store does not exist") {
 
                 every { mockMemoryReactiveStore.get(any()) } returns
-                        Observable.just(None)
+                    Observable.just(None)
 
                 it("should return nothing") {
                     sut.getStore(storeId).test()
-                            .assertValue(None)
+                        .assertValue(None)
                 }
             }
         }
@@ -108,22 +108,22 @@ class StoreDataRepositoryTest : DescribeSpec() {
                 val stores = setOf(store)
 
                 every { mockMemoryReactiveStore.get() } returns
-                        Observable.just(Some(stores))
+                    Observable.just(Some(stores))
 
                 it("should return the store") {
                     sut.getStores().test()
-                            .assertValue(Some(stores))
+                        .assertValue(Some(stores))
                 }
             }
 
             context("haven't found any stores yet") {
 
                 every { mockMemoryReactiveStore.get() } returns
-                        Observable.just(None)
+                    Observable.just(None)
 
                 it("should return nothing") {
                     sut.getStores().test()
-                            .assertValue(None)
+                        .assertValue(None)
                 }
             }
         }

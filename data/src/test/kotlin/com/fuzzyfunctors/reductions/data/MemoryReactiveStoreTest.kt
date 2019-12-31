@@ -24,7 +24,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
                 sut.store(item)
 
                 sut.get(key).test()
-                        .assertValue(Some(item))
+                    .assertValue(Some(item))
             }
 
             it("updates a watching observer") {
@@ -77,7 +77,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
 
             it("starts with nothing") {
                 sut.get(key).test()
-                        .assertValue(None)
+                    .assertValue(None)
             }
 
             it("does not terminate") {
@@ -93,7 +93,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
 
             it("starts with nothing") {
                 sut.get().test()
-                        .assertValue(None)
+                    .assertValue(None)
             }
 
             it("does not terminate") {
@@ -113,7 +113,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
                 sut.clear()
 
                 sut.get().test()
-                        .assertValue(None)
+                    .assertValue(None)
             }
         }
     }
