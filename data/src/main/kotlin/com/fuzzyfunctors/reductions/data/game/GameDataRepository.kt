@@ -1,45 +1,37 @@
 package com.fuzzyfunctors.reductions.data.game
 
 import arrow.core.Either
-import arrow.core.Option
-import arrow.core.toOption
 import com.fuzzyfunctors.reductions.core.game.Game
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.ReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.game.GameRepository
-import com.fuzzyfunctors.reductions.domain.toMaybeLeft
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.Single
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.rx2.asObservable
+import kotlinx.coroutines.flow.Flow
 
 class GameDataRepository(
     private val networkDataSource: GameNetworkDataSource,
     private val memoryStore: ReactiveStore<GameId, Game>
 ) : GameRepository {
 
-    override fun getGame(id: GameId): Observable<Option<Game>> = memoryStore.get(id)
-        .map { it.toOption() }
-        .asObservable()
+    override fun getGame(id: GameId): Flow<Game?> = memoryStore.get(id)
 
-    override fun fetchGame(id: GameId): Maybe<LoadingFailure.Remote> =
-        networkDataSource.getGameInfo(id)
-            .doOnSuccess { response ->
-                response.fold(
-                    {},
-                    { memoryStore.store(it) }
-                )
+    override suspend fun fetchGame(id: GameId): LoadingFailure.Remote? =
+        when (val response = networkDataSource.getGameInfo(id)) {
+            is Either.Left -> {
+                response.a
             }
-            .flatMapMaybe { it.toMaybeLeft() }
+            is Either.Right -> {
+                memoryStore.store(response.b)
+                null
+            }
+        }
 
-    override fun searchGames(
+    override suspend fun searchGames(
         title: String?,
         steamAppId: String?,
         limit: Int?,
         exact: Boolean
-    ): Single<Either<LoadingFailure.Remote, List<GameBestDeal>>> =
+    ): Either<LoadingFailure.Remote, List<GameBestDeal>> =
         networkDataSource.searchGames(title, steamAppId, limit, exact)
 }

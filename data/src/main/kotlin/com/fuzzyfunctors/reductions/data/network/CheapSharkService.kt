@@ -16,25 +16,25 @@ import retrofit2.http.QueryMap
 interface CheapSharkService {
 
     @GET("deals")
-    fun getDeals(
+    suspend fun getDeals(
         @QueryMap stringParams: Map<String, String>,
         @QueryMap intParams: Map<String, Int>,
         @QueryMap boolParams: Map<String, Boolean>
-    ): Single<Response<List<Deal>>>
+    ): Response<List<Deal>>
 
     @GET("deals")
-    fun getDeal(@Query("id") dealId: DealId): Single<Response<DealInfoResponse>>
+    suspend fun getDeal(@Query("id") dealId: DealId): Response<DealInfoResponse>
 
     @GET("games")
-    fun searchGames(
+    suspend fun searchGames(
         @Query("title") title: String? = null,
         @Query("steamAppId") steamAppId: Int? = null,
         @Query("limit") limit: Int? = null,
         @Query("exact") exact: Boolean? = null
-    ): Single<Response<List<GameBestDeal>>>
+    ): Response<List<GameBestDeal>>
 
     @GET("games")
-    fun getGame(@Query("id") gameId: GameId): Single<Response<GameInfoResponse>>
+    suspend fun getGame(@Query("id") gameId: GameId): Response<GameInfoResponse>
 
     @GET("stores")
     suspend fun getStores(): Response<List<Store>>
