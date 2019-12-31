@@ -7,7 +7,6 @@ import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
 import com.fuzzyfunctors.reductions.data.game.GameBestDeal
 import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
-import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -40,12 +39,12 @@ interface CheapSharkService {
     suspend fun getStores(): Response<List<Store>>
 
     @GET("alerts")
-    fun updateAlert(
+    suspend fun updateAlert(
         @Query("action") action: String,
         @Query("email") email: String,
         @Query("gameId") gameId: GameId,
         @Query("price") price: Double?
-    ): Single<Response<Boolean>>
+    ): Response<Boolean>
 
     companion object {
         const val BASE_URL = "http://www.cheapshark.com/api/1.0/"

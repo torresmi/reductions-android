@@ -6,13 +6,16 @@ import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.network.CheapSharkService
 import com.fuzzyfunctors.reductions.data.network.toEither
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import io.reactivex.Single
 import java.net.HttpURLConnection
 import retrofit2.Response
 
 class AlertNetworkDataSource(private val networkService: CheapSharkService) {
 
-    fun watchGame(gameId: GameId, email: String, price: Double?): Single<Either<LoadingFailure.Remote, Unit>> =
+    suspend fun watchGame(
+        gameId: GameId,
+        email: String,
+        price: Double?
+    ): Either<LoadingFailure.Remote, Unit> =
         networkService
             .updateAlert(
                 ACTION_SET,
@@ -20,9 +23,9 @@ class AlertNetworkDataSource(private val networkService: CheapSharkService) {
                 gameId,
                 price
             )
-            .map(responseMapper)
+            .run(responseMapper)
 
-    fun unwatchGame(gameId: GameId, email: String): Single<Either<LoadingFailure.Remote, Unit>> =
+    suspend fun unwatchGame(gameId: GameId, email: String): Either<LoadingFailure.Remote, Unit> =
         networkService
             .updateAlert(
                 ACTION_DELETE,
@@ -30,7 +33,7 @@ class AlertNetworkDataSource(private val networkService: CheapSharkService) {
                 gameId,
                 null
             )
-            .map(responseMapper)
+            .run(responseMapper)
 
     private val responseMapper = { response: Response<Boolean> ->
         response.toEither().flatMap { isSuccess ->
