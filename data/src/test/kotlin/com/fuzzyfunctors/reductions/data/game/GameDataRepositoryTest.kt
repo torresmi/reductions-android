@@ -1,29 +1,28 @@
 package com.fuzzyfunctors.reductions.data.game
 
 import arrow.core.Either
-import arrow.core.None
-import arrow.core.Option
-import arrow.core.Some
 import com.fuzzyfunctors.reductions.core.game.Game
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.MemoryReactiveStore
-import com.fuzzyfunctors.reductions.data.Mocks
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.testutil.GameBestDealGenerator
 import com.fuzzyfunctors.reductions.testutil.GameGenerator
 import com.fuzzyfunctors.reductions.testutil.firstRandom
+import io.kotlintest.IsolationMode
+import io.kotlintest.shouldBe
 import io.kotlintest.specs.DescribeSpec
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Observable
-import io.reactivex.Single
 import java.net.HttpURLConnection
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
 
 class GameDataRepositoryTest : DescribeSpec() {
 
-    val mockGameNetworkDataSource = Mocks.mockGameNetworkDataSource
+    val mockGameNetworkDataSource = mockk<GameNetworkDataSource>()
     val mockMemoryReactiveStore = mockk<MemoryReactiveStore<GameId, Game>>(relaxed = true)
 
     val sut = GameDataRepository(mockGameNetworkDataSource, mockMemoryReactiveStore)
@@ -31,7 +30,7 @@ class GameDataRepositoryTest : DescribeSpec() {
     val game = GameGenerator().firstRandom()
     val gameId = game.id
 
-    override fun isInstancePerTest(): Boolean = true
+    override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
     init {
 
@@ -40,23 +39,17 @@ class GameDataRepositoryTest : DescribeSpec() {
             mockFetchGame(Either.right(game))
 
             it("makes the network call") {
-                sut.fetchGame(gameId).test()
+                sut.fetchGame(gameId)
 
-                verify(exactly = 1) { mockGameNetworkDataSource.getGameInfo(gameId) }
+                coVerify(exactly = 1) { mockGameNetworkDataSource.getGameInfo(gameId) }
             }
 
             context("fetch was successful") {
 
                 it("updates the memory cache") {
-                    sut.fetchGame(gameId).test()
+                    sut.fetchGame(gameId)
 
                     verify { mockMemoryReactiveStore.store(game) }
-                }
-
-                it("does not return any errors") {
-                    sut.fetchGame(gameId).test()
-                        .assertNoValues()
-                        .assertNoErrors()
                 }
             }
 
@@ -66,23 +59,13 @@ class GameDataRepositoryTest : DescribeSpec() {
                 mockFetchGame(Either.left(remoteError))
 
                 it("does not update the cache") {
-                    sut.fetchGame(gameId).test()
+                    sut.fetchGame(gameId)
 
                     verify(exactly = 0) { mockMemoryReactiveStore.store(game) }
                 }
 
                 it("returns an error") {
-                    sut.fetchGame(gameId).test()
-                        .assertValue(remoteError)
-                }
-
-                val error = RuntimeException()
-                every { mockGameNetworkDataSource.getGameInfo(any()) } returns
-                    Single.error(error)
-
-                it("calls onError with an io error") {
-                    sut.fetchGame(gameId).test()
-                        .assertError(error)
+                    sut.fetchGame(gameId) shouldBe remoteError
                 }
             }
         }
@@ -91,21 +74,19 @@ class GameDataRepositoryTest : DescribeSpec() {
 
             context("the game exists") {
 
-                mockStoreGet(Some(game))
+                mockStoreGet(game)
 
                 it("should return the game") {
-                    sut.getGame(gameId).test()
-                        .assertValue(Some(game))
+                    sut.getGame(gameId).first() shouldBe game
                 }
             }
 
             context("the game does not exist") {
 
-                mockStoreGet(None)
+                mockStoreGet(null)
 
                 it("should return nothing") {
-                    sut.getGame(gameId).test()
-                        .assertValue(None)
+                    sut.getGame(gameId).first() shouldBe null
                 }
             }
         }
@@ -122,8 +103,7 @@ class GameDataRepositoryTest : DescribeSpec() {
                 mockSearchGames(Either.right(results))
 
                 it("returns the results") {
-                    sut.searchGames(title, steamAppId, limit, exact).test()
-                        .assertValue(Either.right(results))
+                    sut.searchGames(title, steamAppId, limit, exact) shouldBe Either.right(results)
                 }
             }
 
@@ -133,34 +113,22 @@ class GameDataRepositoryTest : DescribeSpec() {
                 mockSearchGames(Either.left(remoteError))
 
                 it("returns the error response") {
-                    sut.searchGames(title, steamAppId, limit, exact).test()
-                        .assertValue(Either.left(remoteError))
-                }
-
-                val error = java.lang.RuntimeException()
-                every { mockGameNetworkDataSource.searchGames(any(), any(), any(), any()) } returns
-                    Single.error(error)
-
-                it("calls onError with an io error") {
-                    sut.searchGames(title, steamAppId, limit, exact).test()
-                        .assertError(error)
+                    sut.searchGames(title, steamAppId, limit, exact) shouldBe Either.left(remoteError)
                 }
             }
         }
     }
 
     private fun mockFetchGame(response: Either<LoadingFailure.Remote, Game>) {
-        every { mockGameNetworkDataSource.getGameInfo(any()) } returns
-            Single.just(response)
+        coEvery { mockGameNetworkDataSource.getGameInfo(any()) } returns response
     }
 
-    private fun mockStoreGet(response: Option<Game>) {
-        every { mockMemoryReactiveStore.get(any()) } returns
-            Observable.just(response)
+    private fun mockStoreGet(response: Game?) {
+        coEvery { mockMemoryReactiveStore.get(any()) } returns flowOf(response)
     }
 
     private fun mockSearchGames(response: Either<LoadingFailure.Remote, List<GameBestDeal>>) {
-        every { mockGameNetworkDataSource.searchGames(any(), any(), any(), any()) } returns
-            Single.just(response)
+        coEvery { mockGameNetworkDataSource.searchGames(any(), any(), any(), any()) } returns
+            response
     }
 }

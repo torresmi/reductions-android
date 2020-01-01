@@ -47,17 +47,17 @@ dependencies {
     implementation project(':presentation')
 
     implementation Deps.appCompat
-    implementation Deps.arrow
+    implementation Deps.Arrow.core
     implementation Deps.constraintLayout
     implementation Deps.coil
+    implementation Deps.Coroutines.android
+    implementation Deps.Coroutines.core
     implementation Deps.Koin.android
     implementation Deps.kotlin
     implementation Deps.material
     implementation Deps.materialValues
-    implementation Deps.RxJava.android
-    implementation Deps.RxJava.core
-    implementation Deps.Retrofit.rxJavaCallAdapter
 
+    testImplementation Deps.Coroutines.test
     testImplementation Deps.Koin.test
     testImplementation Deps.kotlinTest
     androidTestImplementation Deps.androidTestRunner

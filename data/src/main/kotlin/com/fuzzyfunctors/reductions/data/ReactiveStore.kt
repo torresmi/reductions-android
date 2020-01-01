@@ -1,7 +1,6 @@
 package com.fuzzyfunctors.reductions.data
 
-import arrow.core.Option
-import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 
 interface ReactiveStore<K, V> {
 
@@ -9,9 +8,9 @@ interface ReactiveStore<K, V> {
 
     fun store(items: Collection<V>)
 
-    fun get(key: K): Observable<Option<V>>
+    fun get(key: K): Flow<V?>
 
-    fun get(): Observable<Option<Set<V>>>
+    fun get(): Flow<Set<V>?>
 
     fun clear()
 }

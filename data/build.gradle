@@ -13,15 +13,16 @@ dependencies {
     compile project(':domain')
     compile project(':core')
 
-    compile Deps.arrow
+    compile Deps.Arrow.core
+    compile Deps.Arrow.syntax
+    compile Deps.Coroutines.core
     compile Deps.kotlin
     compile Deps.moshi
     compile Deps.Retrofit.moshiConverter
     compile Deps.remoteData
     compile Deps.Retrofit.core
-    compile Deps.RxJava.core
-    compile Deps.rxRelay
 
+    testCompile Deps.Coroutines.test
     testCompile Deps.kotlinTest
     testCompile Deps.mockk
     testCompile project(':test-util')

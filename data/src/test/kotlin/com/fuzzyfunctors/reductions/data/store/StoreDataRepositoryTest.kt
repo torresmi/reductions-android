@@ -1,53 +1,49 @@
 package com.fuzzyfunctors.reductions.data.store
 
 import arrow.core.Either
-import arrow.core.None
-import arrow.core.Some
 import com.fuzzyfunctors.reductions.core.store.Store
 import com.fuzzyfunctors.reductions.core.store.StoreId
 import com.fuzzyfunctors.reductions.data.MemoryReactiveStore
-import com.fuzzyfunctors.reductions.data.Mocks
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.testutil.randomStore
-import io.kotlintest.Description
-import io.kotlintest.TestResult
+import io.kotlintest.IsolationMode
+import io.kotlintest.shouldBe
 import io.kotlintest.specs.DescribeSpec
-import io.mockk.clearMocks
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.reactivex.Observable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.single
 
 class StoreDataRepositoryTest : DescribeSpec() {
 
-    val mockStoreNetworkDataSource = Mocks.mockStoreNetworkDataSource
-    val mockMemoryReactiveStore = mockk<MemoryReactiveStore<StoreId, Store>>()
+    val mockStoreNetworkDataSource = mockk<StoreNetworkDataSource>()
+    val mockMemoryReactiveStore = mockk<MemoryReactiveStore<StoreId, Store>>(relaxUnitFun = true)
 
     val sut = StoreDataRepository(mockStoreNetworkDataSource, mockMemoryReactiveStore)
 
-    override fun isInstancePerTest(): Boolean = true
+    override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
     val store = randomStore()
 
     init {
-
         describe("fetching stores") {
 
             context("fetch was successful") {
 
                 val responseValue = listOf(store)
-                every { mockStoreNetworkDataSource.getStores() } returns
-                    Single.just(Either.right(responseValue) as Either<LoadingFailure.Remote, List<Store>>)
+                coEvery { mockStoreNetworkDataSource.getStores() } returns Either.right(responseValue)
 
                 it("makes the network call") {
-                    sut.fetchStores().test()
+                    sut.fetchStores()
 
-                    verify(exactly = 1) { mockStoreNetworkDataSource.getStores() }
+                    coVerify(exactly = 1) { mockStoreNetworkDataSource.getStores() }
                 }
 
                 it("updates the memory cache") {
-                    sut.fetchStores().test()
+                    sut.fetchStores()
 
                     verify(exactly = 1) { mockMemoryReactiveStore.store(responseValue) }
                 }
@@ -57,17 +53,16 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
                 val statusCode = 404
                 val responseValue = LoadingFailure.Remote(statusCode)
-                every { mockStoreNetworkDataSource.getStores() } returns
-                    Single.just(Either.left(responseValue) as Either<LoadingFailure.Remote, List<Store>>)
+                coEvery { mockStoreNetworkDataSource.getStores() } returns Either.left(responseValue)
 
                 it("makes the network call") {
-                    sut.fetchStores().test()
+                    sut.fetchStores()
 
-                    verify(exactly = 1) { mockStoreNetworkDataSource.getStores() }
+                    coVerify(exactly = 1) { mockStoreNetworkDataSource.getStores() }
                 }
 
                 it("does not update the cache") {
-                    sut.fetchStores().test()
+                    sut.fetchStores()
 
                     verify(exactly = 0) { mockMemoryReactiveStore.store(any<Collection<Store>>()) }
                 }
@@ -80,23 +75,23 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
             context("the store exists") {
 
-                every { mockMemoryReactiveStore.get(storeId) } returns
-                    Observable.just(Some(store))
+                every { mockMemoryReactiveStore.get(storeId) } returns flowOf(store)
 
                 it("should return the store") {
-                    sut.getStore(storeId).test()
-                        .assertValue(Some(store))
+                    val result = sut.getStore(storeId).single()
+
+                    result shouldBe store
                 }
             }
 
             context("the store does not exist") {
 
-                every { mockMemoryReactiveStore.get(any()) } returns
-                    Observable.just(None)
+                every { mockMemoryReactiveStore.get(any()) } returns flowOf(null)
 
-                it("should return nothing") {
-                    sut.getStore(storeId).test()
-                        .assertValue(None)
+                it("should return null") {
+                    val result = sut.getStore(storeId).single()
+
+                    result shouldBe null
                 }
             }
         }
@@ -107,30 +102,25 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
                 val stores = setOf(store)
 
-                every { mockMemoryReactiveStore.get() } returns
-                    Observable.just(Some(stores))
+                every { mockMemoryReactiveStore.get() } returns flowOf(stores)
 
                 it("should return the store") {
-                    sut.getStores().test()
-                        .assertValue(Some(stores))
+                    val result = sut.getStores().single()
+
+                    result shouldBe stores
                 }
             }
 
             context("haven't found any stores yet") {
 
-                every { mockMemoryReactiveStore.get() } returns
-                    Observable.just(None)
+                every { mockMemoryReactiveStore.get() } returns flowOf(null)
 
-                it("should return nothing") {
-                    sut.getStores().test()
-                        .assertValue(None)
+                it("should return null") {
+                    val result = sut.getStores().single()
+
+                    result shouldBe null
                 }
             }
         }
-    }
-
-    override fun afterTest(description: Description, result: TestResult) {
-        super.afterTest(description, result)
-        clearMocks(mockStoreNetworkDataSource, mockMemoryReactiveStore)
     }
 }

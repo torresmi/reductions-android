@@ -1,17 +1,17 @@
 package com.fuzzyfunctors.reductions.data.deal
 
-import arrow.core.Option
+import arrow.core.Either
 import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.data.ReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository
-import com.fuzzyfunctors.reductions.domain.toMaybeLeft
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 class DealDataRepository(
     private val networkDataSource: DealNetworkDataSource,
@@ -20,82 +20,70 @@ class DealDataRepository(
 ) : DealRepository {
 
     // Keep requests ordered for pagination
-    private val topDealsScheduler = createNewSingleThreadScheduler()
-    private val newestGameDealsScheduler = createNewSingleThreadScheduler()
-    private val latestGameDealsScheduler = createNewSingleThreadScheduler()
-    private val mostSavingsDealsScheduler = createNewSingleThreadScheduler()
+    private val topDealsDispatcher = createNewSingleThreadDispatcher()
+    private val newestGameDealsDispatcher = createNewSingleThreadDispatcher()
+    private val latestGameDealsDispatcher = createNewSingleThreadDispatcher()
+    private val mostSavingsDealsDispatcher = createNewSingleThreadDispatcher()
 
     private val paginator = Paginator()
 
-    override fun getTopDeals(): Observable<Option<List<Deal>>> = getDealsForType(DealType.TOP)
+    override fun getTopDeals(): Flow<List<Deal>?> = getDealsForType(DealType.TOP)
 
-    override fun fetchTopDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-        fetchDealsForType(DealType.TOP, options)
-            .subscribeOn(topDealsScheduler)
+    override suspend fun fetchTopDeals(options: DealRepository.Options): LoadingFailure.Remote? =
+        withContext(topDealsDispatcher) { fetchDealsForType(DealType.TOP, options) }
 
-    override fun getNewestGamesDeals(): Observable<Option<List<Deal>>> =
-        getDealsForType(DealType.NEWEST_GAMES)
+    override fun getNewestGamesDeals(): Flow<List<Deal>?> = getDealsForType(DealType.NEWEST_GAMES)
 
-    override fun fetchNewestGamesDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-        fetchDealsForType(DealType.NEWEST_GAMES, options)
-            .subscribeOn(newestGameDealsScheduler)
+    override suspend fun fetchNewestGamesDeals(options: DealRepository.Options): LoadingFailure.Remote? =
+        withContext(newestGameDealsDispatcher) { fetchDealsForType(DealType.NEWEST_GAMES, options) }
 
-    override fun getLatestDeals(): Observable<Option<List<Deal>>> = getDealsForType(DealType.LATEST)
+    override fun getLatestDeals(): Flow<List<Deal>?> = getDealsForType(DealType.LATEST)
 
-    override fun fetchLatestDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-        fetchDealsForType(DealType.LATEST, options)
-            .subscribeOn(latestGameDealsScheduler)
+    override suspend fun fetchLatestDeals(options: DealRepository.Options): LoadingFailure.Remote? =
+        withContext(latestGameDealsDispatcher) { fetchDealsForType(DealType.LATEST, options) }
 
-    override fun getMostSavingsDeals(): Observable<Option<List<Deal>>> =
-        getDealsForType(DealType.MOST_SAVINGS)
+    override fun getMostSavingsDeals(): Flow<List<Deal>?> = getDealsForType(DealType.MOST_SAVINGS)
 
-    override fun fetchMostSavingsDeals(options: DealRepository.Options): Maybe<LoadingFailure.Remote> =
-        fetchDealsForType(DealType.MOST_SAVINGS, options)
-            .subscribeOn(mostSavingsDealsScheduler)
+    override suspend fun fetchMostSavingsDeals(options: DealRepository.Options): LoadingFailure.Remote? =
+        withContext(mostSavingsDealsDispatcher) { fetchDealsForType(DealType.MOST_SAVINGS, options) }
 
-    override fun getDealInfo(id: DealId): Observable<Option<DealInfo>> =
-        dealInfoMemoryReactiveStore.get(id)
+    override fun getDealInfo(id: DealId): Flow<DealInfo?> = dealInfoMemoryReactiveStore.get(id)
 
-    override fun fetchDealInfo(id: DealId): Maybe<LoadingFailure.Remote> =
-        networkDataSource.getDeal(id)
-            .doAfterSuccess { response ->
-                response.fold(
-                    {},
-                    { dealInfoMemoryReactiveStore.store(it) }
-                )
+    override suspend fun fetchDealInfo(id: DealId): LoadingFailure.Remote? =
+        when (val response = networkDataSource.getDeal(id)) {
+            is Either.Left -> {
+                response.a
             }
-            .flatMapMaybe { it.toMaybeLeft() }
+            is Either.Right -> {
+                dealInfoMemoryReactiveStore.store(response.b)
+                null
+            }
+        }
 
-    private fun getDealsForType(type: DealType): Observable<Option<List<Deal>>> =
+    private fun getDealsForType(type: DealType): Flow<List<Deal>?> =
         dealsMemoryReactiveStore.get(type)
-            .map(getDeals)
+            .map { it?.deals }
 
-    private val getDeals = { data: Option<DealTypeData> ->
-        data.map { it.deals }
-    }
-
-    private fun fetchDealsForType(
+    private suspend fun fetchDealsForType(
         type: DealType,
         options: DealRepository.Options
-    ): Maybe<LoadingFailure.Remote> {
+    ): LoadingFailure.Remote? {
         val optionsWithOrder = options.copy(order = type.toOrder())
         val page = paginator.getPageforOptions(type, optionsWithOrder)
-        return networkDataSource.getDeals(optionsWithOrder, page)
-            .map { response -> response.map { DealTypeData(type, it) } }
-            .doOnSuccess { response ->
-                response.fold(
-                    {},
-                    {
-                        paginator.onSuccessfulResponse(type, optionsWithOrder)
-                        dealsMemoryReactiveStore.store(it)
-                    }
-                )
+        return when (val response = networkDataSource.getDeals(optionsWithOrder, page)) {
+            is Either.Left -> {
+                response.a
             }
-            .flatMapMaybe { it.toMaybeLeft() }
+            is Either.Right -> {
+                paginator.onSuccessfulResponse(type, optionsWithOrder)
+                dealsMemoryReactiveStore.store(DealTypeData(type, response.b))
+                null
+            }
+        }
     }
 
-    private fun createNewSingleThreadScheduler() =
-        Schedulers.from(Executors.newSingleThreadExecutor())
+    private fun createNewSingleThreadDispatcher() =
+        Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     private fun DealType.toOrder(): DealRepository.Options.Order = when (this) {
         DealType.MOST_SAVINGS -> DealRepository.Options.Order.SAVINGS

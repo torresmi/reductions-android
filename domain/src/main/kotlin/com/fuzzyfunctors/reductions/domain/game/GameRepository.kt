@@ -1,25 +1,22 @@
 package com.fuzzyfunctors.reductions.domain.game
 
 import arrow.core.Either
-import arrow.core.Option
 import com.fuzzyfunctors.reductions.core.game.Game
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 interface GameRepository {
 
-    fun getGame(id: GameId): Observable<Option<Game>>
+    fun getGame(id: GameId): Flow<Game?>
 
-    fun fetchGame(id: GameId): Maybe<LoadingFailure.Remote>
+    suspend fun fetchGame(id: GameId): LoadingFailure.Remote?
 
-    fun searchGames(
+    suspend fun searchGames(
         title: String?,
         steamAppId: String? = null,
         limit: Int? = null,
         exact: Boolean = false
-    ): Single<Either<LoadingFailure.Remote, List<GameBestDeal>>>
+    ): Either<LoadingFailure.Remote, List<GameBestDeal>>
 }

@@ -27,7 +27,6 @@ import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val appModule = module {
@@ -88,7 +87,6 @@ private fun buildRetrofit(): Retrofit {
     return Retrofit.Builder()
         .baseUrl(CheapSharkService.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 }
 
