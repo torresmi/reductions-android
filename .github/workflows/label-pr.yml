@@ -1,2 +1,0 @@
-- regExp: "^(Deps.kt|build.gradle)"
-  labels: ["dependency update"]

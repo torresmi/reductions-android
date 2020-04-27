@@ -2,7 +2,9 @@
 
 name: Pull Request Updater
 
-on: pull_request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
 
 jobs:
 
@@ -22,10 +24,9 @@ jobs:
 
   # Automatically assign labels based on code content
   label_content:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Content Labeler
-        uses: Decathlon/pull-request-labeler-action@v2.0.0
+      - uses: banyan/auto-label@1.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
