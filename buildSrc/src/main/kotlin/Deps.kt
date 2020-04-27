@@ -62,7 +62,7 @@ object Version {
     val buildTools = "29.0.2"
     val coil = "0.8.0"
     val constraintLayout = "2.0.0-beta4"
-    val coroutines = "1.3.3"
+    val coroutines = "1.3.5"
     val detektGradle = "1.3.0"
     val espresso = "3.1.0"
     val gradleVersions = "0.27.0"
