@@ -1,6 +1,4 @@
-# Runs jobs to update existing pull requests from comments
-
-name: Pull Request Comment Updater
+name: Revert Comment Support
 
 on:
   issue_comment:
