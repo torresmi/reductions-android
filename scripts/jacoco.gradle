@@ -1,9 +1,9 @@
-import dependencies.Version
+import static de.fayard.refreshVersions.core.Versions.versionFor
 
 apply plugin: "com.vanniktech.android.junit.jacoco"
 
 junitJacoco {
-    jacocoVersion = Version.jacoco
+    jacocoVersion = versionFor(Libs.jacoco)
     ignoreProjects = [
             'test-util'
     ]
