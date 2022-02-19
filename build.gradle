@@ -1,32 +1,29 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-import dependencies.Plugins
-
 buildscript {
 
     repositories {
         google()
-        jcenter()
-        maven { url "https://dl.bintray.com/arrow-kt/arrow-kt/" }
+        mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        jcenter()
     }
     dependencies {
-        classpath Plugins.android
-        classpath Plugins.kotlin
-        classpath Plugins.ktlint
-        classpath Plugins.versions
-        classpath Plugins.detekt
-        classpath Plugins.jacocoAndroid
+        classpath Libs.com_android_tools_build_gradle
+        classpath Libs.kotlin_gradle_plugin
+        classpath Libs.ktlint_gradle
+        classpath Libs.detekt_gradle_plugin
+        classpath Libs.gradle_android_junit_jacoco_plugin
     }
 }
 
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
 
-    apply plugin: 'com.github.ben-manes.versions'
     apply plugin: "org.jlleitschuh.gradle.ktlint"
     apply from: "$rootDir/scripts/detekt.gradle"
 }

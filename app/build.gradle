@@ -1,18 +1,14 @@
-import dependencies.Deps
-import dependencies.Version
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion Version.Sdk.compile
+    compileSdkVersion 31
 
-    buildToolsVersion = Version.buildTools
     defaultConfig {
         applicationId "com.fuzzyfunctors.reductions"
-        minSdkVersion Version.Sdk.min
-        targetSdkVersion Version.Sdk.target
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -46,20 +42,20 @@ dependencies {
     implementation project(':data')
     implementation project(':presentation')
 
-    implementation Deps.appCompat
-    implementation Deps.Arrow.core
-    implementation Deps.constraintLayout
-    implementation Deps.coil
-    implementation Deps.Coroutines.android
-    implementation Deps.Coroutines.core
-    implementation Deps.Koin.android
-    implementation Deps.kotlin
-    implementation Deps.material
-    implementation Deps.materialValues
+    implementation Libs.appcompat
+    implementation Libs.arrow_core
+    implementation Libs.constraintlayout
+    implementation Libs.coil
+    implementation Libs.kotlinx_coroutines_android
+    implementation Libs.kotlinx_coroutines_core
+    implementation Libs.koin_android
+    implementation Libs.kotlin_stdlib_jdk8
+    implementation Libs.material
+    implementation Libs.material_values
 
-    testImplementation Deps.Coroutines.test
-    testImplementation Deps.Koin.test
-    testImplementation Deps.kotlinTest
-    androidTestImplementation Deps.androidTestRunner
-    androidTestImplementation Deps.espresso
+    testImplementation Libs.kotlinx_coroutines_test
+    testImplementation Libs.koin_test
+    testImplementation Libs.kotlintest_runner_junit5
+    androidTestImplementation Libs.com_android_support_test_runner
+    androidTestImplementation Libs.espresso_core
 }
