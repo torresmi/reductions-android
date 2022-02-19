@@ -8,7 +8,6 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion Version.Sdk.compile
 
-    buildToolsVersion = Version.buildTools
     defaultConfig {
         applicationId "com.fuzzyfunctors.reductions"
         minSdkVersion Version.Sdk.min
