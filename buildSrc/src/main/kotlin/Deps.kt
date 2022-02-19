@@ -55,7 +55,7 @@ abstract class Group(val group: String) {
 private fun dependency(path: String, version: String) = "$path:$version"
 
 object Version {
-    val androidGradle = "3.4.2" // versions beyond this break the merged jacoco reporting. https://github.com/vanniktech/gradle-android-junit-jacoco-plugin/issues/162
+    val androidGradle = "4.2.0"
     val appCompat = "1.2.0-alpha01"
     val arrow = "0.10.4"
     val androidTestRunner = "1.1.0"
@@ -67,11 +67,11 @@ object Version {
     val espresso = "3.1.0"
     val gradleVersions = "0.27.0"
     val jacoco = "0.8.5"
-    val jacocoAndroidGradle = "0.16.0-SNAPSHOT"
+    val jacocoAndroidGradle = "0.16.0"
     val koin = "2.1.0-alpha-8"
     val kotlin = "1.3.61"
     val kotlinTest = "3.4.2"
-    val ktlintGradle = "9.1.1"
+    val ktlintGradle = "10.2.1"
     val material = "1.2.0-alpha03"
     val materialValues = "1.1.1"
     val mockk = "1.9.3"
