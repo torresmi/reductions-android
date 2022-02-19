@@ -6,12 +6,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion Version.Sdk.compile
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.fuzzyfunctors.reductions"
-        minSdkVersion Version.Sdk.min
-        targetSdkVersion Version.Sdk.target
+        minSdkVersion 23
+        targetSdkVersion 31
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

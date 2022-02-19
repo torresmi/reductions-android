@@ -78,10 +78,4 @@ object Version {
     val moshi = "_"
     val remoteData = "_"
     val retrofit = "_"
-
-    object Sdk {
-        val min = 23
-        val target = 29
-        val compile = 29
-    }
 }
