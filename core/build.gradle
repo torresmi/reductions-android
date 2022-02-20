@@ -8,6 +8,6 @@ test {
 }
 
 dependencies {
-    compile Libs.kotlinx_coroutines_core
-    compile Libs.kotlin_stdlib_jdk8
+    implementation Libs.kotlinx_coroutines_core
+    implementation Libs.kotlin_stdlib_jdk8
 }

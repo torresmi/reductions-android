@@ -9,7 +9,7 @@ test {
 
 dependencies {
 
-    compile project(':core')
-    compile Libs.kotlintest_runner_junit5
-    compile Libs.remotedata
+    implementation project(':core')
+    implementation Libs.remotedata
+
 }

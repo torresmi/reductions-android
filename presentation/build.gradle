@@ -8,13 +8,12 @@ test {
 }
 
 dependencies {
-    compile project(':domain')
+    implementation project(':domain')
 
-    compile Libs.arrow_core
-    compile Libs.kotlinx_coroutines_core
+    implementation Libs.arrow_core
+    implementation Libs.kotlinx_coroutines_core
 
-    testCompile Libs.kotlinx_coroutines_test
-    testCompile Libs.kotlintest_runner_junit5
-    testCompile Libs.mockk
-    testCompile project(':test-util')
+    testImplementation Libs.kotlinx_coroutines_test
+    testImplementation Libs.mockk
+    testImplementation project(':test-util')
 }
