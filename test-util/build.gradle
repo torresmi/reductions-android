@@ -9,7 +9,12 @@ test {
 
 dependencies {
 
-    compile project(':core')
-    compile Libs.kotlintest_runner_junit5
-    compile Libs.remotedata
+    implementation project(':core')
+    implementation Libs.remotedata
+
+    api Libs.kotest_assertions_core
+    api Libs.kotest_property
+    api Libs.kotest_runner_junit5
+    api Libs.fixture
+    api Libs.kotlin_faker
 }

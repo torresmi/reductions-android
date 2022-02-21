@@ -2,9 +2,9 @@ package com.fuzzyfunctors.reductions.data.alert
 
 import arrow.core.Either
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import io.kotlintest.IsolationMode
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.IsolationMode
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

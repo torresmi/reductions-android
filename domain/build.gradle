@@ -8,16 +8,15 @@ test {
 }
 
 dependencies {
-    compile project(':core')
+    implementation project(':core')
 
-    compile Libs.arrow_core
-    compile Libs.kotlinx_coroutines_core
-    compile Libs.kotlin_stdlib_jdk8
-    compile Libs.remotedata
+    implementation Libs.arrow_core
+    implementation Libs.kotlinx_coroutines_core
+    implementation Libs.kotlin_stdlib_jdk8
+    implementation Libs.remotedata
 
-    testCompile Libs.kotlinx_coroutines_test
-    testCompile Libs.kotlintest_runner_junit5
-    testCompile Libs.mockk
-    testCompile project(':test-util')
+    testImplementation Libs.kotlinx_coroutines_test
+    testImplementation Libs.mockk
+    testImplementation project(':test-util')
 
 }

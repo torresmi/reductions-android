@@ -41,6 +41,8 @@ android {
 dependencies {
     implementation project(':data')
     implementation project(':presentation')
+    implementation project(':core')
+    implementation project(':domain')
 
     implementation Libs.appcompat
     implementation Libs.arrow_core
@@ -52,10 +54,14 @@ dependencies {
     implementation Libs.kotlin_stdlib_jdk8
     implementation Libs.material
     implementation Libs.material_values
+    implementation Libs.retrofit
+    implementation Libs.converter_moshi
+    implementation Libs.remotedata
 
     testImplementation Libs.kotlinx_coroutines_test
     testImplementation Libs.koin_test
-    testImplementation Libs.kotlintest_runner_junit5
+    testImplementation project(":test-util")
+
     androidTestImplementation Libs.com_android_support_test_runner
     androidTestImplementation Libs.espresso_core
 }

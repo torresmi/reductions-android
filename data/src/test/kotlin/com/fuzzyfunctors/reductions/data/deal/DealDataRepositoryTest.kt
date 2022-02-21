@@ -1,27 +1,29 @@
 package com.fuzzyfunctors.reductions.data.deal
 
 import arrow.core.Either
+import com.appmattus.kotlinfixture.kotlinFixture
+import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealId
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.data.MemoryReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import com.fuzzyfunctors.reductions.testutil.DealGenerator
-import com.fuzzyfunctors.reductions.testutil.DealInfoGenerator
-import com.fuzzyfunctors.reductions.testutil.firstRandom
-import io.kotlintest.IsolationMode
-import io.kotlintest.properties.Gen
-import io.kotlintest.properties.assertAll
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.DescribeSpec
+import com.fuzzyfunctors.reductions.test.util.arb
+import com.fuzzyfunctors.reductions.test.util.nextSeeded
+import io.kotest.core.spec.IsolationMode
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
+import io.kotest.property.checkAll
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import java.net.HttpURLConnection
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
+import java.net.HttpURLConnection
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class DealDataRepositoryTest : DescribeSpec() {
 
     override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
@@ -33,13 +35,13 @@ class DealDataRepositoryTest : DescribeSpec() {
     val sut = DealDataRepository(mockDealNetworkDataSource, mockDealsReactiveStore, mockDealInfoReactiveStore)
 
     init {
-        val dealsGenerator = Gen.list(DealGenerator())
+        val dealsGenerator = arb<List<Deal>>()
 
         describe("fetching deals") {
 
             context("successful response") {
 
-                val deals = dealsGenerator.firstRandom()
+                val deals = dealsGenerator.nextSeeded()
 
                 coEvery { mockDealNetworkDataSource.getDeals(any()) } returns Either.right(deals)
 
@@ -72,7 +74,7 @@ class DealDataRepositoryTest : DescribeSpec() {
         }
 
         describe("fetching deal") {
-            val deal = DealInfoGenerator().firstRandom()
+            val deal = kotlinFixture().invoke<DealInfo>()
 
             context("successful response") {
 
@@ -101,11 +103,11 @@ class DealDataRepositoryTest : DescribeSpec() {
             context("deals exist") {
 
                 it("returns deals") {
-                    assertAll(dealsGenerator) { deals ->
+                    checkAll(dealsGenerator) { deals ->
                         every { mockDealsReactiveStore.get(any()) } returns
                             flowOf(DealTypeData(DealType.TOP, deals))
 
-                        runBlockingTest {
+                        runTest {
                             sut.getTopDeals().first() shouldBe deals
                         }
                     }

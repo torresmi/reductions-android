@@ -8,20 +8,19 @@ test {
 }
 
 dependencies {
-    compile project(':domain')
-    compile project(':core')
+    implementation project(':domain')
+    implementation project(':core')
 
-    compile Libs.arrow_core
-    compile Libs.arrow_syntax
-    compile Libs.kotlinx_coroutines_core
-    compile Libs.kotlin_stdlib_jdk8
-    compile Libs.moshi
-    compile Libs.converter_moshi
-    compile Libs.remotedata
-    compile Libs.retrofit
+    implementation Libs.arrow_core
+    implementation Libs.arrow_syntax
+    implementation Libs.kotlinx_coroutines_core
+    implementation Libs.kotlin_stdlib_jdk8
+    implementation Libs.moshi
+    implementation Libs.converter_moshi
+    implementation Libs.remotedata
+    implementation Libs.retrofit
 
-    testCompile Libs.kotlinx_coroutines_test
-    testCompile Libs.kotlintest_runner_junit5
-    testCompile Libs.mockk
-    testCompile project(':test-util')
+    testImplementation Libs.kotlinx_coroutines_test
+    testImplementation Libs.mockk
+    testImplementation project(':test-util')
 }

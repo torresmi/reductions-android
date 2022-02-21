@@ -1,17 +1,17 @@
 package com.fuzzyfunctors.reductions.data.game
 
 import arrow.core.Either
+import com.appmattus.kotlinfixture.kotlinFixture
 import com.fuzzyfunctors.reductions.core.game.Game
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.MemoryReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import com.fuzzyfunctors.reductions.testutil.GameBestDealGenerator
-import com.fuzzyfunctors.reductions.testutil.GameGenerator
-import com.fuzzyfunctors.reductions.testutil.firstRandom
-import io.kotlintest.IsolationMode
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.DescribeSpec
+import com.fuzzyfunctors.reductions.test.util.arb
+import com.fuzzyfunctors.reductions.test.util.nextSeeded
+import io.kotest.core.spec.IsolationMode
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -27,7 +27,7 @@ class GameDataRepositoryTest : DescribeSpec() {
 
     val sut = GameDataRepository(mockGameNetworkDataSource, mockMemoryReactiveStore)
 
-    val game = GameGenerator().firstRandom()
+    val game = arb<Game>().nextSeeded()
     val gameId = game.id
 
     override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
@@ -92,7 +92,7 @@ class GameDataRepositoryTest : DescribeSpec() {
         }
 
         describe("searching games") {
-            val results = GameBestDealGenerator().random().take(3).toList()
+            val results = arb<List<GameBestDeal>>().nextSeeded()
             val title = "title"
             val limit = 1
             val exact = false

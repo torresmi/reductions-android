@@ -1,135 +1,85 @@
 package com.fuzzyfunctors.reductions.data.deal
 
-import com.fuzzyfunctors.reductions.testutil.NullableGenerator
-import com.fuzzyfunctors.reductions.testutil.firstRandom
-import com.fuzzyfunctors.reductions.testutil.randomInt
-import com.fuzzyfunctors.reductions.testutil.randomLong
-import com.fuzzyfunctors.reductions.testutil.randomNullableString
-import com.fuzzyfunctors.reductions.testutil.randomPercent
-import com.fuzzyfunctors.reductions.testutil.randomString
-import io.kotlintest.properties.Gen
+import com.appmattus.kotlinfixture.kotlinFixture
+import com.fuzzyfunctors.reductions.test.util.fake
+import com.fuzzyfunctors.reductions.test.util.arb
+import io.kotest.property.Arb
 
-class DealInfoResponseGenerator : Gen<DealInfoResponse> {
-
-    private val minPrice = 500
-    private val maxPrice = 6000
-
-    override fun constants(): Iterable<DealInfoResponse> =
-        listOf(
-            onSale(),
-            notOnSale(),
-            onSteam(),
-            notOnSteam(),
-            onMetacritic(),
-            notOnMetacritic()
-        )
-
-    override fun random(): Sequence<DealInfoResponse> = generateSequence {
-        DealInfoResponse(
-            gameInfo = DealInfoResponse.GameInfo(
-                storeID = randomString(),
-                gameID = randomString(),
-                name = randomString(),
-                steamAppID = randomNullableString(),
-                salePrice = randomString(),
-                retailPrice = randomString(),
-                steamRatingText = randomNullableString(),
-                steamRatingPercent = randomPercent(),
-                steamRatingCount = NullableGenerator(Gen.choose(0, 100)).firstRandom().toString(),
-                steamworks = Gen.choose(0, 1).firstRandom().toString(),
-                metacriticScore = randomNullableString(),
-                metacriticLink = randomNullableString(),
-                releaseDate = randomLong(),
-                publisher = randomString(),
-                thumb = randomString()
-            ),
-            cheaperStores = Gen.list(CheaperStoreGenerator()).firstRandom(),
-            cheapestPrice = DealInfoResponse.CheapestPrice(
-                price = randomString(),
-                date = randomLong()
-            )
-        )
-    }
-
-    fun notOnSale(): DealInfoResponse {
-        val price = Gen.choose(minPrice, maxPrice).firstRandom().toString()
-        val response = random().first()
-        return response.copy(
-            gameInfo = response.gameInfo.copy(
-                salePrice = price,
-                retailPrice = price
-            )
-        )
-    }
-
-    fun onSale(): DealInfoResponse {
-        val price = Gen.choose(minPrice, maxPrice).firstRandom()
-        val sale = Gen.choose(minPrice, maxPrice - 1).firstRandom()
-        val response = random().first()
-        return response.copy(
-            gameInfo = response.gameInfo.copy(
-                salePrice = sale.toString(),
-                retailPrice = price.toString()
-            )
-        )
-    }
-
-    fun onSteam(): DealInfoResponse {
-        val response = random().first()
-        return response.copy(
-            gameInfo = response.gameInfo.copy(
-                steamAppID = randomString(),
-                steamRatingPercent = randomPercent(),
-                steamRatingCount = randomInt().toString(),
-                steamRatingText = randomString(),
-                steamworks = "1"
-            )
-        )
-    }
-
-    fun notOnSteam(): DealInfoResponse {
-        val response = random().first()
-        return response.copy(
-            gameInfo = response.gameInfo.copy(
-                steamAppID = null,
-                steamRatingPercent = null,
-                steamRatingCount = null,
-                steamRatingText = null,
-                steamworks = "0"
-            )
-        )
-    }
-
-    fun onMetacritic(): DealInfoResponse {
-        val response = random().first()
-        return response.copy(
-            gameInfo = response.gameInfo.copy(
-                metacriticScore = randomInt().toString(),
-                metacriticLink = randomString()
-            )
-        )
-    }
-
-    fun notOnMetacritic(): DealInfoResponse {
-        val response = random().first()
-        return response.copy(
-            gameInfo = response.gameInfo.copy(
-                metacriticScore = null,
-                metacriticLink = null
-            )
-        )
-    }
-
-    class CheaperStoreGenerator : Gen<DealInfoResponse.CheaperStore> {
-        override fun constants(): Iterable<DealInfoResponse.CheaperStore> = emptyList()
-
-        override fun random(): Sequence<DealInfoResponse.CheaperStore> = generateSequence {
-            DealInfoResponse.CheaperStore(
-                dealID = randomString(),
-                storeID = randomString(),
-                salePrice = randomString(),
-                retailPrice = randomString()
-            )
+object DealInfoResponseGeneration {
+    val baseFixture = kotlinFixture {
+        property(DealInfoResponse.GameInfo::salePrice) {
+            fake { money.amount(1..60) }
+        }
+        property(DealInfoResponse.GameInfo::retailPrice) {
+            fake { money.amount(1..60) }
         }
     }
+
+    private fun saleFixture(
+        salePrice: String,
+        retailPrice: String
+    ) = baseFixture.new {
+        property(DealInfoResponse.GameInfo::salePrice) { salePrice }
+        property(DealInfoResponse.GameInfo::retailPrice) { retailPrice }
+    }
+
+    val onSale = saleFixture(salePrice = "20.00", retailPrice = "60.00")
+        .invoke<DealInfoResponse>()
+
+    val notOnSale = saleFixture(salePrice = "60.00", retailPrice = "60.00")
+        .invoke<DealInfoResponse>()
+
+    private fun steamFixture(
+        appId: String?,
+        ratingPercent: String?,
+        ratingCount: String?,
+        ratingText: String?,
+        onSteam: Boolean
+    ) = baseFixture.new {
+        property(DealInfoResponse.GameInfo::steamAppID) { appId }
+        property(DealInfoResponse.GameInfo::steamRatingPercent) { ratingPercent }
+        property(DealInfoResponse.GameInfo::steamRatingCount) { ratingCount }
+        property(DealInfoResponse.GameInfo::steamRatingText) { ratingText }
+        property(DealInfoResponse.GameInfo::steamworks) { if (onSteam) "1" else "0" }
+    }
+
+    val onSteam = steamFixture(
+        appId = "1",
+        ratingPercent = "100",
+        ratingCount = "1",
+        ratingText = "good",
+        onSteam = true
+    ).invoke<DealInfoResponse>()
+
+    val notOnSteam = steamFixture(
+        appId = null,
+        ratingPercent = null,
+        ratingCount = null,
+        ratingText = null,
+        onSteam = false
+    ).invoke<DealInfoResponse>()
+
+    private fun metacriticFixture(
+        score: String?,
+        link: String?
+    ) = baseFixture.new {
+        property(DealInfoResponse.GameInfo::metacriticScore) { score }
+        property(DealInfoResponse.GameInfo::metacriticLink) { link }
+    }
+
+    val onMetacritic = metacriticFixture(score = "100", link = "www.metacritic.com")
+        .invoke<DealInfoResponse>()
+    val notOnMetacritic = metacriticFixture(score = null, link = null)
+        .invoke<DealInfoResponse>()
+
+    val edgeCases = listOf(
+        onSale,
+        notOnSale,
+        onSteam,
+        notOnSteam,
+        onMetacritic,
+        notOnMetacritic
+    )
+
+    fun arb(): Arb<DealInfoResponse> = arb(*edgeCases.toTypedArray())
 }
