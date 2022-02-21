@@ -1,26 +1,24 @@
 package com.fuzzyfunctors.reductions.data.deal
 
+import com.appmattus.kotlinfixture.kotlinFixture
 import com.fuzzyfunctors.reductions.core.deal.Deal
 import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.data.network.toCore
-import com.fuzzyfunctors.reductions.testutil.randomString
-import io.kotlintest.shouldBe
-import io.kotlintest.shouldNotBe
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import java.util.Date
 
 class DealInfoResponseMapperTest : DescribeSpec() {
 
-    val generator = DealInfoResponseGenerator()
-
-    val dealId = randomString()
+    val dealId = kotlinFixture().invoke<String>()
 
     init {
 
         describe("map to core deal info") {
 
             context("has sale data") {
-                val onSale = generator.onSale()
+                val onSale = DealInfoResponseGeneration.onSale
 
                 it("should parse with sale price") {
                     val result = onSale.toCore(dealId)
@@ -31,7 +29,7 @@ class DealInfoResponseMapperTest : DescribeSpec() {
             }
 
             context("does not have sale data") {
-                val notOnSale = generator.notOnSale()
+                val notOnSale = DealInfoResponseGeneration.notOnSale
 
                 it("should parse without sale data") {
                     val result = notOnSale.toCore(dealId)
@@ -42,7 +40,7 @@ class DealInfoResponseMapperTest : DescribeSpec() {
             }
 
             context("has steam data") {
-                val onSteam = generator.onSteam()
+                val onSteam = DealInfoResponseGeneration.onSteam
 
                 it("should parse with steam data") {
                     val result = onSteam.toCore(dealId)
@@ -60,7 +58,7 @@ class DealInfoResponseMapperTest : DescribeSpec() {
             }
 
             context("does not have steam data") {
-                val notOnSteam = generator.notOnSteam()
+                val notOnSteam = DealInfoResponseGeneration.notOnSteam
 
                 it("should parse without steam data") {
                     val result = notOnSteam.toCore(dealId)
@@ -71,7 +69,7 @@ class DealInfoResponseMapperTest : DescribeSpec() {
             }
 
             context("has metacritic data") {
-                val onMetacritic = generator.onMetacritic()
+                val onMetacritic = DealInfoResponseGeneration.onMetacritic
 
                 it("should parse with metacritic data") {
                     val result = onMetacritic.toCore(dealId)
@@ -82,7 +80,7 @@ class DealInfoResponseMapperTest : DescribeSpec() {
             }
 
             context("does not have metacritic data") {
-                val notOnMetacritic = generator.notOnMetacritic()
+                val notOnMetacritic = DealInfoResponseGeneration.notOnMetacritic
 
                 it("should parse without metacritic data") {
                     val result = notOnMetacritic.toCore(dealId)

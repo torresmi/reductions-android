@@ -26,6 +26,8 @@ public object Libs {
 
     public const val lint_gradle: String = "com.android.tools.lint:lint-gradle:_"
 
+    public const val fixture: String = "com.appmattus.fixture:fixture:_"
+
     public const val remotedata: String = "com.github.torresmi:remotedata:_"
 
     public const val material: String = "com.google.android.material:material:_"
@@ -50,14 +52,18 @@ public object Libs {
 
     public const val coil: String = "io.coil-kt:coil:_"
 
+    public const val kotlin_faker: String = "io.github.serpro69:kotlin-faker:_"
+
     public const val detekt_gradle_plugin: String =
             "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:_"
 
-    public const val kotlintest_runner_junit5: String = "io.kotlintest:kotlintest-runner-junit5:_"
+    public const val kotest_assertions_core: String = "io.kotest:kotest-assertions-core:_"
+
+    public const val kotest_property: String = "io.kotest:kotest-property:_"
+
+    public const val kotest_runner_junit5: String = "io.kotest:kotest-runner-junit5:_"
 
     public const val mockk: String = "io.mockk:mockk:_"
-
-    public const val jacoco: String = "org.jacoco:jacoco:_"
 
     public const val org_jacoco_agent: String = "org.jacoco:org.jacoco.agent:_"
 

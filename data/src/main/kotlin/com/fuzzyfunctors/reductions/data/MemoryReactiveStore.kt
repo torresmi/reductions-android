@@ -1,6 +1,5 @@
 package com.fuzzyfunctors.reductions.data
 
-import com.fuzzyfunctors.reductions.domain.safeOffer
 import java.util.concurrent.ConcurrentHashMap
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
@@ -19,14 +18,14 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
         val key = keyForItem(item)
         cache[key] = item
 
-        getOrCreateChannel(key).safeOffer(item)
-        itemsChannel.safeOffer(getAllItems())
+        getOrCreateChannel(key).trySend(item)
+        itemsChannel.trySend(getAllItems())
     }
 
     override fun store(items: Collection<V>) {
         val keyValue = items.associateBy(keyForItem)
         cache.putAll(keyValue)
-        itemsChannel.safeOffer(getAllItems())
+        itemsChannel.trySend(getAllItems())
         updateExistingChannels()
     }
 
@@ -62,6 +61,6 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
     }
 
     private fun updateItemChannel(key: K, item: V?) {
-        itemChannels[key]?.safeOffer(item)
+        itemChannels[key]?.trySend(item)
     }
 }

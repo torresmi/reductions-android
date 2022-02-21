@@ -5,10 +5,11 @@ import com.fuzzyfunctors.reductions.core.store.Store
 import com.fuzzyfunctors.reductions.core.store.StoreId
 import com.fuzzyfunctors.reductions.data.MemoryReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import com.fuzzyfunctors.reductions.testutil.randomStore
-import io.kotlintest.IsolationMode
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.DescribeSpec
+import com.fuzzyfunctors.reductions.test.util.arb
+import com.fuzzyfunctors.reductions.test.util.nextSeeded
+import io.kotest.core.spec.IsolationMode
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -26,7 +27,7 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
     override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
-    val store = randomStore()
+    val store = arb<Store>().nextSeeded()
 
     init {
         describe("fetching stores") {

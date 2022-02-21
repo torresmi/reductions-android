@@ -1,7 +1,7 @@
 package com.fuzzyfunctors.reductions
 
 import com.fuzzyfunctors.reductions.injection.Modules
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
 import org.koin.test.KoinTest
 import org.koin.test.check.checkModules
 

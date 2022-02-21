@@ -1,102 +1,80 @@
 package com.fuzzyfunctors.reductions.data.deal
 
-import com.fuzzyfunctors.reductions.testutil.NullableGenerator
-import com.fuzzyfunctors.reductions.testutil.firstRandom
-import com.fuzzyfunctors.reductions.testutil.randomInt
-import com.fuzzyfunctors.reductions.testutil.randomLong
-import com.fuzzyfunctors.reductions.testutil.randomNullableInt
-import com.fuzzyfunctors.reductions.testutil.randomNullableLong
-import com.fuzzyfunctors.reductions.testutil.randomNullableString
-import com.fuzzyfunctors.reductions.testutil.randomPercent
-import com.fuzzyfunctors.reductions.testutil.randomString
-import io.kotlintest.properties.Gen
+import com.appmattus.kotlinfixture.kotlinFixture
+import com.fuzzyfunctors.reductions.test.util.arb
+import com.fuzzyfunctors.reductions.test.util.fake
+import io.kotest.property.Arb
 
-class DealGenerator : Gen<Deal> {
-
-    private val minPrice = 500
-    private val maxPrice = 6000
-
-    override fun constants(): Iterable<Deal> =
-        listOf(
-            onSale(),
-            notOnSale(),
-            onSteam(),
-            notOnSteam(),
-            onMetacritic(),
-            notOnMetacritic()
-        )
-
-    override fun random(): Sequence<Deal> = generateSequence {
-        Deal(
-            internalName = randomString(),
-            title = randomString(),
-            metacriticLink = randomNullableString(),
-            dealID = randomString(),
-            storeID = randomString(),
-            gameID = randomString(),
-            salePrice = randomString(),
-            normalPrice = randomString(),
-            isOnSale = Gen.choose(0, 1).firstRandom().toString(),
-            savings = randomString(),
-            metacriticScore = randomNullableInt().toString(),
-            steamRatingText = randomNullableString(),
-            steamRatingCount = randomNullableInt().toString(),
-            steamRatingPercent = NullableGenerator(Gen.choose(0, 100)).firstRandom().toString(),
-            steamAppID = randomNullableString(),
-            releaseDate = randomLong(),
-            lastChange = randomNullableLong(),
-            dealRating = randomString(),
-            thumb = randomString()
-        )
+object DealResponseGeneration {
+    val baseFixture = kotlinFixture {
+        property(Deal::salePrice) {
+            fake { money.amount(0..60) }
+        }
+        property(Deal::normalPrice) {
+            fake { money.amount(0..60) }
+        }
     }
 
-    fun notOnSale(): Deal {
-        val price = Gen.choose(minPrice, maxPrice).firstRandom().toString()
-        return random().first().copy(
-            normalPrice = price,
-            salePrice = price,
-            savings = "0",
-            isOnSale = "0"
-        )
+    private fun saleFixture(
+        salePrice: String,
+        retailPrice: String,
+        isOnSale: Boolean
+    ) = baseFixture.new {
+        property(Deal::salePrice) { salePrice }
+        property(Deal::normalPrice) { retailPrice }
+        property(Deal::isOnSale) { if (isOnSale) "1" else "0" }
     }
 
-    fun onSale(): Deal {
-        val price = Gen.choose(minPrice, maxPrice).firstRandom()
-        val sale = Gen.choose(minPrice, maxPrice - 1).firstRandom()
-        val savings = price - sale
-        return random().first().copy(
-            normalPrice = price.toString(),
-            salePrice = sale.toString(),
-            isOnSale = "1",
-            savings = savings.toString()
-        )
+    val onSale = saleFixture(salePrice = "20.00", retailPrice = "60.00", isOnSale = true)
+        .invoke<Deal>()
+
+    val notOnSale = saleFixture(salePrice = "60.00", retailPrice = "60.00", isOnSale = false)
+        .invoke<Deal>()
+
+    private fun steamFixture(
+        appId: String?,
+        ratingPercent: String?,
+        ratingCount: String?,
+        ratingText: String?,
+    ) = DealInfoResponseGeneration.baseFixture.new {
+        property(Deal::steamAppID) { appId }
+        property(Deal::steamRatingPercent) { ratingPercent }
+        property(Deal::steamRatingCount) { ratingCount }
+        property(Deal::steamRatingText) { ratingText }
     }
 
-    fun onSteam(): Deal =
-        random().first().copy(
-            steamAppID = randomString(),
-            steamRatingPercent = randomPercent(),
-            steamRatingCount = randomInt().toString(),
-            steamRatingText = randomString()
-        )
+    val onSteam = steamFixture(
+        appId = "1",
+        ratingPercent = "100",
+        ratingCount = "1",
+        ratingText = "good"
+    ).invoke<Deal>()
 
-    fun notOnSteam(): Deal =
-        random().first().copy(
-            steamAppID = null,
-            steamRatingPercent = null,
-            steamRatingCount = null,
-            steamRatingText = null
-        )
+    val notOnSteam =steamFixture(
+        appId = null,
+        ratingPercent = null,
+        ratingCount = null,
+        ratingText = null
+    ).invoke<Deal>()
 
-    fun onMetacritic(): Deal =
-        random().first().copy(
-            metacriticScore = randomInt().toString(),
-            metacriticLink = randomString()
-        )
+    val onMetacritic = baseFixture.new {
+        property(Deal::metacriticLink) { "wwww.metacritic.com" }
+        property(Deal::metacriticScore) { "1" }
+    }.invoke<Deal>()
 
-    fun notOnMetacritic(): Deal =
-        random().first().copy(
-            metacriticScore = null,
-            metacriticLink = null
-        )
+    val notOnMetacritic = baseFixture.new {
+        property(Deal::metacriticLink) { null }
+        property(Deal::metacriticScore) { null }
+    }.invoke<Deal>()
+
+    val edgeCases = listOf(
+        onSale,
+        notOnSale,
+        onSteam,
+        notOnSteam,
+        onMetacritic,
+        notOnMetacritic
+    )
+
+    fun arb(): Arb<Deal> = arb(*edgeCases.toTypedArray())
 }
