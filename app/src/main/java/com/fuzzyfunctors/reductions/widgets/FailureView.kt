@@ -8,9 +8,9 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.fuzzyfunctors.reductions.R
 import com.fuzzyfunctors.reductions.widgets.remotedata.ShowsFailure
-import kotlin.properties.Delegates
 import kotlinx.android.synthetic.main.include_error_view.view.errorTextView
 import kotlinx.android.synthetic.main.include_error_view.view.retryButton
+import kotlin.properties.Delegates
 
 class FailureView @JvmOverloads constructor(
     context: Context,

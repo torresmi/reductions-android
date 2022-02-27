@@ -1,8 +1,8 @@
 package com.fuzzyfunctors.reductions.data.deal
 
 import com.appmattus.kotlinfixture.kotlinFixture
-import com.fuzzyfunctors.reductions.test.util.fake
 import com.fuzzyfunctors.reductions.test.util.arb
+import com.fuzzyfunctors.reductions.test.util.fake
 import io.kotest.property.Arb
 
 object DealInfoResponseGeneration {

@@ -50,7 +50,7 @@ object DealResponseGeneration {
         ratingText = "good"
     ).invoke<Deal>()
 
-    val notOnSteam =steamFixture(
+    val notOnSteam = steamFixture(
         appId = null,
         ratingPercent = null,
         ratingCount = null,

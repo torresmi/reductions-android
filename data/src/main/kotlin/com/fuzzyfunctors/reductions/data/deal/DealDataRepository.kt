@@ -7,11 +7,11 @@ import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.data.ReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository
-import java.util.concurrent.Executors
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.util.concurrent.Executors
 
 class DealDataRepository(
     private val networkDataSource: DealNetworkDataSource,
