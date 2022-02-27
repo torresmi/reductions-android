@@ -7,7 +7,11 @@ import com.fuzzyfunctors.reductions.domain.alert.AlertRepository
 
 class AlertDataRepository(private val networkDataSource: AlertNetworkDataSource) : AlertRepository {
 
-    override suspend fun watchGame(gameId: GameId, email: String, price: Double?): LoadingFailure.Remote? {
+    override suspend fun watchGame(
+        gameId: GameId,
+        email: String,
+        price: Double?,
+    ): LoadingFailure.Remote? {
         return networkDataSource.watchGame(gameId, email, price)
             .swap()
             .orNull()

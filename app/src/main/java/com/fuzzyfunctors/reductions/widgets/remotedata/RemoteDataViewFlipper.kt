@@ -31,7 +31,10 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
 
         try {
             val notAskedId = a.getResourceId(R.styleable.RemoteDataView_notAskedView, defaultResId)
-            val loadingId = a.getResourceId(R.styleable.RemoteDataView_loadingView, R.layout.center_loading_view)
+            val loadingId = a.getResourceId(
+                R.styleable.RemoteDataView_loadingView,
+                R.layout.center_loading_view,
+            )
             val successId = a.getResourceId(R.styleable.RemoteDataView_successView, defaultResId)
             val failureId = a.getResourceId(R.styleable.RemoteDataView_failureView, defaultResId)
 
@@ -61,7 +64,10 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
         }
     }
 
-    private fun createOptionalNotAskedView(notAskedId: Int, inflater: LayoutInflater): Option<View> {
+    private fun createOptionalNotAskedView(
+        notAskedId: Int,
+        inflater: LayoutInflater,
+    ): Option<View> {
         return if (notAskedId != defaultResId) {
             val view = inflater.inflate(notAskedId, this, false)
             Some(view)
@@ -70,7 +76,11 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
         }
     }
 
-    private fun createFailureView(context: Context, failureId: Int, inflater: LayoutInflater): View {
+    private fun createFailureView(
+        context: Context,
+        failureId: Int,
+        inflater: LayoutInflater,
+    ): View {
         return if (failureId != defaultResId) {
             inflater.inflate(failureId, this, false)
         } else {

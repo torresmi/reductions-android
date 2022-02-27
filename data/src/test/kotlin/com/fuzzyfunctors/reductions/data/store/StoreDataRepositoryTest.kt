@@ -35,7 +35,9 @@ class StoreDataRepositoryTest : DescribeSpec() {
             context("fetch was successful") {
 
                 val responseValue = listOf(store)
-                coEvery { mockStoreNetworkDataSource.getStores() } returns Either.right(responseValue)
+                coEvery {
+                    mockStoreNetworkDataSource.getStores()
+                } returns Either.right(responseValue)
 
                 it("makes the network call") {
                     sut.fetchStores()
@@ -54,7 +56,9 @@ class StoreDataRepositoryTest : DescribeSpec() {
 
                 val statusCode = 404
                 val responseValue = LoadingFailure.Remote(statusCode)
-                coEvery { mockStoreNetworkDataSource.getStores() } returns Either.left(responseValue)
+                coEvery {
+                    mockStoreNetworkDataSource.getStores()
+                } returns Either.left(responseValue)
 
                 it("makes the network call") {
                     sut.fetchStores()

@@ -112,7 +112,12 @@ class GameDataRepositoryTest : DescribeSpec() {
                 mockSearchGames(Either.left(remoteError))
 
                 it("returns the error response") {
-                    sut.searchGames(title, steamAppId, limit, exact) shouldBe Either.left(remoteError)
+                    sut.searchGames(
+                        title,
+                        steamAppId,
+                        limit,
+                        exact,
+                    ) shouldBe Either.left(remoteError)
                 }
             }
         }
