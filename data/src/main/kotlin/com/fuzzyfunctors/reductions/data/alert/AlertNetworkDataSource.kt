@@ -6,8 +6,8 @@ import com.fuzzyfunctors.reductions.core.game.GameId
 import com.fuzzyfunctors.reductions.data.network.CheapSharkService
 import com.fuzzyfunctors.reductions.data.network.toEither
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
-import java.net.HttpURLConnection
 import retrofit2.Response
+import java.net.HttpURLConnection
 
 class AlertNetworkDataSource(private val networkService: CheapSharkService) {
 

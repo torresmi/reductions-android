@@ -42,7 +42,8 @@ val repositoryModule = module {
         DealDataRepository(
             get(),
             get(named(MEMORY_STORE_DEALS)),
-            get(named(MEMORY_STORE_DEAL)))
+            get(named(MEMORY_STORE_DEAL))
+        )
     }
 
     single<AlertRepository> { AlertDataRepository(get()) }

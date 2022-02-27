@@ -29,10 +29,18 @@ class DealDataRepositoryTest : DescribeSpec() {
     override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
     val mockDealNetworkDataSource = mockk<DealNetworkDataSource>()
-    val mockDealsReactiveStore = mockk<MemoryReactiveStore<DealType, DealTypeData>>(relaxUnitFun = true)
-    val mockDealInfoReactiveStore = mockk<MemoryReactiveStore<DealId, DealInfo>>(relaxUnitFun = true)
+    val mockDealsReactiveStore = mockk<MemoryReactiveStore<DealType, DealTypeData>>(
+        relaxUnitFun = true,
+    )
+    val mockDealInfoReactiveStore = mockk<MemoryReactiveStore<DealId, DealInfo>>(
+        relaxUnitFun = true,
+    )
 
-    val sut = DealDataRepository(mockDealNetworkDataSource, mockDealsReactiveStore, mockDealInfoReactiveStore)
+    val sut = DealDataRepository(
+        mockDealNetworkDataSource,
+        mockDealsReactiveStore,
+        mockDealInfoReactiveStore,
+    )
 
     init {
         val dealsGenerator = arb<List<Deal>>()

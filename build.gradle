@@ -11,9 +11,9 @@ buildscript {
     dependencies {
         classpath Libs.com_android_tools_build_gradle
         classpath Libs.kotlin_gradle_plugin
-        classpath Libs.ktlint_gradle
         classpath Libs.detekt_gradle_plugin
         classpath Libs.gradle_android_junit_jacoco_plugin
+        classpath Libs.spotless_plugin_gradle
     }
 }
 
@@ -24,7 +24,6 @@ allprojects {
         jcenter()
     }
 
-    apply plugin: "org.jlleitschuh.gradle.ktlint"
     apply from: "$rootDir/scripts/detekt.gradle"
 }
 
@@ -33,3 +32,4 @@ task clean(type: Delete) {
 }
 
 apply from: "$rootDir/scripts/jacoco.gradle"
+apply from: "$rootDir/scripts/spotless.gradle"

@@ -1,7 +1,6 @@
 package com.fuzzyfunctors.reductions.data.game
 
 import arrow.core.Either
-import com.appmattus.kotlinfixture.kotlinFixture
 import com.fuzzyfunctors.reductions.core.game.Game
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal
 import com.fuzzyfunctors.reductions.core.game.GameId
@@ -16,9 +15,9 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
-import java.net.HttpURLConnection
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import java.net.HttpURLConnection
 
 class GameDataRepositoryTest : DescribeSpec() {
 
@@ -113,7 +112,12 @@ class GameDataRepositoryTest : DescribeSpec() {
                 mockSearchGames(Either.left(remoteError))
 
                 it("returns the error response") {
-                    sut.searchGames(title, steamAppId, limit, exact) shouldBe Either.left(remoteError)
+                    sut.searchGames(
+                        title,
+                        steamAppId,
+                        limit,
+                        exact,
+                    ) shouldBe Either.left(remoteError)
                 }
             }
         }

@@ -1,12 +1,12 @@
 package com.fuzzyfunctors.reductions.data.deal
 
 import com.fuzzyfunctors.reductions.core.deal.Deal
-import com.fuzzyfunctors.reductions.data.deal.Deal as ApiDeal
 import com.fuzzyfunctors.reductions.data.network.toCore
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import java.util.Date
+import com.fuzzyfunctors.reductions.data.deal.Deal as ApiDeal
 
 class DealMapperTest : DescribeSpec() {
 

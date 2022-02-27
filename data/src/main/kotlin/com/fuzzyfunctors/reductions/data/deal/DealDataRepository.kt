@@ -7,11 +7,11 @@ import com.fuzzyfunctors.reductions.core.deal.DealInfo
 import com.fuzzyfunctors.reductions.data.ReactiveStore
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository
-import java.util.concurrent.Executors
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.util.concurrent.Executors
 
 class DealDataRepository(
     private val networkDataSource: DealNetworkDataSource,
@@ -34,7 +34,9 @@ class DealDataRepository(
 
     override fun getNewestGamesDeals(): Flow<List<Deal>?> = getDealsForType(DealType.NEWEST_GAMES)
 
-    override suspend fun fetchNewestGamesDeals(options: DealRepository.Options): LoadingFailure.Remote? =
+    override suspend fun fetchNewestGamesDeals(
+        options: DealRepository.Options,
+    ): LoadingFailure.Remote? =
         withContext(newestGameDealsDispatcher) { fetchDealsForType(DealType.NEWEST_GAMES, options) }
 
     override fun getLatestDeals(): Flow<List<Deal>?> = getDealsForType(DealType.LATEST)
@@ -44,8 +46,12 @@ class DealDataRepository(
 
     override fun getMostSavingsDeals(): Flow<List<Deal>?> = getDealsForType(DealType.MOST_SAVINGS)
 
-    override suspend fun fetchMostSavingsDeals(options: DealRepository.Options): LoadingFailure.Remote? =
-        withContext(mostSavingsDealsDispatcher) { fetchDealsForType(DealType.MOST_SAVINGS, options) }
+    override suspend fun fetchMostSavingsDeals(
+        options: DealRepository.Options,
+    ): LoadingFailure.Remote? =
+        withContext(mostSavingsDealsDispatcher) {
+            fetchDealsForType(DealType.MOST_SAVINGS, options)
+        }
 
     override fun getDealInfo(id: DealId): Flow<DealInfo?> = dealInfoMemoryReactiveStore.get(id)
 

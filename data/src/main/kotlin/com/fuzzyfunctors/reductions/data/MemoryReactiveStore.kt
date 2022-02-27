@@ -1,10 +1,10 @@
 package com.fuzzyfunctors.reductions.data
 
-import java.util.concurrent.ConcurrentHashMap
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onStart
+import java.util.concurrent.ConcurrentHashMap
 
 class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : ReactiveStore<K, V> {
 
