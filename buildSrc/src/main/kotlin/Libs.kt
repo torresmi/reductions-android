@@ -28,6 +28,9 @@ public object Libs {
 
     public const val fixture: String = "com.appmattus.fixture:fixture:_"
 
+    public const val spotless_plugin_gradle: String =
+            "com.diffplug.spotless:spotless-plugin-gradle:_"
+
     public const val remotedata: String = "com.github.torresmi:remotedata:_"
 
     public const val material: String = "com.google.android.material:material:_"
