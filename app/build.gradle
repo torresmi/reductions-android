@@ -38,6 +38,18 @@ android {
     }
 }
 
+// Run domain module tests with android variant tests
+afterEvaluate {
+    rootProject.getSubprojects().findAll {
+        it.name.contains("domain")
+    }.each { subModule ->
+        subModule.afterEvaluate {
+            testDebugUnitTest.dependsOn it.tasks.named('test').get()
+            testReleaseUnitTest.dependsOn it.tasks.named('test').get()
+        }
+    }
+}
+
 dependencies {
     implementation project(':data')
     implementation project(':presentation')
