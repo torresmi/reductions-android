@@ -2,11 +2,12 @@ name: Create Next Milestone
 
 on:
   milestone:
-    types: [closed, deleted, edited]
+    types:
+      - closed
+      - deleted
+      - edited
 
 jobs:
-
-  # Create a new milestone based on the current milestone
   generate:
     runs-on: ubuntu-latest
     steps:

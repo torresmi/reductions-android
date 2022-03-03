@@ -2,11 +2,8 @@ name: Pull Request Labeler
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
 
 jobs:
-
-  # Automatically assign labels based on code content
   label_content:
     runs-on: ubuntu-latest
     steps:

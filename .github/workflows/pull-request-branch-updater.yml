@@ -1,11 +1,9 @@
-name: Pull Request Auto Update
+name: Pull Request Auto Update With Target
 
 on:
   push: {}
 
 jobs:
-
-  # Auto update PR if target branch is updated
   auto-update:
    name: auto-update
    runs-on: ubuntu-latest

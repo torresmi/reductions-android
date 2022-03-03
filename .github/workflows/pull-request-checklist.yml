@@ -1,12 +1,14 @@
-name: Checklist
+name: Checklist PR Comment
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
 
 jobs:
-
-  # Adds a checklist comment based on files changed in a pr
   checklist_job:
     runs-on: ubuntu-latest
     name: Checklist job
