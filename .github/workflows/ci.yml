@@ -40,6 +40,12 @@ jobs:
             assembleDebug
             bundleDebug
 
+      - name: Cache workspace 
+        uses: actions/cache@v2
+        with:
+          path: .
+          key: $GITHUB_RUN_ID
+
       - name: Upload apk
         uses: actions/upload-artifact@v2
         with:
@@ -50,7 +56,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Cache workspace 
+        uses: actions/cache@v2
+        with:
+          path: .
+          key: $GITHUB_RUN_ID
     
       - name: Set up JDK
         uses: actions/setup-java@v1
@@ -75,7 +85,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Cache workspace 
+        uses: actions/cache@v2
+        with:
+          path: .
+          key: $GITHUB_RUN_ID
     
       - name: Set up JDK
         uses: actions/setup-java@v1
