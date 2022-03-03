@@ -24,7 +24,25 @@ allprojects {
         jcenter()
     }
 
+    // Disable kapt for tests
+    tasks.matching {
+        it.name.startsWith("kapt") && it.name.endsWith("TestKotlin")
+    }.configureEach { it.enabled = false }
+
     apply from: "$rootDir/scripts/detekt.gradle"
+}
+
+// Run all tests on android modules and kotlin modules with an optional "testRelease" variant prop
+gradle.taskGraph.useFilter { task ->
+    def testRelease = project.hasProperty("testRelease")
+    if (task.name.startsWith("test")) {
+        if (task.name.contains("ReleaseUnitTest")) {
+            return testRelease
+        } else if (task.name.contains("DebugUnitTest")) {
+            return !testRelease
+        }
+    }
+    return true
 }
 
 task clean(type: Delete) {

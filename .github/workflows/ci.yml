@@ -1,0 +1,59 @@
+name: CI
+
+on: 
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build and check debug
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          gradle-dependencies-cache-key: |
+            buildSrc/**/Libs.kt
+          arguments: |
+            spotlessCheck
+            assembleDebug
+            bundleDebug
+            lintDebug
+            test
+
+      - name: Upload apk
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: app/build/outputs/apk
+
+      - name: Upload build reports
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-reports
+          path: app/build/reports
+
+      - name: Copy unit test results
+        if: always()
+        run: |
+          mkdir -p junit
+          find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} junit/ \;
+
+      - name: Publish unit test results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: junit/*.xml
+
+      - name: Upload unit test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: junit-results
+          path: junit

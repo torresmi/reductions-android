@@ -1,12 +1,9 @@
-name: Pull Request Updater
+name: Pull Request Size Labeler
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
 
 jobs:
-
-  # Automatically assign a size label to the pr
   label_size:
     runs-on: ubuntu-latest
     steps:
