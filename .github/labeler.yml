@@ -1,5 +1,3 @@
 dependencies:
-  - buildSrc/*
-  - **/build.gradle
-  - *build.gradle
+  - buildSrc/**/Libs.kt
   
