@@ -4,23 +4,6 @@ on:
   pull_request:
 
 jobs:
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-    
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Spotless check
-        uses: burrunan/gradle-cache-action@v1
-        with:
-          gradle-dependencies-cache-key: |
-            buildSrc/**/Libs.kt
-          arguments: spotlessCheck
-      
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,14 +20,11 @@ jobs:
           gradle-dependencies-cache-key: |
             buildSrc/**/Libs.kt
           arguments: |
+            spotlessCheck
             assembleDebug
             bundleDebug
-
-      - name: Cache workspace 
-        uses: actions/cache@v2
-        with:
-          path: $GITHUB_WORKSPACE
-          key: $GITHUB_RUN_ID
+            lintDebug
+            test
 
       - name: Upload apk
         uses: actions/upload-artifact@v2
@@ -52,56 +32,12 @@ jobs:
           name: build-artifacts
           path: app/build/outputs/apk
 
-  lint:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache workspace 
-        uses: actions/cache@v2
-        with:
-          path: $GITHUB_WORKSPACE
-          key: $GITHUB_RUN_ID
-    
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Lint debug
-        uses: burrunan/gradle-cache-action@v1
-        with:
-          gradle-dependencies-cache-key: |
-            buildSrc/**/Libs.kt
-          arguments: lintDebug
-
       - name: Upload build reports
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: build-reports
           path: app/build/reports
-    
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache workspace 
-        uses: actions/cache@v2
-        with:
-          path: $GITHUB_WORKSPACE
-          key: $GITHUB_RUN_ID
-    
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Run unit tests
-        uses: burrunan/gradle-cache-action@v1
-        with:
-          gradle-dependencies-cache-key: |
-            buildSrc/**/Libs.kt
-          arguments: test
 
       - name: Copy unit test results
         if: always()
@@ -120,4 +56,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: junit-results
-          path: junit 
+          path: junit
