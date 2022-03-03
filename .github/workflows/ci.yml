@@ -24,7 +24,7 @@ jobs:
             assembleDebug
             bundleDebug
             lintDebug
-            testDebugUnitTest
+            test
 
       - name: Upload apk
         uses: actions/upload-artifact@v2
