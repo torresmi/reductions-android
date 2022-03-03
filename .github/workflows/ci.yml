@@ -43,7 +43,7 @@ jobs:
       - name: Cache workspace 
         uses: actions/cache@v2
         with:
-          path: .
+          path: $GITHUB_WORKSPACE
           key: $GITHUB_RUN_ID
 
       - name: Upload apk
@@ -59,7 +59,7 @@ jobs:
       - name: Cache workspace 
         uses: actions/cache@v2
         with:
-          path: .
+          path: $GITHUB_WORKSPACE
           key: $GITHUB_RUN_ID
     
       - name: Set up JDK
@@ -88,7 +88,7 @@ jobs:
       - name: Cache workspace 
         uses: actions/cache@v2
         with:
-          path: .
+          path: $GITHUB_WORKSPACE
           key: $GITHUB_RUN_ID
     
       - name: Set up JDK
