@@ -74,6 +74,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
 
       - name: Build and check debug
         uses: burrunan/gradle-cache-action@v1
@@ -120,3 +123,10 @@ jobs:
         with:
           name: junit-results
           path: junit
+
+      - name: Run AndroidLint with reviewdog
+        uses: DVDAndroid/action-android-lint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          lint_xml_file: app/build/reports/lint-results-debug.xml
+          reporter: github-pr-review

@@ -2,4 +2,3 @@ runner:
   detekt:
     cmd: cat <build/reports/detekt/merge.xml
     format: checkstyle
-    
