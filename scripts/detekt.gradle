@@ -3,8 +3,11 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 detekt {
-    config = files("$rootDir/config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
+    config = files("$rootDir/config/detekt/compose.yml", "$rootDir/config/detekt/core.yml")
     parallel = true
+
+    baseline = file("$rootDir/config/detekt/baseline.xml")
 }
 
 task getAnalysis(type: Exec, dependsOn: 'detekt') {
