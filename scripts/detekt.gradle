@@ -7,11 +7,6 @@ detekt {
     config = files("$rootDir/config/detekt/compose.yml", "$rootDir/config/detekt/core.yml")
     parallel = true
     baseline = file("baseline.xml")
-    reports {
-        txt.enabled = false
-        html.enabled = true
-        xml.enabled = true
-    }
 }
 
 task getAnalysis(type: Exec, dependsOn: 'detekt') {
