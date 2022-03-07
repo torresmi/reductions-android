@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
 
@@ -18,6 +20,10 @@ buildscript {
     }
 }
 
+task reportMerge(type: ReportMergeTask) {
+    output = project.layout.buildDirectory.file("reports/detekt/merge.xml")
+}
+
 allprojects {
     repositories {
         google()
@@ -31,6 +37,15 @@ allprojects {
     }.configureEach { it.enabled = false }
 
     apply from: "$rootDir/scripts/detekt.gradle"
+    plugins.withType(io.gitlab.arturbosch.detekt.DetektPlugin) {
+        tasks.withType(io.gitlab.arturbosch.detekt.Detekt) { detektTask ->
+            finalizedBy(reportMerge)
+
+            reportMerge.configure { mergeTask ->
+                mergeTask.input.from(detektTask.xmlReportFile)
+            }
+        }
+    }
 }
 
 // Run all tests on android modules and kotlin modules with an optional "testRelease" variant prop
