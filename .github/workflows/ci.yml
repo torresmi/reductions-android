@@ -23,7 +23,7 @@ jobs:
             detekt reportMerge --continue
 
       - name: Setup reviewdog
-        uses: reviewdog/action-setup@v1.0.3
+        uses: reviewdog/action-setup@v1
 
       - name: Reviewdog local reports
         env:
