@@ -35,3 +35,6 @@ jobs:
             * Updates versions file with new dependency updates available
           labels: |
             dependencies
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          assignees: torresmi

@@ -9,7 +9,8 @@ jobs:
   format_pr:
     runs-on: ubuntu-latest
     if: >-
-      github.actor != 'github-actions[bot]'
+      github.actor != 'github-actions[bot]' &&
+      github.head_ref != 'dependency-updates'
     steps:
       - run: echo formatting ${{github.head_ref}}
       - name: Format PR
