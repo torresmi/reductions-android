@@ -27,6 +27,7 @@ jobs:
       - name: PR
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
           commit-message: refresh dependency updates
           branch: dependency-updates
           title: New Dependency Updates Available
