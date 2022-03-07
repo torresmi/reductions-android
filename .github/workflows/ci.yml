@@ -4,6 +4,31 @@ on:
   pull_request:
 
 jobs:
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Build and check debug
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          gradle-dependencies-cache-key: |
+            buildSrc/**/Libs.kt
+          arguments: |
+            detekt reportMerge --continue
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1.0.3
+
+      - name: Reviewdog local reports
+        run: |
+          reviewdog  -conf=reviewdog.yml -runners=detekt -reporter=github-pr-review 
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -21,12 +46,11 @@ jobs:
             buildSrc/**/Libs.kt
           arguments: |
             spotlessCheck
-            detekt reportMerge --continue
             assembleDebug
             bundleDebug
             lintDebug
             test
-
+         
       - name: Upload apk
         uses: actions/upload-artifact@v3
         with:
