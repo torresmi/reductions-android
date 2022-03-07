@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <Blacklist></Blacklist>
-  <Whitelist>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
     <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_DEAL = "storeMemoryDeal"</ID>
     <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_DEALS = "storeMemoryDeals"</ID>
     <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_GAME = "storeMemoryGame"</ID>
     <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_STORE = "storeMemoryStore"</ID>
-  </Whitelist>
+    <ID>UnusedPrivateMember:Modules.kt$Modules$isDebug: Boolean</ID>
+  </CurrentIssues>
 </SmellBaseline>

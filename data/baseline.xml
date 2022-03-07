@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <Blacklist></Blacklist>
-  <Whitelist>
-    <ID>NestedBlockDepth:Mappers.kt$steamData</ID>
-    <ID>TooManyFunctions:DealDataRepository.kt$DealDataRepository$DealDataRepository</ID>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ForbiddenComment:MemoryReactiveStoreTest.kt$// TODO: This is probably flaky, and delays the call enough to start the subscription.</ID>
+    <ID>NestedBlockDepth:Mappers.kt$private fun steamData( steamAppID: String?, steamRatingCount: String?, steamRatingText: String?, steamRatingPercent: String? ): CoreDeal.SteamData?</ID>
+    <ID>TooManyFunctions:DealDataRepository.kt$DealDataRepository : DealRepository</ID>
     <ID>TooManyFunctions:Mappers.kt$com.fuzzyfunctors.reductions.data.network.Mappers.kt</ID>
-  </Whitelist>
+  </CurrentIssues>
 </SmellBaseline>
