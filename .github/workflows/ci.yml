@@ -22,13 +22,22 @@ jobs:
             action:
               - '.github/workflows/*.yml'
 
+  action_lint:
+    runs-on: ubuntu-latest
+    needs: changes  
+    if: ${{ needs.changes.outputs.action == 'true' }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Reviewdog Actionlint
+        uses: reviewdog/action-actionlint@v1
+
   detekt:
     runs-on: ubuntu-latest
     needs: changes 
     if: ${{ needs.changes.outputs.kotlin == 'true' }}
     steps:         
       - uses: actions/checkout@v2
-        if: steps.changes.outputs.src == 'true'
     
       - name: Set up JDK
         uses: actions/setup-java@v1
