@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>NestedBlockDepth:Mappers.kt$steamData</ID>
+    <ID>TooManyFunctions:DealDataRepository.kt$DealDataRepository$DealDataRepository</ID>
+    <ID>TooManyFunctions:Mappers.kt$com.fuzzyfunctors.reductions.data.network.Mappers.kt</ID>
+  </Whitelist>
+</SmellBaseline>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_DEAL = "storeMemoryDeal"</ID>
+    <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_DEALS = "storeMemoryDeals"</ID>
+    <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_GAME = "storeMemoryGame"</ID>
+    <ID>TopLevelPropertyNaming:Modules.kt$private const val MEMORY_STORE_STORE = "storeMemoryStore"</ID>
+  </Whitelist>
+</SmellBaseline>
