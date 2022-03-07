@@ -7,7 +7,9 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      kotlin: ${{ steps.filter.outputs.kotlin }}
+      kotlin: ${{ steps.changes.outputs.kotlin }}
+      gradle: ${{ steps.changes.output.gradle }}
+      action: ${{ steps.changes.output.action }}
     steps:
       - uses: dorny/paths-filter@v2
         id: changes
@@ -17,6 +19,8 @@ jobs:
               - '**/*.kt'
             gradle:
               - '**/*.gradle'
+            action:
+              - '.github/workflows/*.yml'
 
   detekt:
     runs-on: ubuntu-latest
