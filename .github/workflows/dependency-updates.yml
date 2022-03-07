@@ -1,0 +1,36 @@
+name: Dependency Updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  check_updates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Refresh versions
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          gradle-dependencies-cache-key: |
+            buildSrc/**/Libs.kt
+          arguments: |
+            refreshVersions
+
+      - name: PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: refresh dependency updates
+          branch: dependency-updates
+          title: New Dependency Updates Available
+          body: |
+            * Updates versions file with new dependency updates available
+          labels: |
+            dependencies
