@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       kotlin: ${{ steps.changes.outputs.kotlin }}
-      gradle: ${{ steps.changes.output.gradle }}
-      action: ${{ steps.changes.output.action }}
+      gradle: ${{ steps.changes.outputs.gradle }}
+      action: ${{ steps.changes.outputs.action }}
     steps:
       - uses: dorny/paths-filter@v2
         id: changes
