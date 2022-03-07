@@ -21,6 +21,7 @@ jobs:
             buildSrc/**/Libs.kt
           arguments: |
             spotlessCheck
+            detekt reportMerge --continue
             assembleDebug
             bundleDebug
             lintDebug
@@ -34,10 +35,12 @@ jobs:
 
       - name: Upload build reports
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-reports
-          path: app/build/reports
+          path: |
+            app/build/reports
+            build/reports
 
       - name: Copy unit test results
         if: always()
