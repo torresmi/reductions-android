@@ -2,4 +2,7 @@ runner:
   detekt:
     cmd: cat <build/reports/detekt/merge.xml
     format: checkstyle
-    
+  
+  lint:
+    cmd: cat <app/build/reports/lint-results.xml
+    format: checkstyle
