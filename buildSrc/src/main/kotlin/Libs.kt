@@ -35,8 +35,6 @@ public object Libs {
 
     public const val material: String = "com.google.android.material:material:_"
 
-    public const val ktlint: String = "com.pinterest:ktlint:_"
-
     public const val moshi: String = "com.squareup.moshi:moshi:_"
 
     public const val converter_moshi: String = "com.squareup.retrofit2:converter-moshi:_"
@@ -93,8 +91,6 @@ public object Libs {
 
     public const val kotlinx_coroutines_test: String =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
-
-    public const val ktlint_gradle: String = "org.jlleitschuh.gradle:ktlint-gradle:_"
 
     public const val koin_android: String = "org.koin:koin-android:_"
 

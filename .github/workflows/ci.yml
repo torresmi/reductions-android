@@ -4,6 +4,33 @@ on:
   pull_request:
 
 jobs:
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Detekt
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          gradle-dependencies-cache-key: |
+            buildSrc/**/Libs.kt
+          arguments: |
+            detekt reportMerge --continue
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1.0.3
+
+      - name: Reviewdog local reports
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog  -conf=reviewdog.yml -runners=detekt -reporter=github-pr-review 
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -25,19 +52,21 @@ jobs:
             bundleDebug
             lintDebug
             test
-
+         
       - name: Upload apk
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
           path: app/build/outputs/apk
 
       - name: Upload build reports
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-reports
-          path: app/build/reports
+          path: |
+            app/build/reports
+            build/reports
 
       - name: Copy unit test results
         if: always()
@@ -53,7 +82,7 @@ jobs:
 
       - name: Upload unit test results
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: junit-results
           path: junit

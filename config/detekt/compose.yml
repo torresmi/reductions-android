@@ -1,0 +1,12 @@
+naming:
+  FunctionNaming:
+    functionPattern: '([A-Za-z][a-zA-Z0-9]*)|(`.*`)'
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9]*'
+complexity:
+  LongParameterList:
+    ignoreDefaultParameters: true
+style:
+  MagicNumber:
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
