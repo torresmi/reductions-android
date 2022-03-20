@@ -39,42 +39,6 @@ jobs:
         with:
           reporter: github-pr-review
 
-  detekt:
-    runs-on: ubuntu-latest
-    needs: changes 
-    if: ${{ needs.changes.outputs.kotlin == 'true' }}
-    steps:         
-      - uses: actions/checkout@v2
-    
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Detekt
-        uses: burrunan/gradle-cache-action@v1
-        with:
-          gradle-dependencies-cache-key: |
-            buildSrc/**/Libs.kt
-          arguments: |
-            detekt reportMerge --continue
-
-      - name: Upload detekt results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: detekt-results
-          path: build/reports/detekt/merge.xml
-
-      - name: Setup reviewdog
-        uses: reviewdog/action-setup@v1
-
-      - name: Reviewdog local reports
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          reviewdog  -conf=reviewdog.yml -runners=detekt -reporter=github-pr-review 
-          
   snyk:
     runs-on: ubuntu-latest
     needs: changes
@@ -120,9 +84,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: changes 
-    if: ${{ needs.changes.outputs.application == 'true' }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     
       - name: Set up JDK
         uses: actions/setup-java@v1
@@ -132,18 +97,42 @@ jobs:
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
 
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
       - name: Build and check debug
         uses: burrunan/gradle-cache-action@v1
+        env:
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_ORG_KEY: ${{ secrets.SONAR_ORG_KEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           gradle-dependencies-cache-key: |
             buildSrc/**/Libs.kt
           arguments: |
             spotlessCheck
+            detekt reportMerge --continue
             assembleDebug
             bundleDebug
             lintDebug
             test
-         
+            sonarqube
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+
+      - name: Upload detekt results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: detekt-results
+          path: build/reports/detekt/merge.xml
+
       - name: Upload apk
         uses: actions/upload-artifact@v3
         with:
@@ -178,62 +167,15 @@ jobs:
           name: junit-results
           path: junit
 
-      - name: Run AndroidLint with reviewdog
+      - name: Reviewdog Detekt
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog  -conf=reviewdog.yml -runners=detekt -reporter=github-pr-review 
+
+      - name: Reviewdog Lint
         uses: DVDAndroid/action-android-lint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: app/build/reports/lint-results-debug.xml
           reporter: github-pr-review
-
-  sonarqube:
-    runs-on: ubuntu-latest
-    needs: 
-      - build 
-      - detekt
-    if: ${{ needs.changes.outputs.application == 'true' }}
-    steps:         
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-    
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Download junit artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: junit-results
-          path: junit
-
-      - name: Download detekt artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: detekt-results
-          path: build/reports/detekt
-
-      - name: Download lint artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-reports
-
-      - name: Sonarqube
-        uses: burrunan/gradle-cache-action@v1
-        env:
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORG_KEY: ${{ secrets.SONAR_ORG_KEY }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          gradle-dependencies-cache-key: |
-            buildSrc/**/Libs.kt
-          arguments: |
-            sonarqube
