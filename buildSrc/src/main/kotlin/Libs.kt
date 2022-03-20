@@ -95,4 +95,7 @@ public object Libs {
     public const val koin_android: String = "org.koin:koin-android:_"
 
     public const val koin_test: String = "org.koin:koin-test:_"
+
+    public const val sonarqube_gradle_plugin: String =
+        "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:_"
 }
