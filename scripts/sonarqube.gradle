@@ -6,7 +6,7 @@ sonarqube {
         property "sonar.projectKey", System.getenv("SONAR_PROJECT_KEY")
         property "sonar.organization", System.getenv("SONAR_ORG_KEY")
         property "sonar.login", System.getenv("SONAR_TOKEN")
-        property "sonar.jacoco.reportPaths", "junit/*.xml"
+        property "sonar.junit.reportPaths", "junit"
         property "sonar.kotlin.detekt.reportPaths", "build/reports/detekt/merge.xml"
         property "sonar.androidLint.reportPaths", "app/build/reports/lint-results.xml"
     }
