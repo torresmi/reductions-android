@@ -194,6 +194,10 @@ jobs:
 
       - name: Sonarqube
         uses: burrunan/gradle-cache-action@v1
+        env:
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_ORG_KEY: ${{ secrets.SONAR_ORG_KEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           gradle-dependencies-cache-key: |
             buildSrc/**/Libs.kt
