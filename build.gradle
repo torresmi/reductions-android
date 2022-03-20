@@ -49,19 +49,6 @@ allprojects {
     }
 }
 
-// Run all tests on android modules and kotlin modules with an optional "testRelease" variant prop
-gradle.taskGraph.useFilter { task ->
-    def testRelease = project.hasProperty("testRelease")
-    if (task.name.startsWith("test")) {
-        if (task.name.contains("ReleaseUnitTest")) {
-            return testRelease
-        } else if (task.name.contains("DebugUnitTest")) {
-            return !testRelease
-        }
-    }
-    return true
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

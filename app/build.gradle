@@ -43,6 +43,17 @@ android {
         htmlReport true
     }
 }
+// Run all tests on android modules and kotlin modules
+afterEvaluate {
+    rootProject.getSubprojects().findAll {
+        it.name.contains("domain")
+    }.each {module ->
+        module.afterEvaluate {
+            testDebugUnitTest.dependsOn it.tasks.getByName("test")
+            testReleaseUnitTest.dependsOn it.tasks.getByName("test")
+        }
+    }
+}
 
 dependencies {
     implementation project(':data')
