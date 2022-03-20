@@ -59,6 +59,13 @@ jobs:
           arguments: |
             detekt reportMerge --continue
 
+      - name: Upload detekt results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: detekt-results
+          path: build/reports/detekt/merge.xml
+
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
 
