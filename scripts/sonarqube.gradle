@@ -8,7 +8,7 @@ sonarqube {
         property "sonar.login", System.getenv("SONAR_TOKEN")
         property "sonar.jacoco.reportPaths", "junit/*.xml"
         property "sonar.kotlin.detekt.reportPaths", "build/reports/detekt/merge.xml"
-        property "sonar.android.lint.report", "app/build/reports/lint-results.xml"
+        property "sonar.androidLint.reportPaths", "app/build/reports/lint-results.xml"
     }
 }
 
