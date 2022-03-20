@@ -224,6 +224,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-reports
+          path: app/build/reports
 
       - name: Sonarqube
         uses: burrunan/gradle-cache-action@v1
