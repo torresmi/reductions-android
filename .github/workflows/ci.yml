@@ -120,7 +120,7 @@ jobs:
             assembleDebug
             bundleDebug
             lintDebug
-            test
+            testDebugUnitTest
             sonarqube
 
       - name: Setup reviewdog
