@@ -208,6 +208,23 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - name: Download junit artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: junit-results
+          path: junit
+
+      - name: Download detekt artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: detekt-results
+          path: build/reports/detekt
+
+      - name: Download lint artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-reports
+
       - name: Sonarqube
         uses: burrunan/gradle-cache-action@v1
         env:
