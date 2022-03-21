@@ -38,9 +38,9 @@ class AlertNetworkDataSource(private val networkService: CheapSharkService) {
     private val responseMapper = { response: Response<Boolean> ->
         response.toEither().flatMap { isSuccess ->
             if (isSuccess) {
-                Either.right(Unit)
+                Either.Right(Unit)
             } else {
-                Either.left(LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR))
+                Either.Left(LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR))
             }
         }
     }
