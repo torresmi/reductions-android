@@ -16,15 +16,11 @@ public object Libs {
 
     public const val constraintlayout: String = "androidx.constraintlayout:constraintlayout:_"
 
-    public const val material_values: String = "blue.aodev:material-values:_"
-
     public const val espresso_core: String = "com.android.support.test.espresso:espresso-core:_"
 
     public const val com_android_support_test_runner: String = "com.android.support.test:runner:_"
 
     public const val com_android_tools_build_gradle: String = "com.android.tools.build:gradle:_"
-
-    public const val lint_gradle: String = "com.android.tools.lint:lint-gradle:_"
 
     public const val fixture: String = "com.appmattus.fixture:fixture:_"
 
@@ -49,14 +45,16 @@ public object Libs {
 
     public const val arrow_core: String = "io.arrow-kt:arrow-core:_"
 
-    public const val arrow_syntax: String = "io.arrow-kt:arrow-syntax:_"
-
     public const val coil: String = "io.coil-kt:coil:_"
 
     public const val kotlin_faker: String = "io.github.serpro69:kotlin-faker:_"
 
     public const val detekt_gradle_plugin: String =
         "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:_"
+
+    public const val koin_android: String = "io.insert-koin:koin-android:_"
+
+    public const val koin_test: String = "io.insert-koin:koin-test:_"
 
     public const val kotest_assertions_core: String = "io.kotest:kotest-assertions-core:_"
 
@@ -91,10 +89,6 @@ public object Libs {
 
     public const val kotlinx_coroutines_test: String =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
-
-    public const val koin_android: String = "org.koin:koin-android:_"
-
-    public const val koin_test: String = "org.koin:koin-test:_"
 
     public const val sonarqube_gradle_plugin: String =
         "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:_"
