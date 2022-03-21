@@ -51,7 +51,7 @@ class DealDataRepositoryTest : DescribeSpec() {
 
                 val deals = dealsGenerator.nextSeeded()
 
-                coEvery { mockDealNetworkDataSource.getDeals(any()) } returns Either.right(deals)
+                coEvery { mockDealNetworkDataSource.getDeals(any()) } returns Either.Right(deals)
 
                 it("returns no errors") {
                     sut.fetchTopDeals() shouldBe null
@@ -70,7 +70,7 @@ class DealDataRepositoryTest : DescribeSpec() {
             context("failure response") {
 
                 val error = LoadingFailure.Remote(HttpURLConnection.HTTP_NOT_FOUND)
-                coEvery { mockDealNetworkDataSource.getDeals(any()) } returns Either.left(error)
+                coEvery { mockDealNetworkDataSource.getDeals(any()) } returns Either.Left(error)
 
                 it("returns an api error") {
                     sut.fetchTopDeals() shouldBe error
@@ -86,7 +86,7 @@ class DealDataRepositoryTest : DescribeSpec() {
 
             context("successful response") {
 
-                coEvery { mockDealNetworkDataSource.getDeal(any()) } returns Either.right(deal)
+                coEvery { mockDealNetworkDataSource.getDeal(any()) } returns Either.Right(deal)
 
                 it("updates the memory store with the new deals") {
                     sut.fetchDealInfo(deal.id)
@@ -98,7 +98,7 @@ class DealDataRepositoryTest : DescribeSpec() {
             context("failure response") {
 
                 val error = LoadingFailure.Remote(HttpURLConnection.HTTP_NOT_FOUND)
-                coEvery { mockDealNetworkDataSource.getDeal(any()) } returns Either.left(error)
+                coEvery { mockDealNetworkDataSource.getDeal(any()) } returns Either.Left(error)
 
                 it("returns an api error") {
                     sut.fetchDealInfo(deal.id) shouldBe error

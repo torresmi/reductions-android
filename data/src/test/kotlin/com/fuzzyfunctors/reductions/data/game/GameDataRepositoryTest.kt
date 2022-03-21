@@ -35,7 +35,7 @@ class GameDataRepositoryTest : DescribeSpec() {
 
         describe("fetching a game") {
 
-            mockFetchGame(Either.right(game))
+            mockFetchGame(Either.Right(game))
 
             it("makes the network call") {
                 sut.fetchGame(gameId)
@@ -55,7 +55,7 @@ class GameDataRepositoryTest : DescribeSpec() {
             context("fetch was a failure") {
 
                 val remoteError = LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR)
-                mockFetchGame(Either.left(remoteError))
+                mockFetchGame(Either.Left(remoteError))
 
                 it("does not update the cache") {
                     sut.fetchGame(gameId)
@@ -99,17 +99,17 @@ class GameDataRepositoryTest : DescribeSpec() {
 
             context("the search was a success") {
 
-                mockSearchGames(Either.right(results))
+                mockSearchGames(Either.Right(results))
 
                 it("returns the results") {
-                    sut.searchGames(title, steamAppId, limit, exact) shouldBe Either.right(results)
+                    sut.searchGames(title, steamAppId, limit, exact) shouldBe Either.Right(results)
                 }
             }
 
             context("the search was a failure") {
 
                 val remoteError = LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR)
-                mockSearchGames(Either.left(remoteError))
+                mockSearchGames(Either.Left(remoteError))
 
                 it("returns the error response") {
                     sut.searchGames(
@@ -117,7 +117,7 @@ class GameDataRepositoryTest : DescribeSpec() {
                         steamAppId,
                         limit,
                         exact,
-                    ) shouldBe Either.left(remoteError)
+                    ) shouldBe Either.Left(remoteError)
                 }
             }
         }
