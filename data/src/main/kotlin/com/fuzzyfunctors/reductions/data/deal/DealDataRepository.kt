@@ -58,10 +58,10 @@ class DealDataRepository(
     override suspend fun fetchDealInfo(id: DealId): LoadingFailure.Remote? =
         when (val response = networkDataSource.getDeal(id)) {
             is Either.Left -> {
-                response.a
+                response.value
             }
             is Either.Right -> {
-                dealInfoMemoryReactiveStore.store(response.b)
+                dealInfoMemoryReactiveStore.store(response.value)
                 null
             }
         }
@@ -78,11 +78,11 @@ class DealDataRepository(
         val page = paginator.getPageforOptions(type, optionsWithOrder)
         return when (val response = networkDataSource.getDeals(optionsWithOrder, page)) {
             is Either.Left -> {
-                response.a
+                response.value
             }
             is Either.Right -> {
                 paginator.onSuccessfulResponse(type, optionsWithOrder)
-                dealsMemoryReactiveStore.store(DealTypeData(type, response.b))
+                dealsMemoryReactiveStore.store(DealTypeData(type, response.value))
                 null
             }
         }

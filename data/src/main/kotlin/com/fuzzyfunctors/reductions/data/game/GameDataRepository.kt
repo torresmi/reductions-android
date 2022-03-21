@@ -19,10 +19,10 @@ class GameDataRepository(
     override suspend fun fetchGame(id: GameId): LoadingFailure.Remote? =
         when (val response = networkDataSource.getGameInfo(id)) {
             is Either.Left -> {
-                response.a
+                response.value
             }
             is Either.Right -> {
-                memoryStore.store(response.b)
+                memoryStore.store(response.value)
                 null
             }
         }

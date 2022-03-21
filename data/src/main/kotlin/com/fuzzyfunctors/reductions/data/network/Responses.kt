@@ -7,10 +7,10 @@ import retrofit2.Response
 
 fun <A> Response<A>.toEither(): Either<LoadingFailure.Remote, A> =
     if (isSuccessful) {
-        Either.right(body()!!)
+        Either.Right(body()!!)
     } else {
         val failure = LoadingFailure.Remote(code())
-        Either.left(failure)
+        Either.Left(failure)
     }
 
 fun <A : Any> Response<A>.toRemoteData(): RemoteData<LoadingFailure.Remote, A> =

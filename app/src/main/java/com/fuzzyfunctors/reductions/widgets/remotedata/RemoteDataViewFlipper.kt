@@ -144,7 +144,7 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
         val notAsked = notAskedView
         when (notAsked) {
             is Some -> {
-                addView(notAsked.t, ViewType.NOT_ASKED.ordinal)
+                addView(notAsked.value, ViewType.NOT_ASKED.ordinal)
             }
         }
     }

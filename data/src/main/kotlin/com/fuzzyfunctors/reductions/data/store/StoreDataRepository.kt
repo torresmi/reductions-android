@@ -20,10 +20,10 @@ class StoreDataRepository(
     override suspend fun fetchStores(): LoadingFailure.Remote? =
         when (val response = networkDataSource.getStores()) {
             is Either.Left -> {
-                response.a
+                response.value
             }
             is Either.Right -> {
-                memoryStore.store(response.b)
+                memoryStore.store(response.value)
                 null
             }
         }

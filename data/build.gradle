@@ -12,7 +12,6 @@ dependencies {
     implementation project(':core')
 
     implementation Libs.arrow_core
-    implementation Libs.arrow_syntax
     implementation Libs.kotlinx_coroutines_core
     implementation Libs.kotlin_stdlib_jdk8
     implementation Libs.moshi
