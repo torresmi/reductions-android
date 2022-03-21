@@ -19,9 +19,9 @@ jobs:
             kotlin:
               - '**/*.kt'
             application:
-              - 'build.gradle'
-              - 'buildSrc/**/*'
-              - '**/src/**/* '
+              - '**/*.gradle'
+              - 'buildSrc/**'
+              - '**/src/**'
             action:
               - '.github/workflows/*.yml'
             markdown:

@@ -27,7 +27,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
         describe("watch game") {
 
             it("makes the call to the network") {
-                mockWatch(Either.right(Unit))
+                mockWatch(Either.Right(Unit))
 
                 sut.watchGame(gameId, email, price)
 
@@ -36,7 +36,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
             context("successful watch") {
 
-                mockWatch(Either.right(Unit))
+                mockWatch(Either.Right(Unit))
 
                 it("returns no errors") {
                     sut.watchGame(gameId, email, price) shouldBe null
@@ -46,7 +46,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
             context("failure watching") {
 
                 val remoteError = LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR)
-                mockWatch(Either.left(remoteError))
+                mockWatch(Either.Left(remoteError))
 
                 it("returns network error") {
                     sut.watchGame(gameId, email, price) shouldBe remoteError
@@ -56,7 +56,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
         describe("unwatch game") {
 
-            mockUnwatch(Either.right(Unit))
+            mockUnwatch(Either.Right(Unit))
 
             it("makes the call to the network") {
 
@@ -75,7 +75,7 @@ class AlertDataRepositoryTest : DescribeSpec() {
             context("failure watching") {
 
                 val remoteError = LoadingFailure.Remote(HttpURLConnection.HTTP_INTERNAL_ERROR)
-                mockUnwatch(Either.left(remoteError))
+                mockUnwatch(Either.Left(remoteError))
 
                 it("returns network error") {
                     sut.unwatchGame(gameId, email) shouldBe remoteError
