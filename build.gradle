@@ -8,7 +8,6 @@ buildscript {
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        jcenter()
     }
     dependencies {
         classpath Libs.com_android_tools_build_gradle
@@ -29,7 +28,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
     }
 
     // Disable kapt for tests
