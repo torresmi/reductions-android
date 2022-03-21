@@ -25,7 +25,7 @@ public object Libs {
     public const val fixture: String = "com.appmattus.fixture:fixture:_"
 
     public const val spotless_plugin_gradle: String =
-        "com.diffplug.spotless:spotless-plugin-gradle:_"
+            "com.diffplug.spotless:spotless-plugin-gradle:_"
 
     public const val remotedata: String = "com.github.torresmi:remotedata:_"
 
@@ -38,10 +38,20 @@ public object Libs {
     public const val retrofit: String = "com.squareup.retrofit2:retrofit:_"
 
     public const val gradle_android_junit_jacoco_plugin: String =
-        "com.vanniktech:gradle-android-junit-jacoco-plugin:_"
+            "com.vanniktech:gradle-android-junit-jacoco-plugin:_"
 
     public const val de_fayard_buildsrclibs_gradle_plugin: String =
-        "de.fayard.buildSrcLibs:de.fayard.buildSrcLibs.gradle.plugin:_"
+            "de.fayard.buildSrcLibs:de.fayard.buildSrcLibs.gradle.plugin:_"
+
+    public const val io_arrow_kt_analysis_kotlin_gradle_plugin: String =
+            "io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin:_"
+
+    public const val arrow_analysis_kotlin_plugin: String =
+            "io.arrow-kt:arrow-analysis-kotlin-plugin:_"
+
+    public const val arrow_analysis_laws: String = "io.arrow-kt:arrow-analysis-laws:_"
+
+    public const val arrow_analysis_types: String = "io.arrow-kt:arrow-analysis-types:_"
 
     public const val arrow_core: String = "io.arrow-kt:arrow-core:_"
 
@@ -50,7 +60,7 @@ public object Libs {
     public const val kotlin_faker: String = "io.github.serpro69:kotlin-faker:_"
 
     public const val detekt_gradle_plugin: String =
-        "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:_"
+            "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:_"
 
     public const val koin_android: String = "io.insert-koin:koin-android:_"
 
@@ -69,27 +79,27 @@ public object Libs {
     public const val org_jacoco_ant: String = "org.jacoco:org.jacoco.ant:_"
 
     public const val kotlin_android_extensions: String =
-        "org.jetbrains.kotlin:kotlin-android-extensions:_"
+            "org.jetbrains.kotlin:kotlin-android-extensions:_"
 
     public const val kotlin_android_extensions_runtime: String =
-        "org.jetbrains.kotlin:kotlin-android-extensions-runtime:_"
+            "org.jetbrains.kotlin:kotlin-android-extensions-runtime:_"
 
     public const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:_"
 
     public const val kotlin_scripting_compiler_embeddable: String =
-        "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:_"
+            "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:_"
 
     public const val kotlin_stdlib_jdk8: String = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:_"
 
     public const val kotlinx_coroutines_android: String =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
 
     public const val kotlinx_coroutines_core: String =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:_"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:_"
 
     public const val kotlinx_coroutines_test: String =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
 
     public const val sonarqube_gradle_plugin: String =
-        "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:_"
+            "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:_"
 }

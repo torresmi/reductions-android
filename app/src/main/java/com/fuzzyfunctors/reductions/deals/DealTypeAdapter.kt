@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.viewpager.widget.PagerAdapter
+import arrow.analysis.unsafeBlock
 import com.fuzzyfunctors.reductions.R
 
 class DealTypeAdapter(private val context: Context) : PagerAdapter() {
@@ -26,7 +27,7 @@ class DealTypeAdapter(private val context: Context) : PagerAdapter() {
     override fun getCount(): Int = DealType.values().size
 
     override fun getPageTitle(position: Int): CharSequence? {
-        val titleRes = DealType.values()[position].titleRes
+        val titleRes = unsafeBlock { DealType.values()[position].titleRes }
         return context.getString(titleRes)
     }
 
