@@ -25,14 +25,11 @@ task reportMerge(type: ReportMergeTask) {
     output = project.layout.buildDirectory.file("reports/detekt/merge.xml")
 }
 
-subprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
-
-    apply plugin: 'io.arrow-kt.analysis.kotlin'
 
     // Disable kapt for tests
     tasks.matching {
@@ -49,6 +46,17 @@ subprojects {
             }
         }
     }
+}
+
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+
+    apply plugin: 'io.arrow-kt.analysis.kotlin'
 }
 
 task clean(type: Delete) {
