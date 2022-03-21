@@ -17,6 +17,7 @@ buildscript {
         classpath Libs.spotless_plugin_gradle
         classpath Libs.detekt_gradle_plugin
         classpath Libs.sonarqube_gradle_plugin
+        classpath Libs.io_arrow_kt_analysis_kotlin_gradle_plugin
     }
 }
 
@@ -24,11 +25,14 @@ task reportMerge(type: ReportMergeTask) {
     output = project.layout.buildDirectory.file("reports/detekt/merge.xml")
 }
 
-allprojects {
+subprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
+
+    apply plugin: 'io.arrow-kt.analysis.kotlin'
 
     // Disable kapt for tests
     tasks.matching {
