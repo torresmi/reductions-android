@@ -37,7 +37,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    lintOptions{
+    lintOptions {
         checkDependencies true
         xmlReport true
         htmlReport true
@@ -45,12 +45,13 @@ android {
 }
 // Run all tests on android modules and kotlin modules
 afterEvaluate {
-    rootProject.getSubprojects().findAll {
-        it.name.contains("domain")
-    }.each {module ->
+    rootProject.getSubprojects().each { module ->
         module.afterEvaluate {
-            testDebugUnitTest.dependsOn it.tasks.getByName("test")
-            testReleaseUnitTest.dependsOn it.tasks.getByName("test")
+            def testTaskKey = "test"
+            if (it.tasks.getAsMap().containsKey(testTaskKey)) {
+                testDebugUnitTest.dependsOn it.tasks.getByName(testTaskKey)
+                testReleaseUnitTest.dependsOn it.tasks.getByName(testTaskKey)
+            }
         }
     }
 }
