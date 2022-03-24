@@ -1,0 +1,49 @@
+clean_build_6gb {
+    tasks = [":app:assembleDebug"]
+    jvm-args = ["-Xmx6g"]
+    cleanup-tasks = ["clean"]
+}
+clean_build_8gb {
+    tasks = [":app:assembleDebug"]
+    jvm-args = ["-Xmx8g"]
+    cleanup-tasks = ["clean"]
+}
+clean_build_8gb_parallelGC {
+    tasks = [":app:assembleDebug"]
+    jvm-args = ["-Xmx8g",  "-XX:+UseParallelGC"]
+    cleanup-tasks = ["clean"]
+}
+# No changes and should be fast
+noop {
+  tasks = [":app:assembleDebug"]
+}
+# Build cache should be faster than without build cache
+clean_build_with_build_cache {
+  tasks = [":app:assembleDebug"]
+  gradle-args = ["--build-cache"]
+  cleanup-tasks = ["clean"]
+}
+clean_build_without_build_cache {
+  tasks = [":app:assembleDebug"]
+  gradle-args = ["--no-build-cache"]
+  cleanup-tasks = ["clean"]
+}
+# Configuration cache should be faster than without configuration cache
+clean_build_with_configuration_cache {
+  tasks = [":app:assembleDebug"]
+  gradle-args = ["--configuration-cache"]
+  cleanup-tasks = ["clean"]
+}
+clean_build_without_configuration_cache {
+  tasks = [":app:assembleDebug"]
+  gradle-args = ["--no-configuration-cache"]
+  cleanup-tasks = ["clean"]
+}
+incremental_app {
+  tasks = [":app:assembleDebug"]
+  apply-abi-change-to = "app/src/main/java/com/fuzzyfunctors/reductions/ReductionsApp.kt"
+}
+resource_change_app {
+  tasks = [":app:assembleDebug"]
+  apply-android-resource-change-to = "app/src/main/res/values/styles.xml"
+}
