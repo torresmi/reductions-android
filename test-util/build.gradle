@@ -9,7 +9,7 @@ test {
 
 dependencies {
 
-    implementation project(autoModules.core)
+    implementation project(":core")
     implementation Libs.remotedata
 
     api Libs.kotest_assertions_core
