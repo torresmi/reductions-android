@@ -62,6 +62,8 @@ dependencies {
     implementation project(":core")
     implementation project(":domain")
 
+    implementation platform(Libs.kotlin_bom)
+
     implementation Libs.appcompat
     implementation Libs.arrow_core
     implementation Libs.constraintlayout
@@ -69,7 +71,6 @@ dependencies {
     implementation Libs.kotlinx_coroutines_android
     implementation Libs.kotlinx_coroutines_core
     implementation Libs.koin_android
-    implementation Libs.kotlin_stdlib_jdk8
     implementation Libs.material
     implementation Libs.retrofit
     implementation Libs.converter_moshi

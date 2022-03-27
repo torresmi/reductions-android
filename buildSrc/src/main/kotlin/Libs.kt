@@ -84,6 +84,8 @@ object Libs {
     const val kotlin_android_extensions_runtime: String =
             "org.jetbrains.kotlin:kotlin-android-extensions-runtime:_"
 
+    const val kotlin_bom: String = "org.jetbrains.kotlin:kotlin-bom:_"
+
     const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:_"
 
     const val kotlin_scripting_compiler_embeddable: String =
