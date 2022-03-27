@@ -18,6 +18,7 @@ buildscript {
         classpath Libs.detekt_gradle_plugin
         classpath Libs.sonarqube_gradle_plugin
         classpath Libs.io_arrow_kt_analysis_kotlin_gradle_plugin
+        classpath Libs.doctor_plugin
     }
 }
 
@@ -63,6 +64,13 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+}
+
+apply plugin: "com.osacky.doctor"
 apply from: "$rootDir/scripts/jacoco.gradle"
 apply from: "$rootDir/scripts/spotless.gradle"
 apply from: "$rootDir/scripts/sonarqube.gradle"
