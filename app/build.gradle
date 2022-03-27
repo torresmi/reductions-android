@@ -79,6 +79,7 @@ dependencies {
     testImplementation Libs.koin_test
     testImplementation project(":test-util")
 
-    androidTestImplementation Libs.com_android_support_test_runner
     androidTestImplementation Libs.espresso_core
+    androidTestImplementation Libs.androidx_test_runner
+    androidTestImplementation Libs.androidx_test_rules
 }
