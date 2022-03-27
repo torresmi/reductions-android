@@ -8,6 +8,7 @@ test {
 }
 
 dependencies {
+    implementation platform(Libs.kotlin_bom)
+
     implementation Libs.kotlinx_coroutines_core
-    implementation Libs.kotlin_stdlib_jdk8
 }
