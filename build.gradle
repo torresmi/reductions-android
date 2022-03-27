@@ -63,6 +63,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+}
+
 apply from: "$rootDir/scripts/jacoco.gradle"
 apply from: "$rootDir/scripts/spotless.gradle"
 apply from: "$rootDir/scripts/sonarqube.gradle"
