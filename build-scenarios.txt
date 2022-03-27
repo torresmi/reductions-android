@@ -1,18 +1,3 @@
-clean_build_6gb {
-    tasks = [":app:assembleDebug"]
-    jvm-args = ["-Xmx6g"]
-    cleanup-tasks = ["clean"]
-}
-clean_build_8gb {
-    tasks = [":app:assembleDebug"]
-    jvm-args = ["-Xmx8g"]
-    cleanup-tasks = ["clean"]
-}
-clean_build_8gb_parallelGC {
-    tasks = [":app:assembleDebug"]
-    jvm-args = ["-Xmx8g",  "-XX:+UseParallelGC"]
-    cleanup-tasks = ["clean"]
-}
 # No changes and should be fast
 noop {
   tasks = [":app:assembleDebug"]
