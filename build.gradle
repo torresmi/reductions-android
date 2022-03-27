@@ -18,6 +18,7 @@ buildscript {
         classpath Libs.detekt_gradle_plugin
         classpath Libs.sonarqube_gradle_plugin
         classpath Libs.io_arrow_kt_analysis_kotlin_gradle_plugin
+        classpath Libs.doctor_plugin
     }
 }
 
@@ -69,6 +70,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     }
 }
 
+apply plugin: "com.osacky.doctor"
 apply from: "$rootDir/scripts/jacoco.gradle"
 apply from: "$rootDir/scripts/spotless.gradle"
 apply from: "$rootDir/scripts/sonarqube.gradle"

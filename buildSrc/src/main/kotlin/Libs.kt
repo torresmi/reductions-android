@@ -32,6 +32,8 @@ object Libs {
 
     const val material: String = "com.google.android.material:material:_"
 
+    const val doctor_plugin: String = "com.osacky.doctor:doctor-plugin:_"
+
     const val moshi: String = "com.squareup.moshi:moshi:_"
 
     const val converter_moshi: String = "com.squareup.retrofit2:converter-moshi:_"
