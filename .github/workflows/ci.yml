@@ -20,6 +20,7 @@ jobs:
               - '**/*.kt'
             application:
               - '**/*.gradle'
+              - '**/*.gradle.kts'
               - 'buildSrc/**'
               - '**/src/**'
             action:
