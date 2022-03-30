@@ -22,7 +22,7 @@ jobs:
           gradle-dependencies-cache-key: |
             buildSrc/**/Libs.kt
           arguments: |
-            refreshVersions
+            refreshVersions --no-configuration-cache
 
       - name: PR
         uses: peter-evans/create-pull-request@v3
