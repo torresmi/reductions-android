@@ -88,6 +88,7 @@ dependencies {
     implementation(Libs.kotlinx_coroutines_android)
     implementation(Libs.kotlinx_coroutines_core)
     implementation(Libs.koin_android)
+    implementation(Libs.logcat)
     implementation(Libs.material)
     implementation(Libs.retrofit)
     implementation(Libs.converter_moshi)
