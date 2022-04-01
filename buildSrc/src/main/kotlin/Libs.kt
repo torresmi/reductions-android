@@ -34,6 +34,8 @@ object Libs {
 
     const val doctor_plugin: String = "com.osacky.doctor:doctor-plugin:_"
 
+    const val logcat: String = "com.squareup.logcat:logcat:_"
+
     const val moshi: String = "com.squareup.moshi:moshi:_"
 
     const val converter_moshi: String = "com.squareup.retrofit2:converter-moshi:_"
@@ -90,8 +92,6 @@ object Libs {
 
     const val kotlin_scripting_compiler_embeddable: String =
             "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:_"
-
-    const val kotlin_stdlib_jdk8: String = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:_"
 
     const val kotlinx_coroutines_android: String =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
