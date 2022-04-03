@@ -28,6 +28,12 @@ object Libs {
 
     const val spotless_plugin_gradle: String = "com.diffplug.spotless:spotless-plugin-gradle:_"
 
+    const val flipper: String = "com.facebook.flipper:flipper:_"
+
+    const val flipper_noop: String = "com.facebook.flipper:flipper-noop:_"
+
+    const val soloader: String = "com.facebook.soloader:soloader:_"
+
     const val remotedata: String = "com.github.torresmi:remotedata:_"
 
     const val material: String = "com.google.android.material:material:_"
