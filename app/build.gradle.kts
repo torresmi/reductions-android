@@ -94,6 +94,11 @@ dependencies {
     implementation(Libs.converter_moshi)
     implementation(Libs.remotedata)
 
+    debugImplementation(Libs.flipper)
+    debugImplementation(Libs.soloader)
+
+    releaseImplementation(Libs.flipper_noop)
+
     testImplementation(Libs.kotlinx_coroutines_test)
     testImplementation(Libs.koin_test)
     testImplementation(project(":test-util"))
