@@ -3,6 +3,8 @@
     package="com.fuzzyfunctors.reductions">
 
     <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
         android:name=".ReductionsApp"
         android:allowBackup="true"
@@ -25,7 +27,4 @@
         </activity>
 
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
 </manifest>
