@@ -7,6 +7,7 @@ import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.leakcanary2.FlipperLeakListener
 import com.facebook.flipper.plugins.leakcanary2.LeakCanary2FlipperPlugin
+import com.facebook.flipper.plugins.navigation.NavigationFlipperPlugin
 import com.facebook.soloader.SoLoader
 import leakcanary.LeakCanary
 
@@ -27,6 +28,7 @@ fun Application.initializeFlipper() {
             )
 
             addPlugin(LeakCanary2FlipperPlugin())
+            addPlugin(NavigationFlipperPlugin.getInstance())
         }.start()
 }
 
