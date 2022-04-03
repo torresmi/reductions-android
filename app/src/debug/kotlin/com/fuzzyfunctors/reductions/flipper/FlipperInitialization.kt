@@ -2,6 +2,7 @@ package com.fuzzyfunctors.reductions.flipper
 
 import android.app.Application
 import com.facebook.flipper.android.AndroidFlipperClient
+import com.facebook.flipper.android.utils.FlipperUtils
 import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.leakcanary2.FlipperLeakListener
@@ -11,6 +12,8 @@ import leakcanary.LeakCanary
 
 fun Application.initializeFlipper() {
     SoLoader.init(this, false)
+
+    if (!FlipperUtils.shouldEnableFlipper(this)) return
 
     setLeakCanaryListener()
 
