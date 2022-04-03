@@ -95,6 +95,8 @@ dependencies {
     implementation(Libs.remotedata)
 
     debugImplementation(Libs.flipper)
+    debugImplementation(Libs.flipper_leakcanary2_plugin)
+    debugImplementation(Libs.leakcanary_android)
     debugImplementation(Libs.soloader)
 
     releaseImplementation(Libs.flipper_noop)

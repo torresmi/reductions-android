@@ -30,6 +30,9 @@ object Libs {
 
     const val flipper: String = "com.facebook.flipper:flipper:_"
 
+    const val flipper_leakcanary2_plugin: String =
+            "com.facebook.flipper:flipper-leakcanary2-plugin:_"
+
     const val flipper_noop: String = "com.facebook.flipper:flipper-noop:_"
 
     const val soloader: String = "com.facebook.soloader:soloader:_"
@@ -39,6 +42,8 @@ object Libs {
     const val material: String = "com.google.android.material:material:_"
 
     const val doctor_plugin: String = "com.osacky.doctor:doctor-plugin:_"
+
+    const val leakcanary_android: String = "com.squareup.leakcanary:leakcanary-android:_"
 
     const val logcat: String = "com.squareup.logcat:logcat:_"
 
