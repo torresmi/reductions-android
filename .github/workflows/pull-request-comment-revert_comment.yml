@@ -1,4 +1,4 @@
-name: Revert Comment Support
+name: Pull Request Revert Command
 
 on:
   issue_comment:
