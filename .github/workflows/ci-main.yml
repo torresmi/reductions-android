@@ -45,43 +45,8 @@ jobs:
             testDebugUnitTest
             sonarqube
 
-      - name: Upload detekt results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: detekt-results
-          path: build/reports/detekt/merge.xml
-
       - name: Upload apk
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
           path: app/build/outputs/apk
-
-      - name: Upload build reports
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-reports
-          path: |
-            app/build/reports
-            build/reports
-
-      - name: Copy unit test results
-        if: always()
-        run: |
-          mkdir -p junit
-          find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} junit/ \;
-
-      - name: Publish unit test results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1
-        if: always()
-        with:
-          files: junit/*.xml
-
-      - name: Upload unit test results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: junit-results
-          path: junit
