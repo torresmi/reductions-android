@@ -1,4 +1,4 @@
-name: CI
+name: Pull Request CI
 
 on: 
   pull_request:
@@ -134,12 +134,6 @@ jobs:
         with:
           name: detekt-results
           path: build/reports/detekt/merge.xml
-
-      - name: Upload apk
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: app/build/outputs/apk
 
       - name: Upload build reports
         if: always()

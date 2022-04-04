@@ -1,4 +1,4 @@
-name: Merge Command
+name: Pull Request Merge Command
 
 on: issue_comment
 

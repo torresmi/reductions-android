@@ -1,0 +1,52 @@
+
+name: CI on Main Branch
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+    
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build and check debug
+        uses: burrunan/gradle-cache-action@v1
+        env:
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_ORG_KEY: ${{ secrets.SONAR_ORG_KEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          gradle-dependencies-cache-key: |
+            buildSrc/**/Libs.kt
+          arguments: |
+            spotlessCheck
+            detekt reportMerge --continue
+            assembleDebug
+            bundleDebug
+            lintDebug
+            testDebugUnitTest
+            sonarqube
+
+      - name: Upload apk
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: app/build/outputs/apk
