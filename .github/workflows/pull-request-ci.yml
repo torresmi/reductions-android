@@ -128,6 +128,22 @@ jobs:
       - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
 
+      - name: Upload detekt results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: detekt-results
+          path: build/reports/detekt/merge.xml
+
+      - name: Upload build reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-reports
+          path: |
+            app/build/reports
+            build/reports
+
       - name: Copy unit test results
         if: always()
         run: |
@@ -139,6 +155,13 @@ jobs:
         if: always()
         with:
           files: junit/*.xml
+
+      - name: Upload unit test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-results
+          path: junit
 
       - name: Reviewdog Detekt
         env:
