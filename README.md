@@ -1,5 +1,5 @@
 # reductions-android
-[![CI](https://github.com/torresmi/reductions-android/actions/workflows/ci.yml/badge.svg)](https://github.com/torresmi/reductions-android/actions/workflows/ci.yml)
+[![CI](https://github.com/torresmi/reductions-android/actions/workflows/ci-main.yml/badge.svg)](https://github.com/torresmi/reductions-android/actions/workflows/ci-main.yml)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=bugs)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
