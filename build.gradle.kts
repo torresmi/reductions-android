@@ -15,11 +15,11 @@ buildscript {
         classpath(Libs.com_android_tools_build_gradle)
         classpath(Libs.kotlin_gradle_plugin)
         classpath(Libs.detekt_gradle_plugin)
-        classpath(Libs.gradle_android_junit_jacoco_plugin)
         classpath(Libs.spotless_plugin_gradle)
         classpath(Libs.sonarqube_gradle_plugin)
         classpath(Libs.io_arrow_kt_analysis_kotlin_gradle_plugin)
         classpath(Libs.doctor_plugin)
+        classpath(Libs.org_jacoco_core)
     }
 }
 
@@ -59,6 +59,7 @@ subprojects {
     }
 
     apply(plugin = "io.arrow-kt.analysis.kotlin")
+    apply(from = "$rootDir/scripts/jacoco.gradle")
 }
 
 tasks.register("clean", Delete::class) {
@@ -73,6 +74,5 @@ tasks.withType(KotlinCompile::class)
     }
 
 apply(plugin = "com.osacky.doctor")
-apply(from = "$rootDir/scripts/jacoco.gradle")
 apply(from = "$rootDir/scripts/spotless.gradle")
 apply(from = "$rootDir/scripts/sonarqube.gradle")
