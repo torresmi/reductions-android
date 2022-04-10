@@ -123,6 +123,8 @@ jobs:
             bundleDebug
             lintDebug
             testDebugUnitTest
+            debugCoverage
+            jacocoTestReport
             sonarqube
 
       - name: Setup reviewdog
