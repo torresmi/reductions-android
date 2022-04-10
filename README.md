@@ -4,6 +4,7 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=coverage)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=torresmi_reductions-android&metric=bugs)](https://sonarcloud.io/summary/new_code?id=torresmi_reductions-android)
 
