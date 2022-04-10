@@ -53,9 +53,6 @@ object Libs {
 
     const val retrofit: String = "com.squareup.retrofit2:retrofit:_"
 
-    const val gradle_android_junit_jacoco_plugin: String =
-            "com.vanniktech:gradle-android-junit-jacoco-plugin:_"
-
     const val de_fayard_buildsrclibs_gradle_plugin: String =
             "de.fayard.buildSrcLibs:de.fayard.buildSrcLibs.gradle.plugin:_"
 
@@ -91,6 +88,8 @@ object Libs {
     const val org_jacoco_agent: String = "org.jacoco:org.jacoco.agent:_"
 
     const val org_jacoco_ant: String = "org.jacoco:org.jacoco.ant:_"
+
+    const val org_jacoco_core: String = "org.jacoco:org.jacoco.core:_"
 
     const val kotlin_android_extensions: String = "org.jetbrains.kotlin:kotlin-android-extensions:_"
 
