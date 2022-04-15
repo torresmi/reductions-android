@@ -85,6 +85,8 @@ object Libs {
 
     const val mockk: String = "io.mockk:mockk:_"
 
+    const val semver: String = "net.thauvin.erik.gradle:semver:_"
+
     const val org_jacoco_agent: String = "org.jacoco:org.jacoco.agent:_"
 
     const val org_jacoco_ant: String = "org.jacoco:org.jacoco.ant:_"

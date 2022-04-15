@@ -1,7 +1,12 @@
+
+import org.jetbrains.kotlin.konan.properties.loadProperties
+import java.lang.String.format
+
 plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android-extensions")
+    id("net.thauvin.erik.gradle.semver")
 }
 
 android {
@@ -11,13 +16,26 @@ android {
         applicationId = "com.fuzzyfunctors.reductions"
         minSdk = 23
         targetSdk = 31
+
+        // Making either of these two values dynamic in the defaultConfig will
+        // require a full app build and reinstallation because the AndroidManifest.xml
+        // must be updated.
         versionCode = 1
         versionName = "0.1"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    androidComponents.onVariants { variant ->
+        if (variant.buildType == "release") {
+            val properties = loadProperties("app/version.properties")
+            variant.outputs.forEach {
+                it.versionCode.set(properties.getProperty("version.buildmeta").toInt())
+                it.versionName.set(properties.getProperty("version.semver").substringBefore("+"))
+            }
+        }
+    }
 
+    buildTypes {
         getByName("debug") {
             isTestCoverageEnabled = true
         }
@@ -46,6 +64,14 @@ android {
         checkDependencies = true
         xmlReport = true
         htmlReport = true
+    }
+}
+
+tasks {
+    incrementBuildMeta {
+        doFirst {
+            buildMeta = format("%d", buildMeta.toInt() + 1)
+        }
     }
 }
 
