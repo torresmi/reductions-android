@@ -1,6 +1,10 @@
 name: Pull Request Labeler
 
 on:
+  workflow_run:
+    workflows: ["Pull Request Auto Update With Target"]
+    types:
+      - completed
   pull_request:
 
 jobs:

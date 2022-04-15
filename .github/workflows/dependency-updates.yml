@@ -1,6 +1,10 @@
 name: Dependency Updates
 
 on:
+  workflow_run:
+    workflows: ["Pull Request Auto Update With Target"]
+    types:
+      - completed
   workflow_dispatch:
   schedule:
     - cron: '0 6 * * *'
