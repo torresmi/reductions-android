@@ -20,6 +20,7 @@ buildscript {
         classpath(Libs.io_arrow_kt_analysis_kotlin_gradle_plugin)
         classpath(Libs.doctor_plugin)
         classpath(Libs.org_jacoco_core)
+        classpath(Libs.semver)
     }
 }
 
