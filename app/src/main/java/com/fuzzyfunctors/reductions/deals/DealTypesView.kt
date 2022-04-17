@@ -3,8 +3,9 @@ package com.fuzzyfunctors.reductions.deals
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.deal_types_view.view.tabLayout
-import kotlinx.android.synthetic.main.deal_types_view.view.viewPager
+import androidx.viewpager.widget.ViewPager
+import com.fuzzyfunctors.reductions.R
+import com.google.android.material.tabs.TabLayout
 
 class DealTypesView @JvmOverloads constructor(
     context: Context,
@@ -15,6 +16,8 @@ class DealTypesView @JvmOverloads constructor(
     override fun onFinishInflate() {
         super.onFinishInflate()
 
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         viewPager.adapter = DealTypeAdapter(context)
         tabLayout.setupWithViewPager(viewPager)
     }

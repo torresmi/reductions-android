@@ -5,7 +5,6 @@ import java.lang.String.format
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-android-extensions")
     id("net.thauvin.erik.gradle.semver")
 }
 

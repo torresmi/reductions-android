@@ -4,12 +4,12 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.fuzzyfunctors.reductions.R
 import com.fuzzyfunctors.reductions.widgets.remotedata.ShowsFailure
-import kotlinx.android.synthetic.main.include_error_view.view.errorTextView
-import kotlinx.android.synthetic.main.include_error_view.view.retryButton
 import kotlin.properties.Delegates
 
 class FailureView @JvmOverloads constructor(
@@ -21,6 +21,9 @@ class FailureView @JvmOverloads constructor(
     interface Listener {
         fun onRetryClicked()
     }
+
+    private val retryButton = findViewById<Button>(R.id.retryButton)
+    private val errorTextView = findViewById<TextView>(R.id.errorTextView)
 
     var listener: Listener? = null
 
