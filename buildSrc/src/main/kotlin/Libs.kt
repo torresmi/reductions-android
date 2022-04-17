@@ -12,9 +12,23 @@ import kotlin.String
  * See https://github.com/jmfayard/refreshVersions
  */
 object Libs {
+    const val activity_compose: String = "androidx.activity:activity-compose:_"
+
     const val appcompat: String = "androidx.appcompat:appcompat:_"
 
+    const val animation: String = "androidx.compose.animation:animation:_"
+
+    const val androidx_compose_compiler_compiler: String = "androidx.compose.compiler:compiler:_"
+
+    const val material3: String = "androidx.compose.material3:material3:_"
+
+    const val ui_test_junit4: String = "androidx.compose.ui:ui-test-junit4:_"
+
+    const val ui_tooling: String = "androidx.compose.ui:ui-tooling:_"
+
     const val constraintlayout: String = "androidx.constraintlayout:constraintlayout:_"
+
+    const val core_ktx: String = "androidx.core:core-ktx:_"
 
     const val espresso_core: String = "androidx.test.espresso:espresso-core:_"
 
