@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.fuzzyfunctors.reductions.R
 
-// TODO: Move to view model
+// TODO Move to view model
 private enum class DealType(@StringRes val titleRes: Int) {
     TOP(R.string.deals_top_title),
     NEWEST_GAMES(R.string.deals_newest_games_title),
