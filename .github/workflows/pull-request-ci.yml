@@ -112,7 +112,6 @@ jobs:
 
       - name: Build and check debug
         uses: burrunan/gradle-cache-action@v1
-        continue-on-error: true
         env:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_ORG_KEY: ${{ secrets.SONAR_ORG_KEY }}
@@ -133,6 +132,7 @@ jobs:
             sonarqube
 
       - name: Setup reviewdog
+        if: always()
         uses: reviewdog/action-setup@v1
 
       - name: Upload detekt results
@@ -171,12 +171,14 @@ jobs:
           path: junit
 
       - name: Reviewdog Detekt
+        if: always()
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog  -conf=reviewdog.yml -runners=detekt -reporter=github-pr-review 
 
       - name: Reviewdog Lint
+        if: always()
         uses: DVDAndroid/action-android-lint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
