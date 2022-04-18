@@ -13,8 +13,11 @@ sonarqube {
     }
 }
 
-project(":test-util") {
-    sonarqube {
-        skipProject = true
+def skipModules = [":test-util", ":debug-ui"]
+skipModules.each {
+    project(it) {
+        sonarqube {
+            skipProject = true
+        }
     }
 }

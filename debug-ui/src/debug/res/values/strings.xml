@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="debug_drawer_title">Debug Drawer 🕵️</string>
+    <string name="debug_drawer_ui_section_title">UI️</string>
+    <string name="debug_drawer_logs_section_title">Logs</string>
+    <string name="debug_drawer_device_section_title">Device</string>
+</resources>

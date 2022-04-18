@@ -1,8 +1,8 @@
 package com.fuzzyfunctors.reductions
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Scaffold
@@ -13,7 +13,7 @@ import com.fuzzyfunctors.reductions.deals.DealTabs
 import com.fuzzyfunctors.reductions.ui.theme.ReductionsTheme
 import com.google.android.material.elevation.SurfaceColors
 
-class HomeActivity : ComponentActivity() {
+class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = SurfaceColors.SURFACE_1.getColor(this)
