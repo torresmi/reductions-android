@@ -112,6 +112,7 @@ jobs:
 
       - name: Build and check debug
         uses: burrunan/gradle-cache-action@v1
+        continue-on-error: true
         env:
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
           SONAR_ORG_KEY: ${{ secrets.SONAR_ORG_KEY }}
