@@ -88,6 +88,12 @@ tasks {
     }
 }
 
+kotlin {
+    sourceSets.all {
+        languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+    }
+}
+
 afterEvaluate {
     val appModule = this
     val testDebugTask = tasks.named("testDebugUnitTest")

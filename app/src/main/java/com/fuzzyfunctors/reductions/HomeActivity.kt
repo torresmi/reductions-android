@@ -3,14 +3,39 @@ package com.fuzzyfunctors.reductions
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.fuzzyfunctors.reductions.deals.DealTabs
 import com.fuzzyfunctors.reductions.ui.theme.ReductionsTheme
+import com.google.android.material.elevation.SurfaceColors
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = SurfaceColors.SURFACE_1.getColor(this)
         setContent {
             ReductionsTheme {
+                Scaffolding()
             }
+        }
+    }
+}
+
+@Composable
+fun Scaffolding() {
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text(stringResource(id = R.string.deals_title)) },
+            )
+        },
+    ) {
+        Column {
+            DealTabs()
         }
     }
 }
