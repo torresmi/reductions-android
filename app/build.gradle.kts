@@ -1,4 +1,5 @@
 
+import de.fayard.refreshVersions.core.versionFor
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.lang.String.format
 
@@ -59,10 +60,23 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = versionFor(Libs.androidx_compose_compiler_compiler)
+    }
+
     lint {
         checkDependencies = true
         xmlReport = true
         htmlReport = true
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
@@ -71,6 +85,12 @@ tasks {
         doFirst {
             buildMeta = format("%d", buildMeta.toInt() + 1)
         }
+    }
+}
+
+kotlin {
+    sourceSets.all {
+        languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
     }
 }
 
@@ -106,18 +126,23 @@ dependencies {
 
     implementation(platform(Libs.kotlin_bom))
 
+    implementation(Libs.activity_compose)
+    implementation(Libs.animation)
     implementation(Libs.appcompat)
     implementation(Libs.arrow_core)
     implementation(Libs.constraintlayout)
     implementation(Libs.coil)
+    implementation(Libs.core_ktx)
     implementation(Libs.kotlinx_coroutines_android)
     implementation(Libs.kotlinx_coroutines_core)
     implementation(Libs.koin_android)
     implementation(Libs.logcat)
     implementation(Libs.material)
+    implementation(Libs.material3)
     implementation(Libs.retrofit)
     implementation(Libs.converter_moshi)
     implementation(Libs.remotedata)
+    implementation(Libs.ui_tooling)
 
     debugImplementation(Libs.flipper)
     debugImplementation(Libs.flipper_leakcanary2_plugin)
@@ -133,4 +158,5 @@ dependencies {
     androidTestImplementation(Libs.espresso_core)
     androidTestImplementation(Libs.androidx_test_runner)
     androidTestImplementation(Libs.androidx_test_rules)
+    androidTestImplementation(Libs.ui_test_junit4)
 }
