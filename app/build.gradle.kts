@@ -55,9 +55,8 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {
@@ -123,6 +122,7 @@ dependencies {
     implementation(project(":presentation"))
     implementation(project(":core"))
     implementation(project(":domain"))
+    implementation(project(":debug-ui"))
 
     implementation(platform(Libs.kotlin_bom))
 
