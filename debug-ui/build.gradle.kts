@@ -22,5 +22,7 @@ android {
 dependencies {
     implementation(platform(Libs.kotlin_bom))
 
+    debugImplementation(Libs.log)
+    debugImplementation(Libs.logcat)
     debugImplementation(Libs.ui_drawer)
 }

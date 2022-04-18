@@ -51,6 +51,8 @@ object Libs {
 
     const val soloader: String = "com.facebook.soloader:soloader:_"
 
+    const val log: String = "com.github.pandulapeter.beagle:log:_"
+
     const val ui_drawer: String = "com.github.pandulapeter.beagle:ui-drawer:_"
 
     const val remotedata: String = "com.github.torresmi:remotedata:_"
