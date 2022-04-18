@@ -1,6 +1,7 @@
 package com.fuzzyfunctors.reductions
 
 import android.app.Application
+import com.fuzzyfunctors.reductions.debug.ui.DebugDrawer
 import com.fuzzyfunctors.reductions.flipper.initializeFlipper
 import com.fuzzyfunctors.reductions.injection.Modules
 import logcat.AndroidLogcatLogger
@@ -13,6 +14,7 @@ class ReductionsApp : Application() {
     override fun onCreate() {
         super.onCreate()
         AndroidLogcatLogger.installOnDebuggableApp(this, minPriority = LogPriority.VERBOSE)
+        DebugDrawer.initialize(this)
 
         initializeFlipper()
 

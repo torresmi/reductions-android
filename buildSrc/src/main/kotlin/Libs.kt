@@ -51,6 +51,10 @@ object Libs {
 
     const val soloader: String = "com.facebook.soloader:soloader:_"
 
+    const val log: String = "com.github.pandulapeter.beagle:log:_"
+
+    const val ui_drawer: String = "com.github.pandulapeter.beagle:ui-drawer:_"
+
     const val remotedata: String = "com.github.torresmi:remotedata:_"
 
     const val material: String = "com.google.android.material:material:_"
@@ -106,11 +110,6 @@ object Libs {
     const val org_jacoco_ant: String = "org.jacoco:org.jacoco.ant:_"
 
     const val org_jacoco_core: String = "org.jacoco:org.jacoco.core:_"
-
-    const val kotlin_android_extensions: String = "org.jetbrains.kotlin:kotlin-android-extensions:_"
-
-    const val kotlin_android_extensions_runtime: String =
-            "org.jetbrains.kotlin:kotlin-android-extensions-runtime:_"
 
     const val kotlin_bom: String = "org.jetbrains.kotlin:kotlin-bom:_"
 
