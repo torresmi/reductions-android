@@ -32,7 +32,7 @@ def setupAndroid() {
                 def variantName = variant.name
                 def capVariantName = variantName.capitalize()
                 def testTaskName = "test${capVariantName}UnitTest"
-                tasks.create(name: "${variantName}Coverage", type: JacocoReport, dependsOn: testTaskName) {
+                tasks.create(name: "${variantName}Coverage", type: JacocoReport) {
 
                     group = "Reporting"
                     description = "Generate Jacoco coverage reports for the ${variantName} build."
