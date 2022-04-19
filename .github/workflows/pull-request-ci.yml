@@ -126,7 +126,6 @@ jobs:
             assembleDebug
             bundleDebug
             lintDebug
-            testDebugUnitTest
             debugCoverage
             jacocoTestReport
             sonarqube
