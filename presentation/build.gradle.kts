@@ -11,12 +11,12 @@ tasks {
 dependencies {
     implementation(project(":core"))
 
-    implementation(platform(Libs.kotlin_bom))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:_"))
 
-    implementation(Libs.arrow_core)
-    implementation(Libs.kotlinx_coroutines_core)
+    implementation("io.arrow-kt:arrow-core:_")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
 
-    testImplementation(Libs.kotlinx_coroutines_test)
-    testImplementation(Libs.mockk)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
+    testImplementation("io.mockk:mockk:_")
     testImplementation(project(":test-util"))
 }

@@ -1,5 +1,4 @@
 
-import de.fayard.refreshVersions.core.versionFor
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.lang.String.format
 
@@ -64,7 +63,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = versionFor(Libs.androidx_compose_compiler_compiler)
+        kotlinCompilerExtensionVersion = "1.2.0-alpha07"
     }
 
     lint {
@@ -124,39 +123,36 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":debug-ui"))
 
-    implementation(platform(Libs.kotlin_bom))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:_"))
 
-    implementation(Libs.activity_compose)
-    implementation(Libs.animation)
-    implementation(Libs.appcompat)
-    implementation(Libs.arrow_core)
-    implementation(Libs.constraintlayout)
-    implementation(Libs.coil)
-    implementation(Libs.core_ktx)
-    implementation(Libs.kotlinx_coroutines_android)
-    implementation(Libs.kotlinx_coroutines_core)
-    implementation(Libs.koin_android)
-    implementation(Libs.logcat)
-    implementation(Libs.material)
-    implementation(Libs.material3)
-    implementation(Libs.retrofit)
-    implementation(Libs.converter_moshi)
-    implementation(Libs.remotedata)
-    implementation(Libs.ui_tooling)
+    implementation("androidx.activity:activity-compose:_")
+    implementation("androidx.appcompat:appcompat:_")
+    implementation("androidx.compose.animation:animation:_")
+    implementation("io.arrow-kt:arrow-core:_")
+    implementation("io.coil-kt:coil:_")
+    implementation("androidx.core:core-ktx:_")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:_")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
+    implementation("io.insert-koin:koin-android:_")
+    implementation("com.squareup.logcat:logcat:_")
+    implementation("androidx.compose.material3:material3:_")
+    implementation("com.squareup.retrofit2:retrofit:_")
+    implementation("com.squareup.retrofit2:converter-moshi:_")
+    implementation("com.github.torresmi:remotedata:_")
+    implementation("androidx.compose.ui:ui-tooling:_")
 
-    debugImplementation(Libs.flipper)
-    debugImplementation(Libs.flipper_leakcanary2_plugin)
-    debugImplementation(Libs.leakcanary_android)
-    debugImplementation(Libs.soloader)
+    debugImplementation("com.facebook.flipper:flipper:_")
+    debugImplementation("com.facebook.flipper:flipper-leakcanary2-plugin:_")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:_")
+    debugImplementation("com.facebook.soloader:soloader:_")
 
-    releaseImplementation(Libs.flipper_noop)
+    releaseImplementation("com.facebook.flipper:flipper-noop:_")
 
-    testImplementation(Libs.kotlinx_coroutines_test)
-    testImplementation(Libs.koin_test)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:_")
+    testImplementation("io.insert-koin:koin-test:_")
     testImplementation(project(":test-util"))
 
-    androidTestImplementation(Libs.espresso_core)
-    androidTestImplementation(Libs.androidx_test_runner)
-    androidTestImplementation(Libs.androidx_test_rules)
-    androidTestImplementation(Libs.ui_test_junit4)
+    androidTestImplementation("androidx.test:runner:_")
+    androidTestImplementation("androidx.test:rules:_")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:_")
 }

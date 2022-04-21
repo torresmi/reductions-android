@@ -9,7 +9,7 @@ tasks {
 }
 
 dependencies {
-    implementation(platform(Libs.kotlin_bom))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:_"))
 
-    implementation(Libs.kotlinx_coroutines_core)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
 }
