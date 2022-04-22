@@ -113,3 +113,9 @@ sonarqube-gradle-plugin = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugi
 spotless-gradle-plugin = "com.diffplug.spotless:spotless-plugin-gradle:_"
 
 ui-drawer = "com.github.pandulapeter.beagle:ui-drawer:_"
+
+[bundles]
+
+compose-ui = ["androidx-compose-animation", "androidx-compose-material3", "androidx-compose-ui-tooling"]
+
+kotest = ["kotest-assertions", "kotest-property", "kotest-runner"]
