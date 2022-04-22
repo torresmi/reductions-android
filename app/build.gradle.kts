@@ -1,4 +1,5 @@
 
+import de.fayard.refreshVersions.core.versionFor
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.lang.String.format
 
@@ -63,7 +64,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-alpha07"
+        kotlinCompilerExtensionVersion = versionFor("version.androidx.compose.compiler")
     }
 
     lint {
