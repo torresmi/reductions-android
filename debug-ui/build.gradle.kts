@@ -20,9 +20,9 @@ android {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:_"))
+    implementation(platform(libs.kotlin.bom))
 
-    debugImplementation("com.github.pandulapeter.beagle:log:_")
-    debugImplementation("com.squareup.logcat:logcat:_")
-    debugImplementation("com.github.pandulapeter.beagle:ui-drawer:_")
+    debugImplementation(libs.beagle.log)
+    debugImplementation(libs.beagle.ui.drawer)
+    debugImplementation(libs.logcat)
 }
