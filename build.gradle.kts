@@ -11,15 +11,15 @@ buildscript {
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
     }
     dependencies {
-        classpath(Libs.com_android_tools_build_gradle)
-        classpath(Libs.kotlin_gradle_plugin)
-        classpath(Libs.detekt_gradle_plugin)
-        classpath(Libs.spotless_plugin_gradle)
-        classpath(Libs.sonarqube_gradle_plugin)
-        classpath(Libs.io_arrow_kt_analysis_kotlin_gradle_plugin)
-        classpath(Libs.doctor_plugin)
-        classpath(Libs.org_jacoco_core)
-        classpath(Libs.semver)
+        classpath(libs.android.tools.gradle.plugin)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.detekt.gradle.plugin)
+        classpath(libs.spotless.gradle.plugin)
+        classpath(libs.sonarqube.gradle.plugin)
+        classpath(libs.arrow.analysis.gradle.plugin)
+        classpath(libs.doctor.gradle.plugin)
+        classpath(libs.org.jacoco.core)
+        classpath(libs.semver)
     }
 }
 

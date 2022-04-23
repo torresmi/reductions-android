@@ -20,9 +20,9 @@ android {
 }
 
 dependencies {
-    implementation(platform(Libs.kotlin_bom))
+    implementation(platform(libs.kotlin.bom))
 
-    debugImplementation(Libs.log)
-    debugImplementation(Libs.logcat)
-    debugImplementation(Libs.ui_drawer)
+    debugImplementation(libs.beagle.log)
+    debugImplementation(libs.beagle.ui.drawer)
+    debugImplementation(libs.logcat)
 }

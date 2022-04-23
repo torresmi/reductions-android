@@ -12,16 +12,16 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":core"))
 
-    implementation(platform(Libs.kotlin_bom))
+    implementation(platform(libs.kotlin.bom))
 
-    implementation(Libs.arrow_core)
-    implementation(Libs.kotlinx_coroutines_core)
-    implementation(Libs.moshi)
-    implementation(Libs.converter_moshi)
-    implementation(Libs.remotedata)
-    implementation(Libs.retrofit)
+    implementation(libs.arrow.core)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.moshi)
+    implementation(libs.remotedata)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.moshi)
 
-    testImplementation(Libs.kotlinx_coroutines_test)
-    testImplementation(Libs.mockk)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.mockk)
     testImplementation(project(":test-util"))
 }

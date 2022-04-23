@@ -11,12 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.fuzzyfunctors.reductions.deals.DealTabs
 import com.fuzzyfunctors.reductions.ui.theme.ReductionsTheme
-import com.google.android.material.elevation.SurfaceColors
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = SurfaceColors.SURFACE_1.getColor(this)
         setContent {
             ReductionsTheme {
                 Scaffolding()
