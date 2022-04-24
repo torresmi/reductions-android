@@ -63,10 +63,6 @@ subprojects {
     apply(from = "$rootDir/scripts/jacoco.gradle")
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
-}
-
 tasks.withType(KotlinCompile::class)
     .configureEach {
         kotlinOptions {
@@ -77,3 +73,7 @@ tasks.withType(KotlinCompile::class)
 apply(plugin = "com.osacky.doctor")
 apply(from = "$rootDir/scripts/spotless.gradle")
 apply(from = "$rootDir/scripts/sonarqube.gradle")
+
+tasks.named("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
