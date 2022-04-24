@@ -12,16 +12,23 @@ spotless {
         targetExclude "$buildDir/**/*.kt"
         targetExclude "bin/**/*.kt"
         targetExclude "buildSrc/**/Libs.kt"
-        ktlint().userData = [
-                "ij_kotlin_allow_trailing_comma": true,
-                "ij_kotlin_allow_trailing_comma_on_call_site": true
-        ]
+        ktlint()
+            .userData(
+                [
+                    "ij_kotlin_allow_trailing_comma": true,
+                    "ij_kotlin_allow_trailing_comma_on_call_site": true
+                ]
+            )
+
     }
     kotlinGradle {
         target "**/*.gradle.kts"
-        ktlint().userData = [
-                "ij_kotlin_allow_trailing_comma": true,
-                "ij_kotlin_allow_trailing_comma_on_call_site": true
-        ]
+        ktlint()
+            .userData(
+                [
+                    "ij_kotlin_allow_trailing_comma": true,
+                    "ij_kotlin_allow_trailing_comma_on_call_site": true
+                ]
+            )
     }
 }
