@@ -1,11 +1,5 @@
 plugins {
-    kotlin("jvm")
-}
-
-tasks {
-    test {
-        useJUnitPlatform()
-    }
+    id("kotlin-convention")
 }
 
 dependencies {

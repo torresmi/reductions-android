@@ -1,5 +1,9 @@
+import de.fayard.refreshVersions.core.StabilityLevel
+
 pluginManagement {
     repositories {
+        google()
+        mavenCentral()
         gradlePluginPortal()
         maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
     }
@@ -12,6 +16,6 @@ plugins {
 
 refreshVersions {
     rejectVersionIf {
-        candidate.stabilityLevel != de.fayard.refreshVersions.core.StabilityLevel.Stable
+        candidate.stabilityLevel != StabilityLevel.Stable
     }
 }

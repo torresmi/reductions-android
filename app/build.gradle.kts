@@ -1,58 +1,19 @@
 
 import de.fayard.refreshVersions.core.versionFor
-import org.jetbrains.kotlin.konan.properties.loadProperties
-import java.lang.String.format
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("net.thauvin.erik.gradle.semver")
+    id("android-application-convention")
+    id("android-application-semver-convention")
+    id("android-plus-pure-kotlin-test-runner")
+    id("jacoco-convention")
 }
 
 android {
     compileSdk = 31
-
     defaultConfig {
         applicationId = "com.fuzzyfunctors.reductions"
         minSdk = 23
-        targetSdk = 31
-
-        // Making either of these two values dynamic in the defaultConfig will
-        // require a full app build and reinstallation because the AndroidManifest.xml
-        // must be updated.
-        versionCode = 1
-        versionName = "0.1"
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    androidComponents.onVariants { variant ->
-        if (variant.buildType == "release") {
-            val properties = loadProperties("app/version.properties")
-            variant.outputs.forEach {
-                it.versionCode.set(properties.getProperty("version.buildmeta").toInt())
-                it.versionName.set(properties.getProperty("version.semver").substringBefore("+"))
-            }
-        }
-    }
-
-    buildTypes {
-        getByName("debug") {
-            isTestCoverageEnabled = true
-        }
-
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    testOptions {
-        unitTests.all {
-            it.useJUnitPlatform()
-        }
+        targetSdk = compileSdk
     }
 
     kotlinOptions {
@@ -67,52 +28,9 @@ android {
         kotlinCompilerExtensionVersion = versionFor("version.androidx.compose.compiler")
     }
 
-    lint {
-        checkDependencies = true
-        xmlReport = true
-        htmlReport = true
-    }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-}
-
-tasks {
-    incrementBuildMeta {
-        doFirst {
-            buildMeta = format("%d", buildMeta.toInt() + 1)
-        }
-    }
-}
-
-kotlin {
-    sourceSets.all {
-        languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
-    }
-}
-
-afterEvaluate {
-    val appModule = this
-    val testDebugTask = tasks.named("testDebugUnitTest")
-    val testReleaseTask = tasks.named("testReleaseUnitTest")
-
-    rootProject.subprojects.forEach { module ->
-        module.afterEvaluate {
-            val testTaskKey = "test"
-
-            module?.takeUnless { it == appModule }
-                ?.tasks
-                ?.find { it.name.equals(testTaskKey) }
-                ?.let {
-                    testDebugTask {
-                        dependsOn(it)
-                    }
-                    testReleaseTask {
-                        dependsOn(it)
-                    }
-                }
         }
     }
 }
