@@ -131,6 +131,7 @@ jobs:
             debugCoverage
             jacocoTestReport
             sonarqube
+            --debug
 
       - name: Setup reviewdog
         if: always()
