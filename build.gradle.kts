@@ -1,3 +1,7 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektPlugin
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
+
 buildscript {
     repositories {
         google()
@@ -18,6 +22,10 @@ buildscript {
     }
 }
 
+val reportMerge by tasks.registering(ReportMergeTask::class) {
+    output.set(rootProject.buildDir.resolve("reports/detekt/merge.xml"))
+}
+
 allprojects {
     repositories {
         google()
@@ -25,6 +33,16 @@ allprojects {
         maven(url = "https://plugins.gradle.org/m2/")
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
         maven(url = "https://jitpack.io")
+    }
+
+    plugins.withType(DetektPlugin::class) {
+        tasks.withType(Detekt::class) detekt@{
+            finalizedBy(reportMerge)
+
+            reportMerge.configure {
+                input.from(this@detekt.xmlReportFile)
+            }
+        }
     }
 }
 
