@@ -131,8 +131,6 @@ jobs:
             debugCoverage
             jacocoTestReport
             sonarqube
-            --stacktrace
-            --no-configuration-cache
 
       - name: Setup reviewdog
         if: always()
