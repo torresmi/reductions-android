@@ -8,7 +8,7 @@ plugins {
     id("jacoco-convention")
     id("disable-kapt-test")
     id("detekt-convention")
-    id("io.arrow-kt.analysis.kotlin")
+//    id("io.arrow-kt.analysis.kotlin")
 }
 
 configure<ApplicationExtension> {
