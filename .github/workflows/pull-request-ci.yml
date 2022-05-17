@@ -124,7 +124,6 @@ jobs:
             buildSrc/**/Libs.kt
           arguments: |
             spotlessCheck
-            detekt reportMerge --continue
             assembleDebug
             bundleDebug
             lintDebug
