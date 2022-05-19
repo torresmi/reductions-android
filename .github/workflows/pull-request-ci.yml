@@ -127,7 +127,6 @@ jobs:
             assembleDebug
             bundleDebug
             lintDebug
-            debugCoverage
             sonarqube
 
       - name: Setup reviewdog

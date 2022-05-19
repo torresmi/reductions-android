@@ -3,9 +3,9 @@ import de.fayard.refreshVersions.core.versionFor
 
 plugins {
     id("android-application-convention")
-    id("android-application-semver-convention")
-    id("android-plus-pure-kotlin-test-runner")
-    id("jacoco-convention")
+//    id("android-application-semver-convention")
+//    id("android-plus-pure-kotlin-test-runner")
+//    id("jacoco-convention")
 }
 
 android {
