@@ -22,7 +22,6 @@ plugins {
 
 refreshVersions {
     rejectVersionIf {
-        candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) ||
-                candidate <= current
+        candidate.stabilityLevel.isLessStableThan(current.stabilityLevel) || candidate <= current
     }
 }
