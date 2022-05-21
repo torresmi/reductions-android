@@ -1,3 +1,4 @@
 dependencies:
-  - buildSrc/**/Libs.kt
+  - versions.properties
+  - gradle/libs.versions.toml
   
