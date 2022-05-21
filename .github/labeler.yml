@@ -1,4 +1,3 @@
 dependencies:
-  - versions.properties
   - gradle/libs.versions.toml
   
