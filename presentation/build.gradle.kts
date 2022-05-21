@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 tasks {
@@ -14,9 +14,9 @@ dependencies {
     implementation(platform(libs.kotlin.bom))
 
     implementation(libs.arrow.core)
-    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlinx.coroutines.core)
 
-    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(project(":test-util"))
 }

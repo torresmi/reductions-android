@@ -1,12 +1,11 @@
 
-import de.fayard.refreshVersions.core.versionFor
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.lang.String.format
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("net.thauvin.erik.gradle.semver")
+    alias(libs.plugins.android.app)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.semver)
 }
 
 android {
@@ -64,7 +63,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = versionFor("version.androidx.compose.compiler")
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
     }
 
     lint {
@@ -133,8 +132,8 @@ dependencies {
     implementation(libs.arrow.core)
     implementation(libs.coil)
     implementation(libs.koin.android)
-    implementation(libs.kotlin.coroutines.android)
-    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.logcat)
     implementation(libs.remotedata)
     implementation(libs.retrofit)
@@ -148,7 +147,7 @@ dependencies {
     releaseImplementation(libs.flipper.noop)
 
     testImplementation(libs.koin.test)
-    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     testImplementation(project(":test-util"))
 

@@ -24,7 +24,7 @@ jobs:
         uses: burrunan/gradle-cache-action@v1
         with:
           gradle-dependencies-cache-key: |
-            versions.properties
+            gradle/libs.versions.toml
           arguments: |
             refreshVersions --no-configuration-cache
 

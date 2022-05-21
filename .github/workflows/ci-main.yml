@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           gradle-dependencies-cache-key: |
-            versions.properties
+            gradle/libs.versions.toml
           arguments: |
             spotlessCheck
             detekt reportMerge --continue

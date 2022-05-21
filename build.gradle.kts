@@ -3,24 +3,16 @@ import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://plugins.gradle.org/m2/")
-        maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
-    }
-    dependencies {
-        classpath(libs.android.tools.gradle.plugin)
-        classpath(libs.kotlin.gradle.plugin)
-        classpath(libs.detekt.gradle.plugin)
-        classpath(libs.spotless.gradle.plugin)
-        classpath(libs.sonarqube.gradle.plugin)
-        classpath(libs.arrow.analysis.gradle.plugin)
-        classpath(libs.doctor.gradle.plugin)
-        classpath(libs.org.jacoco.core)
-        classpath(libs.semver)
-    }
+plugins {
+    alias(libs.plugins.android.app) version libs.versions.android.tools apply false
+    alias(libs.plugins.android.lib) version libs.versions.android.tools apply false
+    alias(libs.plugins.kotlin.android) version libs.versions.kotlin apply false
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.sonarqube)
+    alias(libs.plugins.doctor)
+    alias(libs.plugins.arrow.analysis)
 }
 
 val reportMerge by tasks.registering(ReportMergeTask::class) {
@@ -28,11 +20,6 @@ val reportMerge by tasks.registering(ReportMergeTask::class) {
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
     // Disable kapt for tests
     tasks.matching {
         it.name.startsWith("kapt") && it.name.endsWith("TestKotlin")
@@ -56,7 +43,6 @@ subprojects {
         mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
-        maven(url = "https://jitpack.io")
     }
 
     apply(plugin = "io.arrow-kt.analysis.kotlin")
@@ -70,7 +56,6 @@ tasks.withType(KotlinCompile::class)
         }
     }
 
-apply(plugin = "com.osacky.doctor")
 apply(from = "$rootDir/scripts/spotless.gradle")
 apply(from = "$rootDir/scripts/sonarqube.gradle")
 
