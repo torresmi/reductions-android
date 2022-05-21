@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 tasks {
@@ -11,5 +11,5 @@ tasks {
 dependencies {
     implementation(platform(libs.kotlin.bom))
 
-    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlinx.coroutines.core)
 }

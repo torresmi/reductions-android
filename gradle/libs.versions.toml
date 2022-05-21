@@ -2,120 +2,130 @@
 
 [bundles]
 
-compose-ui = ["androidx-compose-animation", "androidx-compose-material3", "androidx-compose-ui-tooling"]
+compose-ui = [
+    "androidx-compose-animation",
+    "androidx-compose-material3",
+    "androidx-compose-ui-tooling"
+]
 
-kotest = ["kotest-assertions", "kotest-property", "kotest-runner"]
+kotest = [
+    "kotest-assertions",
+    "kotest-property",
+    "kotest-runner"
+]
 
 [plugins]
 
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.6.21" }
+android-app = { id = "com.android.application", version.ref = "android-tools" }
 
-org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.6.21" }
+android-lib = { id = "com.android.library", version.ref = "android-tools" }
 
-gradle = { id = "gradle", version = "7.1.3" }
+arrow-analysis = "io.arrow-kt.analysis.kotlin:2.0.2"
+
+spotless = "com.diffplug.spotless:6.6.1"
+
+detekt = "io.gitlab.arturbosch.detekt:1.20.0"
+
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+semver = "net.thauvin.erik.gradle.semver:1.0.4"
+
+sonarqube = "org.sonarqube:3.3"
+
+doctor = "com.osacky.doctor:0.8.0"
 
 [versions]
 
+androidx-compose-compiler = "1.2.0-beta02"
+
+androidx-compose-ui = "1.1.1"
+
+android-tools = "7.2.0"
+
+beagle = "2.8.0"
+
+flipper = "1.46.0"
+
+koin = "3.2.0"
+
+kotest = "5.3.0"
+
 kotlin = "1.6.21"
+
+kotlinx-coroutines = "1.6.1"
+
+retrofit2 = "2.9.0"
 
 [libraries]
 
-android-tools-gradle-plugin = "com.android.tools.build:gradle:_"
+androidx-activity-compose = "androidx.activity:activity-compose:1.4.0"
 
-androidx-activity-compose = "androidx.activity:activity-compose:_"
+androidx-appcompat = "androidx.appcompat:appcompat:1.4.1"
 
-androidx-appcompat = "androidx.appcompat:appcompat:_"
+androidx-compose-animation = "androidx.compose.animation:animation:1.1.1"
 
-androidx-compose-animation = "androidx.compose.animation:animation:_"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.0.0-alpha12"
 
-androidx-compose-material3 = "androidx.compose.material3:material3:_"
+androidx-compose-ui-testing = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui" }
 
-androidx-compose-ui-testing = "androidx.compose.ui:ui-test-junit4:_"
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose-ui" }
 
-androidx-compose-ui-tooling = "androidx.compose.ui:ui-tooling:_"
+androidx-core-ktx = "androidx.core:core-ktx:1.7.0"
 
-androidx-core-ktx = "androidx.core:core-ktx:_"
+androidx-test-rules = "androidx.test:rules:1.4.0"
 
-androidx-test-rules = "androidx.test:rules:_"
+androidx-test-runner = "androidx.test:runner:1.4.0"
 
-androidx-test-runner = "androidx.test:runner:_"
+arrow-core = "io.arrow-kt:arrow-core:1.1.2"
 
-arrow-analysis-gradle-plugin = "io.arrow-kt.analysis.kotlin:io.arrow-kt.analysis.kotlin.gradle.plugin:_"
+beagle-log = { module = "io.github.pandulapeter.beagle:log", version.ref = "beagle" }
 
-arrow-analysis-laws = "io.arrow-kt:arrow-analysis-laws:_"
+beagle-ui-drawer = { module = "io.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
 
-arrow-analysis-types = "io.arrow-kt:arrow-analysis-types:_"
+coil = "io.coil-kt:coil:2.1.0"
 
-arrow-core = "io.arrow-kt:arrow-core:_"
+flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
 
-beagle-log = "com.github.pandulapeter.beagle:log:_"
+flipper-leakcanary2-plugin = { module = "com.facebook.flipper:flipper-leakcanary2-plugin", version.ref = "flipper" }
 
-beagle-ui-drawer = "com.github.pandulapeter.beagle:ui-drawer:_"
+flipper-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "flipper" }
 
-coil = "io.coil-kt:coil:_"
+fixture = "com.appmattus.fixture:fixture:1.2.0"
 
-detekt-gradle-plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:_"
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
-doctor-gradle-plugin = "com.osacky.doctor:doctor-plugin:_"
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 
-flipper = "com.facebook.flipper:flipper:_"
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
-flipper-leakcanary2-plugin = "com.facebook.flipper:flipper-leakcanary2-plugin:_"
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 
-flipper-noop = "com.facebook.flipper:flipper-noop:_"
+kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 
-fixture = "com.appmattus.fixture:fixture:_"
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 
-koin-android = "io.insert-koin:koin-android:_"
+kotlin-faker = "io.github.serpro69:kotlin-faker:1.10.0"
 
-koin-test = "io.insert-koin:koin-test:_"
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 
-kotest-assertions = "io.kotest:kotest-assertions-core:_"
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 
-kotest-property = "io.kotest:kotest-property:_"
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
-kotest-runner = "io.kotest:kotest-runner-junit5:_"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
 
-kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin" }
+logcat = "com.squareup.logcat:logcat:0.1"
 
-kotlin-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
+mockk = "io.mockk:mockk:1.12.4"
 
-kotlin-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:_"
+moshi = "com.squareup.moshi:moshi:1.13.0"
 
-kotlin-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
+remotedata = "com.github.torresmi:remotedata:1.1"
 
-kotlin-faker = "io.github.serpro69:kotlin-faker:_"
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
 
-kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit2" }
 
-kotlin-scripting-compiler-embeddable = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-compiler-embeddable", version.ref = "kotlin" }
-
-leakcanary = "com.squareup.leakcanary:leakcanary-android:_"
-
-logcat = "com.squareup.logcat:logcat:_"
-
-mockk = "io.mockk:mockk:_"
-
-moshi = "com.squareup.moshi:moshi:_"
-
-org-jacoco-agent = "org.jacoco:org.jacoco.agent:_"
-
-org-jacoco-ant = "org.jacoco:org.jacoco.ant:_"
-
-org-jacoco-core = "org.jacoco:org.jacoco.core:_"
-
-remotedata = "com.github.torresmi:remotedata:_"
-
-retrofit = "com.squareup.retrofit2:retrofit:_"
-
-retrofit-converter-moshi = "com.squareup.retrofit2:converter-moshi:_"
-
-semver = "net.thauvin.erik.gradle:semver:_"
-
-soloader = "com.facebook.soloader:soloader:_"
-
-sonarqube-gradle-plugin = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:_"
-
-spotless-gradle-plugin = "com.diffplug.spotless:spotless-plugin-gradle:_"
-
-ui-drawer = "com.github.pandulapeter.beagle:ui-drawer:_"
+soloader = "com.facebook.soloader:soloader:0.10.3"

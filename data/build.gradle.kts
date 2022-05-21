@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 tasks {
@@ -15,13 +15,13 @@ dependencies {
     implementation(platform(libs.kotlin.bom))
 
     implementation(libs.arrow.core)
-    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.moshi)
     implementation(libs.remotedata)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
 
-    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(project(":test-util"))
 }
