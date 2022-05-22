@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >-
       github.actor != 'github-actions[bot]' &&
-      github.head_ref != 'dependency-updates'
+      github.actor != 'renovate[bot]'
     steps:
       - run: echo formatting ${{github.head_ref}}
       - name: Format PR
