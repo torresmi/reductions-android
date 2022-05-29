@@ -1,4 +1,5 @@
 
+import com.android.build.api.dsl.ManagedVirtualDevice
 import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.lang.String.format
 
@@ -52,6 +53,33 @@ android {
         unitTests.all {
             it.useJUnitPlatform()
         }
+
+        managedDevices {
+            devices {
+                val pixel2Api30 by registering(ManagedVirtualDevice::class) {
+                    device = "Pixel 2"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+
+                val pixelCApi30 by registering(ManagedVirtualDevice::class) {
+                    device = "Pixel C"
+                    apiLevel = 30
+                    systemImageSource = "aosp-atd"
+                }
+
+                deviceGroups {
+                    register("phoneAndTablet") {
+                        setOf(
+                            pixel2Api30,
+                            pixelCApi30,
+                        ).forEach {
+                            targetDevices.addLater(it)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     kotlinOptions {
@@ -71,6 +99,7 @@ android {
         xmlReport = true
         htmlReport = true
     }
+
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
