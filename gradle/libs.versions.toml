@@ -32,7 +32,7 @@ semver = "net.thauvin.erik.gradle.semver:1.0.4"
 
 sonarqube = "org.sonarqube:3.3"
 
-doctor = "com.osacky.doctor:0.8.0"
+doctor = "com.osacky.doctor:0.8.1"
 
 [versions]
 
