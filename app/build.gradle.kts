@@ -7,6 +7,13 @@ plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.semver)
+    alias(libs.plugins.sonarqube)
+}
+
+sonarqube {
+    properties {
+        property("sonar.androidLint.reportPaths", "build/reports/lint-results-debug.xml")
+    }
 }
 
 android {
