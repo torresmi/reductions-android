@@ -10,12 +10,12 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "com.fuzzyfunctors.reductions"
         minSdk = 23
-        targetSdk = 31
+        targetSdk = 32
 
         // Making either of these two values dynamic in the defaultConfig will
         // require a full app build and reinstallation because the AndroidManifest.xml
