@@ -42,7 +42,7 @@ jobs:
             detekt reportMerge --continue
             assembleDebug
             bundleDebug
-            :app:lintDebug
+            lintDebug
             debugCoverage
             jacocoTestReport
             sonarqube
