@@ -95,9 +95,10 @@ android {
     }
 
     lint {
-        checkDependencies = true
         xmlReport = true
         htmlReport = true
+        abortOnError = false
+        lintConfig = file("..lint.xml")
     }
 
     packagingOptions {
