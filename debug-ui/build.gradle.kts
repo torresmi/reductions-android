@@ -1,6 +1,5 @@
 plugins {
-    alias(libs.plugins.android.lib)
-    alias(libs.plugins.kotlin.android)
+    id("android-library-convention")
 }
 
 android {
@@ -12,6 +11,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {

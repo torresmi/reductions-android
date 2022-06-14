@@ -1,7 +1,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.android.app) version libs.versions.android.tools apply false
@@ -48,13 +47,6 @@ subprojects {
     apply(plugin = "io.arrow-kt.analysis.kotlin")
     apply(from = "$rootDir/scripts/jacoco.gradle")
 }
-
-tasks.withType(KotlinCompile::class)
-    .configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
-        }
-    }
 
 apply(from = "$rootDir/scripts/spotless.gradle")
 apply(from = "$rootDir/scripts/sonarqube.gradle")

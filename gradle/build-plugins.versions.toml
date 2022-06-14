@@ -4,4 +4,6 @@ kotlin = "1.6.21"
 
 [libraries]
 
+android-tools-gradle-plugin = "com.android.tools.build:gradle:7.2.1"
+
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
