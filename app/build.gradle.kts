@@ -4,9 +4,8 @@ import org.jetbrains.kotlin.konan.properties.loadProperties
 import java.lang.String.format
 
 plugins {
-    alias(libs.plugins.android.app)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.semver)
+    id("android-application-convention")
 }
 
 android {
@@ -80,6 +79,11 @@ android {
                 }
             }
         }
+    }
+
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
