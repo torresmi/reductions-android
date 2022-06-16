@@ -19,11 +19,6 @@ val reportMerge by tasks.registering(ReportMergeTask::class) {
 }
 
 allprojects {
-    // Disable kapt for tests
-    tasks.matching {
-        it.name.startsWith("kapt") && it.name.endsWith("TestKotlin")
-    }.configureEach { enabled = false }
-
     apply(from = "$rootDir/scripts/detekt.gradle")
     plugins.withType(DetektPlugin::class) {
         tasks.withType(Detekt::class) detekt@{
