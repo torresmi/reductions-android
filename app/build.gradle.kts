@@ -1,11 +1,9 @@
 
 import com.android.build.api.dsl.ManagedVirtualDevice
-import org.jetbrains.kotlin.konan.properties.loadProperties
-import java.lang.String.format
 
 plugins {
-    alias(libs.plugins.semver)
     id("android-application-convention")
+    id("android-application-semver-convention")
 }
 
 android {
@@ -22,16 +20,6 @@ android {
         versionCode = 1
         versionName = "0.1"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    androidComponents.onVariants { variant ->
-        if (variant.buildType == "release") {
-            val properties = loadProperties("app/version.properties")
-            variant.outputs.forEach {
-                it.versionCode.set(properties.getProperty("version.buildmeta").toInt())
-                it.versionName.set(properties.getProperty("version.semver").substringBefore("+"))
-            }
-        }
     }
 
     buildTypes {
@@ -108,14 +96,6 @@ android {
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-}
-
-tasks {
-    incrementBuildMeta {
-        doFirst {
-            buildMeta = format("%d", buildMeta.toInt() + 1)
         }
     }
 }
