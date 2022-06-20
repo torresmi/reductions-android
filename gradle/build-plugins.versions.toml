@@ -6,4 +6,8 @@ kotlin = "1.6.21"
 
 android-tools-gradle-plugin = "com.android.tools.build:gradle:7.2.1"
 
+detekt-gradle-plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.20.0"
+
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+semver-gradle-plugin = "net.thauvin.erik.gradle:semver:1.0.4"

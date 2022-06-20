@@ -19,7 +19,6 @@ val reportMerge by tasks.registering(ReportMergeTask::class) {
 }
 
 allprojects {
-    apply(from = "$rootDir/scripts/detekt.gradle")
     plugins.withType(DetektPlugin::class) {
         tasks.withType(Detekt::class) detekt@{
             finalizedBy(reportMerge)
