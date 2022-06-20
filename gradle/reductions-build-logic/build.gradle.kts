@@ -8,4 +8,5 @@ dependencies {
     implementation(libs.detekt.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.semver.gradle.plugin)
+    implementation(libs.sonarqube.gradle.plugin)
 }
