@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
     alias(libs.plugins.spotless)
-    alias(libs.plugins.sonarqube)
     alias(libs.plugins.doctor)
     alias(libs.plugins.arrow.analysis)
 }
@@ -42,7 +41,7 @@ subprojects {
 }
 
 apply(from = "$rootDir/scripts/spotless.gradle")
-apply(from = "$rootDir/scripts/sonarqube.gradle")
+apply(plugin = "sonarqube-convention")
 
 tasks.named("clean", Delete::class) {
     delete(rootProject.buildDir)
