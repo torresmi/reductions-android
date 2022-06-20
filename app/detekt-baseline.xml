@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:Deals.kt$@Composable fun DealTabs(modifier: Modifier = Modifier, selectedIndex: Int = 0)</ID>
+    <ID>FunctionNaming:HomeActivity.kt$@Composable fun Scaffolding()</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun ReductionsTheme( useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit, )</ID>
+    <ID>MagicNumber:Color.kt$0xFF000000</ID>
+    <ID>MagicNumber:Color.kt$0xFF001f24</ID>
+    <ID>MagicNumber:Color.kt$0xFF001f25</ID>
+    <ID>MagicNumber:Color.kt$0xFF00363d</ID>
+    <ID>MagicNumber:Color.kt$0xFF00363f</ID>
+    <ID>MagicNumber:Color.kt$0xFF004e5a</ID>
+    <ID>MagicNumber:Color.kt$0xFF004f59</ID>
+    <ID>MagicNumber:Color.kt$0xFF006874</ID>
+    <ID>MagicNumber:Color.kt$0xFF006877</ID>
+    <ID>MagicNumber:Color.kt$0xFF1C1B1F</ID>
+    <ID>MagicNumber:Color.kt$0xFF313033</ID>
+    <ID>MagicNumber:Color.kt$0xFF3f0016</ID>
+    <ID>MagicNumber:Color.kt$0xFF410E0B</ID>
+    <ID>MagicNumber:Color.kt$0xFF44d8f1</ID>
+    <ID>MagicNumber:Color.kt$0xFF49454F</ID>
+    <ID>MagicNumber:Color.kt$0xFF4fd8eb</ID>
+    <ID>MagicNumber:Color.kt$0xFF601410</ID>
+    <ID>MagicNumber:Color.kt$0xFF660029</ID>
+    <ID>MagicNumber:Color.kt$0xFF79747E</ID>
+    <ID>MagicNumber:Color.kt$0xFF8C1D18</ID>
+    <ID>MagicNumber:Color.kt$0xFF90003d</ID>
+    <ID>MagicNumber:Color.kt$0xFF90f1ff</ID>
+    <ID>MagicNumber:Color.kt$0xFF938F99</ID>
+    <ID>MagicNumber:Color.kt$0xFF9cefff</ID>
+    <ID>MagicNumber:Color.kt$0xFFB3261E</ID>
+    <ID>MagicNumber:Color.kt$0xFFCAC4D0</ID>
+    <ID>MagicNumber:Color.kt$0xFFE6E1E5</ID>
+    <ID>MagicNumber:Color.kt$0xFFE7E0EC</ID>
+    <ID>MagicNumber:Color.kt$0xFFF2B8B5</ID>
+    <ID>MagicNumber:Color.kt$0xFFF4EFF4</ID>
+    <ID>MagicNumber:Color.kt$0xFFF9DEDC</ID>
+    <ID>MagicNumber:Color.kt$0xFFFBFDFD</ID>
+    <ID>MagicNumber:Color.kt$0xFFFFFFFF</ID>
+    <ID>MagicNumber:Color.kt$0xFFbc0053</ID>
+    <ID>MagicNumber:Color.kt$0xFFffb1c3</ID>
+    <ID>MagicNumber:Color.kt$0xFFffd9e0</ID>
+    <ID>MagicNumber:Color.kt$0xFFffffff</ID>
+    <ID>UnusedPrivateMember:Modules.kt$Modules$isDebug: Boolean</ID>
+  </CurrentIssues>
+</SmellBaseline>
