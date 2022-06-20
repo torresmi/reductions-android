@@ -39,7 +39,6 @@ subprojects {
     }
 
     apply(plugin = "io.arrow-kt.analysis.kotlin")
-    apply(from = "$rootDir/scripts/jacoco.gradle")
 }
 
 apply(from = "$rootDir/scripts/spotless.gradle")
