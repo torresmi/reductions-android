@@ -9,4 +9,5 @@ dependencies {
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.semver.gradle.plugin)
     implementation(libs.sonarqube.gradle.plugin)
+    implementation(libs.spotless.gradle.plugin)
 }

@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.kotlin.android) version libs.versions.kotlin apply false
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
-    alias(libs.plugins.spotless)
     alias(libs.plugins.doctor)
     alias(libs.plugins.arrow.analysis)
 }
@@ -40,7 +39,7 @@ subprojects {
     apply(plugin = "io.arrow-kt.analysis.kotlin")
 }
 
-apply(from = "$rootDir/scripts/spotless.gradle")
+apply(plugin = "spotless-convention")
 apply(plugin = "sonarqube-convention")
 
 tasks.named("clean", Delete::class) {

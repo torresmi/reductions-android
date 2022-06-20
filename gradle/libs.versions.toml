@@ -20,9 +20,9 @@ android-lib = { id = "com.android.library", version.ref = "android-tools" }
 
 arrow-analysis = "io.arrow-kt.analysis.kotlin:2.0.2"
 
-spotless = "com.diffplug.spotless:6.7.2"
-
 detekt = "io.gitlab.arturbosch.detekt:1.20.0"
+
+doctor = "com.osacky.doctor:0.8.1"
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
@@ -32,7 +32,7 @@ semver = "net.thauvin.erik.gradle.semver:1.0.4"
 
 sonarqube = "org.sonarqube:3.4.0.2513"
 
-doctor = "com.osacky.doctor:0.8.1"
+spotless = "com.diffplug.spotless:6.7.2"
 
 [versions]
 
