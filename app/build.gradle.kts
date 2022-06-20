@@ -4,6 +4,7 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 plugins {
     id("android-application-convention")
     id("android-application-semver-convention")
+    id("android-plus-pure-kotlin-test-runner")
 }
 
 android {
@@ -96,30 +97,6 @@ android {
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-}
-
-afterEvaluate {
-    val appModule = this
-    val testDebugTask = tasks.named("testDebugUnitTest")
-    val testReleaseTask = tasks.named("testReleaseUnitTest")
-
-    rootProject.subprojects.forEach { module ->
-        module.afterEvaluate {
-            val testTaskKey = "test"
-
-            module?.takeUnless { it == appModule }
-                ?.tasks
-                ?.find { it.name.equals(testTaskKey) }
-                ?.let {
-                    testDebugTask {
-                        dependsOn(it)
-                    }
-                    testReleaseTask {
-                        dependsOn(it)
-                    }
-                }
         }
     }
 }
