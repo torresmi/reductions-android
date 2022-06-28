@@ -126,4 +126,4 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit2" }
 
-soloader = "com.facebook.soloader:soloader:0.10.3"
+soloader = "com.facebook.soloader:soloader:0.10.4"
