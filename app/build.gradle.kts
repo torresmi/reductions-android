@@ -120,6 +120,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.logcat)
+    implementation(libs.material)
     implementation(libs.remotedata)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
