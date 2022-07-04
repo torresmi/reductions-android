@@ -25,7 +25,7 @@ class DealMapperTest : DescribeSpec() {
                     val expected = Deal.SaleData(
                         price = onSale.salePrice,
                         savings = onSale.savings,
-                        rating = onSale.dealRating
+                        rating = onSale.dealRating,
                     )
 
                     result.saleData shouldBe expected
@@ -54,7 +54,7 @@ class DealMapperTest : DescribeSpec() {
                         appId = onSteam.steamAppID!!,
                         ratingText = onSteam.steamRatingText!!,
                         ratingCount = onSteam.steamRatingCount!!,
-                        ratingPercent = onSteam.steamRatingPercent!!
+                        ratingPercent = onSteam.steamRatingPercent!!,
                     )
 
                     result.steamData shouldBe expected

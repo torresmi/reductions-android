@@ -18,7 +18,7 @@ interface CheapSharkService {
     suspend fun getDeals(
         @QueryMap stringParams: Map<String, String>,
         @QueryMap intParams: Map<String, Int>,
-        @QueryMap boolParams: Map<String, Boolean>
+        @QueryMap boolParams: Map<String, Boolean>,
     ): Response<List<Deal>>
 
     @GET("deals")
@@ -29,7 +29,7 @@ interface CheapSharkService {
         @Query("title") title: String? = null,
         @Query("steamAppId") steamAppId: Int? = null,
         @Query("limit") limit: Int? = null,
-        @Query("exact") exact: Boolean? = null
+        @Query("exact") exact: Boolean? = null,
     ): Response<List<GameBestDeal>>
 
     @GET("games")
@@ -43,7 +43,7 @@ interface CheapSharkService {
         @Query("action") action: String,
         @Query("email") email: String,
         @Query("gameId") gameId: GameId,
-        @Query("price") price: Double?
+        @Query("price") price: Double?,
     ): Response<Boolean>
 
     companion object {

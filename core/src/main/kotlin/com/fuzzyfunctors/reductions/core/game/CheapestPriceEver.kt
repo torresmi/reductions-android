@@ -4,5 +4,5 @@ import java.util.Date
 
 data class CheapestPriceEver(
     val price: String,
-    val date: Date
+    val date: Date,
 )

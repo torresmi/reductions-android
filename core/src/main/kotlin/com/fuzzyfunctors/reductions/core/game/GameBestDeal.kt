@@ -6,5 +6,5 @@ data class GameBestDeal(
     val cheapest: String,
     val cheapestDealId: String,
     val title: String,
-    val thumb: String
+    val thumb: String,
 )

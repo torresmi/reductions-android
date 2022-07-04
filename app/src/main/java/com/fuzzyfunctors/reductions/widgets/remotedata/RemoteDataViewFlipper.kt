@@ -14,7 +14,7 @@ import com.fuzzyfunctors.reductions.R
 
 class RemoteDataViewFlipper @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null
+    attrs: AttributeSet? = null,
 ) : ViewFlipper(context, attrs), RemoteDataRenderer {
 
     var notAskedView: Option<View>

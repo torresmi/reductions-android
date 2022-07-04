@@ -17,7 +17,7 @@ object DealInfoResponseGeneration {
 
     private fun saleFixture(
         salePrice: String,
-        retailPrice: String
+        retailPrice: String,
     ) = baseFixture.new {
         property(DealInfoResponse.GameInfo::salePrice) { salePrice }
         property(DealInfoResponse.GameInfo::retailPrice) { retailPrice }
@@ -34,7 +34,7 @@ object DealInfoResponseGeneration {
         ratingPercent: String?,
         ratingCount: String?,
         ratingText: String?,
-        onSteam: Boolean
+        onSteam: Boolean,
     ) = baseFixture.new {
         property(DealInfoResponse.GameInfo::steamAppID) { appId }
         property(DealInfoResponse.GameInfo::steamRatingPercent) { ratingPercent }
@@ -48,7 +48,7 @@ object DealInfoResponseGeneration {
         ratingPercent = "100",
         ratingCount = "1",
         ratingText = "good",
-        onSteam = true
+        onSteam = true,
     ).invoke<DealInfoResponse>()
 
     val notOnSteam = steamFixture(
@@ -56,12 +56,12 @@ object DealInfoResponseGeneration {
         ratingPercent = null,
         ratingCount = null,
         ratingText = null,
-        onSteam = false
+        onSteam = false,
     ).invoke<DealInfoResponse>()
 
     private fun metacriticFixture(
         score: String?,
-        link: String?
+        link: String?,
     ) = baseFixture.new {
         property(DealInfoResponse.GameInfo::metacriticScore) { score }
         property(DealInfoResponse.GameInfo::metacriticLink) { link }
@@ -78,7 +78,7 @@ object DealInfoResponseGeneration {
         onSteam,
         notOnSteam,
         onMetacritic,
-        notOnMetacritic
+        notOnMetacritic,
     )
 
     fun arb(): Arb<DealInfoResponse> = arb(*edgeCases.toTypedArray())

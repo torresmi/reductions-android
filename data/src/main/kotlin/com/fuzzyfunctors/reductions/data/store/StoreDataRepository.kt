@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 class StoreDataRepository(
     private val networkDataSource: StoreNetworkDataSource,
-    private val memoryStore: ReactiveStore<StoreId, Store>
+    private val memoryStore: ReactiveStore<StoreId, Store>,
 ) : StoreRepository {
 
     override fun getStore(id: StoreId): Flow<Store?> = memoryStore.get(id)

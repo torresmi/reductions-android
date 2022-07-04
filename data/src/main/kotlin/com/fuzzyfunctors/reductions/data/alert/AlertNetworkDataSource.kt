@@ -14,14 +14,14 @@ class AlertNetworkDataSource(private val networkService: CheapSharkService) {
     suspend fun watchGame(
         gameId: GameId,
         email: String,
-        price: Double?
+        price: Double?,
     ): Either<LoadingFailure.Remote, Unit> =
         networkService
             .updateAlert(
                 ACTION_SET,
                 email,
                 gameId,
-                price
+                price,
             )
             .run(responseMapper)
 
@@ -31,7 +31,7 @@ class AlertNetworkDataSource(private val networkService: CheapSharkService) {
                 ACTION_DELETE,
                 email,
                 gameId,
-                null
+                null,
             )
             .run(responseMapper)
 

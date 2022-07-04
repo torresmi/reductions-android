@@ -24,7 +24,9 @@ fun DealTabs(modifier: Modifier = Modifier, selectedIndex: Int = 0) {
             Tab(
                 text = { Text(stringResource(type.titleRes)) },
                 selected = index == selectedIndex,
-                onClick = { /*TODO*/ },
+                onClick = {
+                    /*TODO*/
+                },
             )
         }
     }

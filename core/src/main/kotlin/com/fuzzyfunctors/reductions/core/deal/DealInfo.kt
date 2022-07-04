@@ -19,13 +19,13 @@ data class DealInfo(
     val releaseDate: Date,
     val iconLink: String,
     val cheaperStores: Map<StoreId, CheaperStore>,
-    val cheapestPriceEver: CheapestPriceEver
+    val cheapestPriceEver: CheapestPriceEver,
 ) {
 
     data class CheaperStore(
         val storeId: StoreId,
         val dealId: DealId,
         val salePrice: String,
-        val normalPrice: String
+        val normalPrice: String,
     )
 }

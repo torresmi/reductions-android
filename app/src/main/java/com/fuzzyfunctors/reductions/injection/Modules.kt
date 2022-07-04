@@ -42,7 +42,7 @@ val repositoryModule = module {
         DealDataRepository(
             get(),
             get(named(MEMORY_STORE_DEALS)),
-            get(named(MEMORY_STORE_DEAL))
+            get(named(MEMORY_STORE_DEAL)),
         )
     }
 
@@ -103,7 +103,7 @@ object Modules {
             appModule,
             networkModule,
             localModule,
-            repositoryModule
+            repositoryModule,
         )
     }
 }

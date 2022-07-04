@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 class GameDataRepository(
     private val networkDataSource: GameNetworkDataSource,
-    private val memoryStore: ReactiveStore<GameId, Game>
+    private val memoryStore: ReactiveStore<GameId, Game>,
 ) : GameRepository {
 
     override fun getGame(id: GameId): Flow<Game?> = memoryStore.get(id)
@@ -31,7 +31,7 @@ class GameDataRepository(
         title: String?,
         steamAppId: String?,
         limit: Int?,
-        exact: Boolean
+        exact: Boolean,
     ): Either<LoadingFailure.Remote, List<GameBestDeal>> =
         networkDataSource.searchGames(title, steamAppId, limit, exact)
 }

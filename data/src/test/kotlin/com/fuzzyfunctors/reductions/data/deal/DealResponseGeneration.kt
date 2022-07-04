@@ -18,7 +18,7 @@ object DealResponseGeneration {
     private fun saleFixture(
         salePrice: String,
         retailPrice: String,
-        isOnSale: Boolean
+        isOnSale: Boolean,
     ) = baseFixture.new {
         property(Deal::salePrice) { salePrice }
         property(Deal::normalPrice) { retailPrice }
@@ -47,14 +47,14 @@ object DealResponseGeneration {
         appId = "1",
         ratingPercent = "100",
         ratingCount = "1",
-        ratingText = "good"
+        ratingText = "good",
     ).invoke<Deal>()
 
     val notOnSteam = steamFixture(
         appId = null,
         ratingPercent = null,
         ratingCount = null,
-        ratingText = null
+        ratingText = null,
     ).invoke<Deal>()
 
     val onMetacritic = baseFixture.new {
@@ -73,7 +73,7 @@ object DealResponseGeneration {
         onSteam,
         notOnSteam,
         onMetacritic,
-        notOnMetacritic
+        notOnMetacritic,
     )
 
     fun arb(): Arb<Deal> = arb(*edgeCases.toTypedArray())

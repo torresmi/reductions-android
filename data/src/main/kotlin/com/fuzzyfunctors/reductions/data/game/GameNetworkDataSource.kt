@@ -21,7 +21,7 @@ class GameNetworkDataSource(private val networkService: CheapSharkService) {
         title: String?,
         steamAppId: String?,
         limit: Int?,
-        exact: Boolean?
+        exact: Boolean?,
     ): Either<LoadingFailure.Remote, List<GameBestDeal>> =
         networkService.searchGames(title, steamAppId?.toInt(), limit, exact)
             .toEither()
