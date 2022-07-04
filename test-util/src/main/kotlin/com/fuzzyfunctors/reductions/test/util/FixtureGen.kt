@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:filename")
+
 package com.fuzzyfunctors.reductions.test.util
 
 import com.appmattus.kotlinfixture.Fixture
@@ -9,7 +11,7 @@ import io.kotest.property.Sample
 
 inline fun <reified A> arb(
     vararg edgecases: A? = emptyArray(),
-    crossinline builder: ConfigurationBuilder.() -> Unit = {}
+    crossinline builder: ConfigurationBuilder.() -> Unit = {},
 ): Arb<A> = object : Arb<A>() {
     private lateinit var randomSource: RandomSource
 

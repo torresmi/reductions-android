@@ -23,9 +23,9 @@ object DebugDrawer : DebugUI {
             application,
             behavior = Behavior(
                 logBehavior = Behavior.LogBehavior(
-                    loggers = listOf(BeagleLogger)
-                )
-            )
+                    loggers = listOf(BeagleLogger),
+                ),
+            ),
         )
 
         DebugDrawerLogger.install()

@@ -10,7 +10,7 @@ data class Game(
     val steamAppId: String?,
     val title: String,
     val cheapestPriceEver: CheapestPriceEver,
-    val deals: Map<DealId, DealInfo>
+    val deals: Map<DealId, DealInfo>,
 ) {
 
     data class DealInfo(
@@ -18,6 +18,6 @@ data class Game(
         val storeId: StoreId,
         val price: String,
         val retailPrice: String,
-        val savings: String
+        val savings: String,
     )
 }

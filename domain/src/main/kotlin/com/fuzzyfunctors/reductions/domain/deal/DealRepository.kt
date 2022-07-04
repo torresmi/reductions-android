@@ -33,7 +33,7 @@ interface DealRepository {
         val continuePagination: Boolean = true,
         val limit: Int? = null,
         val order: Order? = null,
-        val filters: Filters? = null
+        val filters: Filters? = null,
     ) {
 
         enum class Order {
@@ -56,7 +56,7 @@ interface DealRepository {
             val minimumSteamRating: Int? = null,
             val tripleA: Boolean? = null,
             val steamOnly: Boolean? = null,
-            val onSale: Boolean? = null
+            val onSale: Boolean? = null,
         )
 
         companion object {

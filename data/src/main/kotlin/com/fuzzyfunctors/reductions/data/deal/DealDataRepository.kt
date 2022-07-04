@@ -16,7 +16,7 @@ import java.util.concurrent.Executors
 class DealDataRepository(
     private val networkDataSource: DealNetworkDataSource,
     private val dealsMemoryReactiveStore: ReactiveStore<DealType, DealTypeData>,
-    private val dealInfoMemoryReactiveStore: ReactiveStore<DealId, DealInfo>
+    private val dealInfoMemoryReactiveStore: ReactiveStore<DealId, DealInfo>,
 ) : DealRepository {
 
     // Keep requests ordered for pagination
@@ -72,7 +72,7 @@ class DealDataRepository(
 
     private suspend fun fetchDealsForType(
         type: DealType,
-        options: DealRepository.Options
+        options: DealRepository.Options,
     ): LoadingFailure.Remote? {
         val optionsWithOrder = options.copy(order = type.toOrder())
         val page = paginator.getPageforOptions(type, optionsWithOrder)

@@ -17,24 +17,24 @@ data class Deal(
     val steamData: SteamData?,
     val releaseDate: Date,
     val lastChange: Date?,
-    val iconLink: String
+    val iconLink: String,
 ) {
 
     data class SaleData(
         val price: String,
         val savings: String,
-        val rating: String
+        val rating: String,
     )
 
     data class MetacriticData(
         val link: String,
-        val score: String
+        val score: String,
     )
 
     data class SteamData(
         val appId: String,
         val ratingText: String?,
         val ratingCount: String,
-        val ratingPercent: String
+        val ratingPercent: String,
     )
 }

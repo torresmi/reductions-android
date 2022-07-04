@@ -49,7 +49,7 @@ class DealInfoResponseMapperTest : DescribeSpec() {
                         appId = onSteam.gameInfo.steamAppID!!,
                         ratingText = onSteam.gameInfo.steamRatingText!!,
                         ratingCount = onSteam.gameInfo.steamRatingCount!!,
-                        ratingPercent = onSteam.gameInfo.steamRatingPercent!!
+                        ratingPercent = onSteam.gameInfo.steamRatingPercent!!,
                     )
 
                     result.steamData shouldBe expected

@@ -17,6 +17,6 @@ interface GameRepository {
         title: String?,
         steamAppId: String? = null,
         limit: Int? = null,
-        exact: Boolean = false
+        exact: Boolean = false,
     ): Either<LoadingFailure.Remote, List<GameBestDeal>>
 }

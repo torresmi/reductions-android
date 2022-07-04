@@ -4,5 +4,5 @@ data class AlertRequest(
     val action: String,
     val email: String,
     val gameID: Int,
-    val price: Double?
+    val price: Double?,
 )
