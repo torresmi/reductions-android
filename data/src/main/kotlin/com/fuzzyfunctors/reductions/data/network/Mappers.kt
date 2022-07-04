@@ -135,25 +135,26 @@ fun GameBestDeal.toCore(): CoreGameBestDeal =
         thumb = thumb,
     )
 
+@Suppress("ComplexCondition")
 private fun steamData(
     steamAppID: String?,
     steamRatingCount: String?,
     steamRatingText: String?,
     steamRatingPercent: String?,
 ): CoreDeal.SteamData? =
-    steamAppID?.let { id ->
-        steamRatingCount?.let { count ->
-            steamRatingText?.let { text ->
-                steamRatingPercent?.let { percent ->
-                    CoreDeal.SteamData(
-                        appId = id,
-                        ratingText = text,
-                        ratingCount = count,
-                        ratingPercent = percent,
-                    )
-                }
-            }
-        }
+    if (steamAppID != null &&
+        steamRatingCount != null &&
+        steamRatingText != null &&
+        steamRatingPercent != null
+    ) {
+        CoreDeal.SteamData(
+            appId = steamAppID,
+            ratingText = steamRatingCount,
+            ratingCount = steamRatingCount,
+            ratingPercent = steamRatingPercent,
+        )
+    } else {
+        null
     }
 
 private fun metacriticData(
