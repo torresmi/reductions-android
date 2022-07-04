@@ -17,4 +17,12 @@ dependencyResolutionManagement {
 
 plugins {
     id("com.pablisco.gradle.auto.include") version "1.3"
+    id("com.gradle.enterprise") version "3.10.2"
+}
+
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
 }
