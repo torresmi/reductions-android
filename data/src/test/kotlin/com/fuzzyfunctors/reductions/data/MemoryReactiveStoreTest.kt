@@ -40,7 +40,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
                     },
                     action = {
                         sut.store(item)
-                    }
+                    },
                 )
 
                 result shouldBe listOf(null, item)
@@ -55,7 +55,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
                     },
                     action = {
                         sut.store(item)
-                    }
+                    },
                 )
 
                 result shouldBe listOf(null, items)
@@ -81,7 +81,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
                     },
                     action = {
                         sut.store(items)
-                    }
+                    },
                 )
 
                 result shouldBe listOf(null, items)
@@ -97,7 +97,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
                     },
                     action = {
                         sut.store(item)
-                    }
+                    },
                 )
 
                 result shouldBe listOf(null, item)
@@ -139,7 +139,7 @@ class MemoryReactiveStoreTest : DescribeSpec() {
 
 private suspend fun <A> CoroutineScope.waitForSubscribers(
     subscription: suspend CoroutineScope.() -> A,
-    action: suspend CoroutineScope.() -> Unit
+    action: suspend CoroutineScope.() -> Unit,
 ): A {
     val subscriptionTask = async(block = subscription)
 

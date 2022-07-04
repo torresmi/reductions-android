@@ -9,21 +9,19 @@ configure<BaseExtension> {
         val testDebugTask = tasks.named("testDebugUnitTest")
         val testReleaseTask = tasks.named("testReleaseUnitTest")
         rootProject.subprojects.forEach { module ->
-            module.afterEvaluate {
-                val testTaskKey = "test"
+            val testTaskKey = "test"
 
-                module?.takeUnless { it == mainModule }
-                    ?.tasks
-                    ?.find { it.name.equals(testTaskKey) }
-                    ?.let {
-                        testDebugTask {
-                            dependsOn(it)
-                        }
-                        testReleaseTask {
-                            dependsOn(it)
-                        }
+            module?.takeUnless { it == mainModule }
+                ?.tasks
+                ?.find { it.name.equals(testTaskKey) }
+                ?.let {
+                    testDebugTask {
+                        dependsOn(it)
                     }
-            }
+                    testReleaseTask {
+                        dependsOn(it)
+                    }
+                }
         }
     }
 }

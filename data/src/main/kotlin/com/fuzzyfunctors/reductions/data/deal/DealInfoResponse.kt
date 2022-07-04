@@ -3,7 +3,7 @@ package com.fuzzyfunctors.reductions.data.deal
 data class DealInfoResponse(
     val gameInfo: GameInfo,
     val cheaperStores: List<CheaperStore>,
-    val cheapestPrice: CheapestPrice
+    val cheapestPrice: CheapestPrice,
 ) {
 
     data class GameInfo(
@@ -21,18 +21,18 @@ data class DealInfoResponse(
         val releaseDate: Long,
         val publisher: String,
         val steamworks: String,
-        val thumb: String
+        val thumb: String,
     )
 
     data class CheaperStore(
         val dealID: String,
         val storeID: String,
         val salePrice: String,
-        val retailPrice: String
+        val retailPrice: String,
     )
 
     data class CheapestPrice(
         val price: String,
-        val date: Long
+        val date: Long,
     )
 }

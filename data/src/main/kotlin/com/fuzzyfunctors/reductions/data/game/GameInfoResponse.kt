@@ -3,17 +3,17 @@ package com.fuzzyfunctors.reductions.data.game
 class GameInfoResponse(
     val info: Info,
     val cheapestPriceEver: CheapestPriceEver,
-    val deals: List<Deal>
+    val deals: List<Deal>,
 ) {
 
     data class Info(
         val title: String,
-        val steamAppID: String?
+        val steamAppID: String?,
     )
 
     data class CheapestPriceEver(
         val price: String,
-        val date: Long
+        val date: Long,
     )
 
     data class Deal(
@@ -21,6 +21,6 @@ class GameInfoResponse(
         val dealID: String,
         val price: String,
         val retailPrice: String,
-        val savings: String
+        val savings: String,
     )
 }

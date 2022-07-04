@@ -24,7 +24,7 @@ fun Application.initializeFlipper() {
                 InspectorFlipperPlugin(
                     this@initializeFlipper,
                     DescriptorMapping.withDefaults(),
-                )
+                ),
             )
 
             addPlugin(LeakCanary2FlipperPlugin())
@@ -34,6 +34,6 @@ fun Application.initializeFlipper() {
 
 private fun setLeakCanaryListener() {
     LeakCanary.config = LeakCanary.config.copy(
-        onHeapAnalyzedListener = FlipperLeakListener()
+        onHeapAnalyzedListener = FlipperLeakListener(),
     )
 }

@@ -24,8 +24,8 @@ fun Store.toCore(): CoreStore {
         images = CoreStore.Images(
             banner = images.banner,
             logo = images.logo,
-            icon = images.icon
-        )
+            icon = images.icon,
+        ),
     )
 }
 
@@ -39,22 +39,22 @@ fun Deal.toCore(): CoreDeal =
             isOnSale = isOnSale == "1",
             salePrice = salePrice,
             savings = savings,
-            dealRating = dealRating
+            dealRating = dealRating,
         ),
         normalPrice = normalPrice,
         metacriticData = metacriticData(
             metacriticLink = metacriticLink,
-            metacriticScore = metacriticScore
+            metacriticScore = metacriticScore,
         ),
         steamData = steamData(
             steamAppID = steamAppID,
             steamRatingCount = steamRatingCount,
             steamRatingText = steamRatingText,
-            steamRatingPercent = steamRatingPercent
+            steamRatingPercent = steamRatingPercent,
         ),
         releaseDate = Date(releaseDate),
         lastChange = lastChange?.let { Date(it) },
-        iconLink = thumb
+        iconLink = thumb,
     )
 
 fun DealInfoResponse.toCore(dealId: DealId): DealInfo {
@@ -70,20 +70,20 @@ fun DealInfoResponse.toCore(dealId: DealId): DealInfo {
         normalPrice = gameInfo.retailPrice,
         metacriticData = metacriticData(
             metacriticLink = gameInfo.metacriticLink,
-            metacriticScore = gameInfo.metacriticScore
+            metacriticScore = gameInfo.metacriticScore,
         ),
         steamData = steamData(
             steamAppID = gameInfo.steamAppID,
             steamRatingCount = gameInfo.steamRatingCount,
             steamRatingText = gameInfo.steamRatingText,
-            steamRatingPercent = gameInfo.steamRatingPercent
+            steamRatingPercent = gameInfo.steamRatingPercent,
         ),
         releaseDate = Date(gameInfo.releaseDate),
         iconLink = gameInfo.thumb,
         publisher = gameInfo.publisher,
         steamWorks = gameInfo.steamworks == "1",
         cheapestPriceEver = cheapestPrice.toCore(),
-        cheaperStores = cheaperStores.map { it.toCore() }.associateBy { it.storeId }
+        cheaperStores = cheaperStores.map { it.toCore() }.associateBy { it.storeId },
     )
 }
 
@@ -92,13 +92,13 @@ fun DealInfoResponse.CheaperStore.toCore(): DealInfo.CheaperStore =
         storeId = storeID,
         dealId = dealID,
         salePrice = salePrice,
-        normalPrice = retailPrice
+        normalPrice = retailPrice,
     )
 
 fun DealInfoResponse.CheapestPrice.toCore(): CheapestPriceEver =
     CheapestPriceEver(
         price = price,
-        date = Date(date)
+        date = Date(date),
     )
 
 fun GameInfoResponse.toCoreGame(gameId: GameId): Game =
@@ -107,13 +107,13 @@ fun GameInfoResponse.toCoreGame(gameId: GameId): Game =
         steamAppId = info.steamAppID,
         title = info.title,
         cheapestPriceEver = cheapestPriceEver.toCore(),
-        deals = deals.map { it.toCore() }.associateBy { it.dealId }
+        deals = deals.map { it.toCore() }.associateBy { it.dealId },
     )
 
 fun GameInfoResponse.CheapestPriceEver.toCore(): CheapestPriceEver =
     CheapestPriceEver(
         price = price,
-        date = Date(date)
+        date = Date(date),
     )
 
 fun GameInfoResponse.Deal.toCore(): Game.DealInfo =
@@ -122,7 +122,7 @@ fun GameInfoResponse.Deal.toCore(): Game.DealInfo =
         storeId = storeID,
         price = price,
         retailPrice = retailPrice,
-        savings = savings
+        savings = savings,
     )
 
 fun GameBestDeal.toCore(): CoreGameBestDeal =
@@ -132,14 +132,14 @@ fun GameBestDeal.toCore(): CoreGameBestDeal =
         cheapest = cheapest,
         cheapestDealId = cheapestDealID,
         title = external,
-        thumb = thumb
+        thumb = thumb,
     )
 
 private fun steamData(
     steamAppID: String?,
     steamRatingCount: String?,
     steamRatingText: String?,
-    steamRatingPercent: String?
+    steamRatingPercent: String?,
 ): CoreDeal.SteamData? =
     steamAppID?.let { id ->
         steamRatingCount?.let { count ->
@@ -149,7 +149,7 @@ private fun steamData(
                         appId = id,
                         ratingText = text,
                         ratingCount = count,
-                        ratingPercent = percent
+                        ratingPercent = percent,
                     )
                 }
             }
@@ -158,13 +158,13 @@ private fun steamData(
 
 private fun metacriticData(
     metacriticLink: String?,
-    metacriticScore: String?
+    metacriticScore: String?,
 ): CoreDeal.MetacriticData? =
     metacriticLink?.let { link ->
         metacriticScore?.let { score ->
             CoreDeal.MetacriticData(
                 link = link,
-                score = score
+                score = score,
             )
         }
     }
@@ -173,7 +173,7 @@ private fun saleData(
     isOnSale: Boolean,
     salePrice: String,
     savings: String,
-    dealRating: String
+    dealRating: String,
 ): CoreDeal.SaleData? =
     if (!isOnSale) {
         null
@@ -181,6 +181,6 @@ private fun saleData(
         CoreDeal.SaleData(
             price = salePrice,
             savings = savings,
-            rating = dealRating
+            rating = dealRating,
         )
     }

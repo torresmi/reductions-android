@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:filename")
+
 package com.fuzzyfunctors.reductions.domain
 
 import arrow.core.Either

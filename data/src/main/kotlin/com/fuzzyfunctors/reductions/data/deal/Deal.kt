@@ -19,5 +19,5 @@ data class Deal(
     val releaseDate: Long,
     val lastChange: Long?,
     val dealRating: String,
-    val thumb: String
+    val thumb: String,
 )

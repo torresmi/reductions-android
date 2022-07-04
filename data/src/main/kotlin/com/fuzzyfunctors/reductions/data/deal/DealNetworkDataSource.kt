@@ -14,13 +14,13 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
 
     suspend fun getDeals(
         options: Options,
-        pageNumber: Int? = null
+        pageNumber: Int? = null,
     ): Either<LoadingFailure.Remote, List<Deal>> {
         val params = toParams(options, pageNumber)
         return networkService.getDeals(
             params.stringParams.orEmpty(),
             params.intParams.orEmpty(),
-            params.boolParams.orEmpty()
+            params.boolParams.orEmpty(),
         )
             .toEither()
             .map { deals ->
@@ -36,7 +36,7 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
     private data class Params(
         val stringParams: Map<String, String>?,
         val boolParams: Map<String, Boolean>?,
-        val intParams: Map<String, Int>?
+        val intParams: Map<String, Int>?,
     )
 
     private fun toParams(options: Options, pageNumber: Int? = null): Params {
@@ -62,7 +62,7 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         return Params(
             stringParams,
             boolParams,
-            intParams
+            intParams,
         )
     }
 

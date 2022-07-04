@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
 class FailureView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = 0
+    defStyle: Int = 0,
 ) : LinearLayout(context, attrs, defStyle), ShowsFailure {
 
     interface Listener {
