@@ -116,6 +116,8 @@ leakcanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
 
 logcat = "com.squareup.logcat:logcat:0.1"
 
+material = "com.google.android.material:material:1.6.1"
+
 mockk = "io.mockk:mockk:1.12.4"
 
 moshi = "com.squareup.moshi:moshi:1.13.0"
