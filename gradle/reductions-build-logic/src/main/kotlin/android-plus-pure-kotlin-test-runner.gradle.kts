@@ -5,23 +5,28 @@ import com.android.build.gradle.BaseExtension
  */
 configure<BaseExtension> {
     afterEvaluate {
-        val mainModule = this
         val testDebugTask = tasks.named("testDebugUnitTest")
         val testReleaseTask = tasks.named("testReleaseUnitTest")
-        rootProject.subprojects.forEach { module ->
-            val testTaskKey = "test"
+        rootProject.subprojects
+            .filter {
+                !it.plugins.hasPlugin("com.android.library") &&
+                    !it.plugins.hasPlugin("com.android.application")
+            }
+            .forEach { module ->
+                module.afterEvaluate {
+                    val testTaskKey = "test"
 
-            module?.takeUnless { it == mainModule }
-                ?.tasks
-                ?.find { it.name.equals(testTaskKey) }
-                ?.let {
-                    testDebugTask {
-                        dependsOn(it)
-                    }
-                    testReleaseTask {
-                        dependsOn(it)
-                    }
+                    module?.tasks
+                        ?.find { it.name.equals(testTaskKey) }
+                        ?.let {
+                            testDebugTask {
+                                dependsOn(it)
+                            }
+                            testReleaseTask {
+                                dependsOn(it)
+                            }
+                        }
                 }
-        }
+            }
     }
 }
