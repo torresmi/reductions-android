@@ -10,7 +10,7 @@ import com.fuzzyfunctors.reductions.data.deal.DealInfoResponse
 import com.fuzzyfunctors.reductions.data.game.GameBestDeal
 import com.fuzzyfunctors.reductions.data.game.GameInfoResponse
 import com.fuzzyfunctors.reductions.data.store.Store
-import java.util.Date
+import java.util.*
 import com.fuzzyfunctors.reductions.core.deal.Deal as CoreDeal
 import com.fuzzyfunctors.reductions.core.game.GameBestDeal as CoreGameBestDeal
 import com.fuzzyfunctors.reductions.core.store.Store as CoreStore
@@ -149,7 +149,7 @@ private fun steamData(
     ) {
         CoreDeal.SteamData(
             appId = steamAppID,
-            ratingText = steamRatingCount,
+            ratingText = steamRatingText,
             ratingCount = steamRatingCount,
             ratingPercent = steamRatingPercent,
         )
