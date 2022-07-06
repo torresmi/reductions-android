@@ -44,7 +44,7 @@ android-tools = "7.2.1"
 
 beagle = "2.8.2"
 
-flipper = "0.152.0"
+flipper = "0.153.0"
 
 koin = "3.2.0"
 
