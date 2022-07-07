@@ -50,7 +50,7 @@ koin = "3.2.0"
 
 kotest = "5.3.2"
 
-kotlin = "1.6.21"
+kotlin = "1.7.10"
 
 kotlinx-coroutines = "1.6.3"
 
