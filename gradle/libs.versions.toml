@@ -22,7 +22,7 @@ arrow-analysis = "io.arrow-kt.analysis.kotlin:2.0.2"
 
 spotless = "com.diffplug.spotless:6.8.0"
 
-detekt = "io.gitlab.arturbosch.detekt:1.20.0"
+detekt = "io.gitlab.arturbosch.detekt:1.21.0"
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
