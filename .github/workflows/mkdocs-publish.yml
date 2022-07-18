@@ -2,6 +2,8 @@ name: Publish mkdocs via GitHub Pages
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'docs/**'
       - mkdocs.yml
@@ -12,7 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v4.1.0
+        with:
+          python-version: 3.x
+      
+      - name: Deploy Docs
+        run: |
+          pip install mkdocs-material 
+          mkdocs gh-deploy --force
