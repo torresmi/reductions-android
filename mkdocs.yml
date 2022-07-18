@@ -1,0 +1,7 @@
+site_name: Reductions Docs
+theme:
+  name: material
+  palette:
+    primary: cyan
+    accent: deep purple
+repo_url: https://github.com/torresmi/reductions-android
