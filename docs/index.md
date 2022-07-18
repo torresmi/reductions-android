@@ -1,10 +1,10 @@
-# Welcome to MkDocs
+# Overview
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+![Logo](https://github.com/torresmi/reductions-android/raw/master/app/src/main/ic_launcher-web.png)
 
-## Project layout
+Android app to find the latest video game deals
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Disclaimer
+
+**Work in progress**. This project allows me to experiment with new ideas and
+technology. My thoughts and ideas on topics are documented here.
