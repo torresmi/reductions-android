@@ -2,8 +2,6 @@
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Commands
-
 ## Project layout
 
     mkdocs.yml    # The configuration file.
