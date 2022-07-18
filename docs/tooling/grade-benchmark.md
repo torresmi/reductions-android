@@ -12,13 +12,13 @@ We often refer to "build times" as how long it takes for us to compile the proje
     * How warm is it?
 * Build cache enabled?
 * Configuration cache enabled?
-* Multi-module project? 
+* Multi-module project?
     * What module or modules have changes?
     * Are those changes impacting other modules?
 * Are we changing resource files that need to be processed?
 * Are there other programs using computer resources as well?
 
-There are many things that can cause builds to vary drastically. So instead of thinking of a single concept of "build times", I like to group these up into build scenarios. Then run benchmarks on these scenarios to get a good idea of average times. This then allows tweaking and verifying through a more repeatable system. 
+There are many things that can cause builds to vary drastically. So instead of thinking of a single concept of "build times", I like to group these up into build scenarios. Then run benchmarks on these scenarios to get a good idea of average times. This then allows tweaking and verifying through a more repeatable system.
 
 ### Running
 
