@@ -14,34 +14,9 @@ android {
         applicationId = "com.fuzzyfunctors.reductions"
         minSdk = 23
         targetSdk = 32
-
-        // Making either of these two values dynamic in the defaultConfig will
-        // require a full app build and reinstallation because the AndroidManifest.xml
-        // must be updated.
-        versionCode = 1
-        versionName = "0.1"
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        getByName("debug") {
-            isTestCoverageEnabled = true
-        }
-
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
-                "proguard-rules.pro",
-            )
-        }
     }
 
     testOptions {
-        unitTests.all {
-            it.useJUnitPlatform()
-        }
-
         managedDevices {
             devices {
                 val pixel2Api30 by registering(ManagedVirtualDevice::class) {
@@ -70,15 +45,6 @@ android {
         }
     }
 
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-
     buildFeatures {
         compose = true
     }
@@ -88,8 +54,6 @@ android {
     }
 
     lint {
-        xmlReport = true
-        htmlReport = true
         abortOnError = false
         lintConfig = file("..lint.xml")
     }
