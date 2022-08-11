@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 
 plugins {
     id("com.pablisco.gradle.auto.include") version "1.3"
-    id("com.gradle.enterprise") version "3.11"
+    id("com.gradle.enterprise") version "3.11.1"
 }
 
 gradleEnterprise {
