@@ -104,4 +104,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.testing)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.runner)
+
+    detektPlugins(libs.twitter.detekt.rules)
 }
