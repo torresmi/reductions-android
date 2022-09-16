@@ -129,3 +129,5 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit2" }
 
 soloader = "com.facebook.soloader:soloader:0.10.4"
+
+twitter-detekt-rules = "com.twitter.compose.rules:detekt:0.0.10"
