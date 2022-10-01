@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.spotless)
     alias(libs.plugins.doctor)
     alias(libs.plugins.arrow.analysis)
+    id("sonarqube-convention")
 }
 
 val reportMerge by tasks.registering(ReportMergeTask::class) {
@@ -41,7 +42,6 @@ subprojects {
 }
 
 apply(from = "$rootDir/scripts/spotless.gradle")
-apply(plugin = "sonarqube-convention")
 
 tasks.named("clean", Delete::class) {
     delete(rootProject.buildDir)
