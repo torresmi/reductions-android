@@ -16,9 +16,19 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("com.pablisco.gradle.auto.include") version "1.3"
     id("com.gradle.enterprise") version "3.11.1"
 }
+
+includeBuild("gradle/reductions-build-logic")
+include(
+    ":app",
+    ":core",
+    ":data",
+    ":debug-ui",
+    ":domain",
+    ":presentation",
+    ":test-util",
+)
 
 gradleEnterprise {
     buildScan {
