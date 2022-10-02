@@ -18,8 +18,6 @@ android-app = { id = "com.android.application", version.ref = "android-tools" }
 
 android-lib = { id = "com.android.library", version.ref = "android-tools" }
 
-arrow-analysis = "io.arrow-kt.analysis.kotlin:2.0.2"
-
 spotless = "com.diffplug.spotless:6.10.0"
 
 detekt = "io.gitlab.arturbosch.detekt:1.21.0"

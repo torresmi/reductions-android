@@ -1,4 +1,5 @@
 plugins {
+    id("arrow-analysis-convention")
     kotlin("android")
     id("com.android.library")
     id("detekt-convention")
