@@ -6,6 +6,8 @@ kotlin = "1.6.21"
 
 android-tools-gradle-plugin = "com.android.tools.build:gradle:7.3.0"
 
+arrow-analysis-gradle-plugin = "io.arrow-kt:arrow-analysis-kotlin-gradle-plugin:2.0.2"
+
 detekt-gradle-plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.21.0"
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

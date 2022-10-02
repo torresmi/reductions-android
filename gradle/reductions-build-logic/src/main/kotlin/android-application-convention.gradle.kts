@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
+    id("arrow-analysis-convention")
     kotlin("android")
     id("com.android.application")
     id("detekt-convention")
