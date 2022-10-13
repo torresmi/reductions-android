@@ -4,7 +4,7 @@ kotlin = "1.6.21"
 
 [libraries]
 
-android-tools-gradle-plugin = "com.android.tools.build:gradle:7.3.0"
+android-tools-gradle-plugin = "com.android.tools.build:gradle:7.3.1"
 
 arrow-analysis-gradle-plugin = "io.arrow-kt:arrow-analysis-kotlin-gradle-plugin:2.0.2"
 
