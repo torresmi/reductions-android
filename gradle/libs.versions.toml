@@ -46,7 +46,7 @@ flipper = "0.171.1"
 
 koin = "3.2.2"
 
-kotest = "5.5.1"
+kotest = "5.5.2"
 
 kotlin = "1.6.21"
 
