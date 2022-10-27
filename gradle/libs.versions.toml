@@ -28,7 +28,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
 semver = "net.thauvin.erik.gradle.semver:1.0.4"
 
-sonarqube = "org.sonarqube:3.4.0.2513"
+sonarqube = "org.sonarqube:3.5.0.2730"
 
 doctor = "com.osacky.doctor:0.8.1"
 
