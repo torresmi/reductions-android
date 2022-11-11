@@ -44,7 +44,7 @@ beagle = "2.8.3"
 
 flipper = "0.174.0"
 
-koin = "3.2.2"
+koin = "3.3.0"
 
 kotest = "5.5.4"
 
