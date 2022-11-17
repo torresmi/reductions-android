@@ -46,6 +46,8 @@ flipper = "0.174.0"
 
 koin = "3.2.2"
 
+koin-android = "3.3.0"
+
 kotest = "5.5.4"
 
 kotlin = "1.7.21"
@@ -90,7 +92,7 @@ flipper-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "fl
 
 fixture = "com.appmattus.fixture:fixture:1.2.0"
 
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-android" }
 
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 
@@ -128,4 +130,4 @@ retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", 
 
 soloader = "com.facebook.soloader:soloader:0.10.4"
 
-twitter-detekt-rules = "com.twitter.compose.rules:detekt:0.0.20"
+twitter-detekt-rules = "com.twitter.compose.rules:detekt:0.0.24"
