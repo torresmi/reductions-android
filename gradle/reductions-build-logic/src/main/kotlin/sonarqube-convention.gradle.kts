@@ -1,10 +1,8 @@
-import org.sonarqube.gradle.SonarQubeExtension
-
 plugins {
     id("org.sonarqube")
 }
 
-configure<SonarQubeExtension> {
+sonar {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.projectKey", System.getenv("SONAR_PROJECT_KEY"))
@@ -22,7 +20,7 @@ val skipProjects = setOf(
 )
 skipProjects.forEach {
     project(it) {
-        sonarqube {
+        sonar {
             isSkipProject = true
         }
     }

@@ -126,7 +126,7 @@ jobs:
             lintDebug
             debugCoverage
             jacocoTestReport
-            sonarqube
+            sonar
 
       - name: Setup reviewdog
         if: always()
