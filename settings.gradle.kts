@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("com.gradle.enterprise") version "3.12"
+    id("com.gradle.enterprise") version "3.12.1"
 }
 
 includeBuild("gradle/reductions-build-logic")
