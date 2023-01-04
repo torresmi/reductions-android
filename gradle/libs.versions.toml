@@ -50,7 +50,7 @@ koin-android = "3.3.2"
 
 kotest = "5.5.4"
 
-kotlin = "1.6.21"
+kotlin = "1.8.0"
 
 kotlinx-coroutines = "1.6.4"
 
