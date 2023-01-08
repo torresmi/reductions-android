@@ -14,7 +14,7 @@ private enum class DealType(@StringRes val titleRes: Int) {
     TOP(R.string.deals_top_title),
     NEWEST_GAMES(R.string.deals_newest_games_title),
     LATEST_DEALS(R.string.deals_latest_deals_title),
-    MOST_SAVINGS(R.string.deals_most_savings_title)
+    MOST_SAVINGS(R.string.deals_most_savings_title),
 }
 
 @Composable
