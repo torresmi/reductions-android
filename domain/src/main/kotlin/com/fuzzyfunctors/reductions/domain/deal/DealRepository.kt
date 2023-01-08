@@ -45,7 +45,7 @@ interface DealRepository {
             REVIEWS,
             RELEASE,
             STORE,
-            RECENT
+            RECENT,
         }
 
         data class Filters(

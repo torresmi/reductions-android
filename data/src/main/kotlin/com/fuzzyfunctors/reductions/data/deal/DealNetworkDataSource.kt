@@ -90,7 +90,7 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         ON_SALE("onSale"),
         ORDER("sortBy"),
         LIMIT("pageSize"),
-        PAGE_NUMBER("pageNumber")
+        PAGE_NUMBER("pageNumber"),
     }
 
     enum class OrderParam(val paramName: String) {
@@ -102,6 +102,6 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         REVIEWS("Reviews"),
         RELEASE("Release"),
         STORE("Store"),
-        RECENT("recent")
+        RECENT("recent"),
     }
 }

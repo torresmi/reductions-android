@@ -126,7 +126,7 @@ enum class DealType {
     TOP,
     NEWEST_GAMES,
     LATEST,
-    MOST_SAVINGS
+    MOST_SAVINGS,
 }
 
 data class DealTypeData(val type: DealType, val deals: List<Deal>)

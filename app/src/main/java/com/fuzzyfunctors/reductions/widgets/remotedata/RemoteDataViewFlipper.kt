@@ -153,6 +153,6 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
         FAILURE,
         LOADING,
         SUCCESS,
-        NOT_ASKED
+        NOT_ASKED,
     }
 }
