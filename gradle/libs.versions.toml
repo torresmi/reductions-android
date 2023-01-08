@@ -18,11 +18,9 @@ android-app = { id = "com.android.application", version.ref = "android-tools" }
 
 android-lib = { id = "com.android.library", version.ref = "android-tools" }
 
-arrow-analysis = "io.arrow-kt.analysis.kotlin:2.0.2"
+spotless = "com.diffplug.spotless:6.12.1"
 
-spotless = "com.diffplug.spotless:6.11.0"
-
-detekt = "io.gitlab.arturbosch.detekt:1.21.0"
+detekt = "io.gitlab.arturbosch.detekt:1.22.0"
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
@@ -30,7 +28,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
 semver = "net.thauvin.erik.gradle.semver:1.0.4"
 
-sonarqube = "org.sonarqube:3.4.0.2513"
+sonarqube = "org.sonarqube:3.5.0.2730"
 
 doctor = "com.osacky.doctor:0.8.1"
 
@@ -38,17 +36,19 @@ doctor = "com.osacky.doctor:0.8.1"
 
 androidx-compose-compiler = "1.2.0-beta02"
 
-androidx-compose-ui = "1.2.1"
+androidx-compose-ui = "1.3.2"
 
-android-tools = "7.3.0"
+android-tools = "7.3.1"
 
-beagle = "2.8.3"
+beagle = "2.9.0"
 
-flipper = "0.164.0"
+flipper = "0.176.1"
 
-koin = "3.2.1"
+koin = "3.3.2"
 
-kotest = "5.4.2"
+koin-android = "3.3.2"
+
+kotest = "5.5.4"
 
 kotlin = "1.6.21"
 
@@ -58,13 +58,13 @@ retrofit2 = "2.9.0"
 
 [libraries]
 
-androidx-activity-compose = "androidx.activity:activity-compose:1.5.1"
+androidx-activity-compose = "androidx.activity:activity-compose:1.6.1"
 
 androidx-appcompat = "androidx.appcompat:appcompat:1.5.1"
 
-androidx-compose-animation = "androidx.compose.animation:animation:1.2.1"
+androidx-compose-animation = "androidx.compose.animation:animation:1.3.2"
 
-androidx-compose-material3 = "androidx.compose.material3:material3:1.0.0-beta02"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.0.1"
 
 androidx-compose-ui-testing = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui" }
 
@@ -72,17 +72,17 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 
 androidx-core-ktx = "androidx.core:core-ktx:1.9.0"
 
-androidx-test-rules = "androidx.test:rules:1.4.0"
+androidx-test-rules = "androidx.test:rules:1.5.0"
 
-androidx-test-runner = "androidx.test:runner:1.4.0"
+androidx-test-runner = "androidx.test:runner:1.5.2"
 
-arrow-core = "io.arrow-kt:arrow-core:1.1.2"
+arrow-core = "io.arrow-kt:arrow-core:1.1.3"
 
 beagle-log = { module = "io.github.pandulapeter.beagle:log", version.ref = "beagle" }
 
 beagle-ui-drawer = { module = "io.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
 
-coil = "io.coil-kt:coil:2.2.1"
+coil = "io.coil-kt:coil:2.2.2"
 
 flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
 
@@ -92,7 +92,7 @@ flipper-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "fl
 
 fixture = "com.appmattus.fixture:fixture:1.2.0"
 
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-android" }
 
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 
@@ -104,7 +104,7 @@ kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kote
 
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 
-kotlin-faker = "io.github.serpro69:kotlin-faker:1.11.0"
+kotlin-faker = "io.github.serpro69:kotlin-faker:1.13.0"
 
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 
@@ -112,13 +112,13 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.10"
 
 logcat = "com.squareup.logcat:logcat:0.1"
 
-material = "com.google.android.material:material:1.6.1"
+material = "com.google.android.material:material:1.7.0"
 
-mockk = "io.mockk:mockk:1.12.8"
+mockk = "io.mockk:mockk:1.13.3"
 
 moshi = "com.squareup.moshi:moshi:1.14.0"
 
@@ -128,4 +128,6 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 
 retrofit-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit2" }
 
-soloader = "com.facebook.soloader:soloader:0.10.4"
+soloader = "com.facebook.soloader:soloader:0.10.5"
+
+twitter-detekt-rules = "com.twitter.compose.rules:detekt:0.0.26"

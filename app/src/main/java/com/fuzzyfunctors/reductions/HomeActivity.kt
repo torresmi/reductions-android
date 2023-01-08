@@ -26,8 +26,9 @@ class HomeActivity : AppCompatActivity() {
 }
 
 @Composable
-fun Scaffolding() {
+fun Scaffolding(modifier: Modifier = Modifier) {
     Scaffold(
+        modifier,
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(stringResource(id = R.string.deals_title)) },

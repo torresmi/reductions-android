@@ -1,6 +1,8 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 
 plugins {
+    id("arrow-analysis-convention")
     kotlin("android")
     id("com.android.application")
     id("detekt-convention")
@@ -8,6 +10,7 @@ plugins {
     id("kapt-convention")
     id("kotlin-convention")
     id("material3-convention")
+    id("install-git-hooks")
 }
 
 configure<ApplicationExtension> {
@@ -50,4 +53,8 @@ configure<ApplicationExtension> {
         xmlReport = true
         htmlReport = true
     }
+}
+
+afterEvaluate {
+    tasks.named("preBuild").dependsOn("installGitHooks")
 }

@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.spotless)
     alias(libs.plugins.doctor)
-    alias(libs.plugins.arrow.analysis)
+    id("sonarqube-convention")
 }
 
 val reportMerge by tasks.registering(ReportMergeTask::class) {
@@ -29,19 +29,7 @@ allprojects {
     }
 }
 
-subprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://plugins.gradle.org/m2/")
-        maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
-    }
-
-    apply(plugin = "io.arrow-kt.analysis.kotlin")
-}
-
 apply(from = "$rootDir/scripts/spotless.gradle")
-apply(plugin = "sonarqube-convention")
 
 tasks.named("clean", Delete::class) {
     delete(rootProject.buildDir)
