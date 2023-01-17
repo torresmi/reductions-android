@@ -109,7 +109,8 @@ fun createAndroidTasks(variantName: String) {
         executionData.from(
             files(
                 "$buildDir/jacoco/$testTaskName.exec",
-                "$buildDir/outputs/unit_test_code_coverage/${variantName}UnitTest/$testTaskName.exec",
+                "$buildDir/outputs/unit_test_code_coverage/" +
+                    "${variantName}UnitTest/$testTaskName.exec",
             ),
         )
     }.dependsOn(testTaskName)

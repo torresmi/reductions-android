@@ -31,7 +31,9 @@ class AlertDataRepositoryTest : DescribeSpec() {
 
                 sut.watchGame(gameId, email, price)
 
-                coVerify(exactly = 1) { mockAlertNetworkDataSource.watchGame(gameId, email, price) }
+                coVerify(exactly = 1) {
+                    mockAlertNetworkDataSource.watchGame(gameId, email, price)
+                }
             }
 
             context("successful watch") {
