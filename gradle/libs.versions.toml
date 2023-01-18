@@ -76,7 +76,7 @@ androidx-test-rules = "androidx.test:rules:1.5.0"
 
 androidx-test-runner = "androidx.test:runner:1.5.2"
 
-arrow-core = "io.arrow-kt:arrow-core:1.1.3"
+arrow-core = "io.arrow-kt:arrow-core:1.1.5"
 
 beagle-log = { module = "io.github.pandulapeter.beagle:log", version.ref = "beagle" }
 
