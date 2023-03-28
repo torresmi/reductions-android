@@ -1,3 +1,3 @@
 plugins {
-    id("io.arrow-kt.analysis.kotlin")
+//    id("io.arrow-kt.analysis.kotlin")
 }

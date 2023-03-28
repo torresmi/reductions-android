@@ -11,6 +11,7 @@ import arrow.core.None
 import arrow.core.Option
 import arrow.core.Some
 import com.fuzzyfunctors.reductions.R
+import com.fuzzyfunctors.reductions.widgets.remotedata.RemoteDataViewFlipper.ViewType.NOT_ASKED
 
 class RemoteDataViewFlipper @JvmOverloads constructor(
     context: Context,
@@ -91,8 +92,9 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
     fun setNotAskedView(@LayoutRes resId: Int) {
         when (notAskedView) {
             is Some -> {
-                removeViewAt(ViewType.NOT_ASKED.ordinal)
+                removeViewAt(NOT_ASKED.ordinal)
             }
+            None -> {}
         }
         val inflater = LayoutInflater.from(context)
         notAskedView = createOptionalNotAskedView(resId, inflater)
@@ -144,8 +146,9 @@ class RemoteDataViewFlipper @JvmOverloads constructor(
         val notAsked = notAskedView
         when (notAsked) {
             is Some -> {
-                addView(notAsked.value, ViewType.NOT_ASKED.ordinal)
+                addView(notAsked.value, NOT_ASKED.ordinal)
             }
+            None -> {}
         }
     }
 
