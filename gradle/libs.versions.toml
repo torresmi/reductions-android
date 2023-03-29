@@ -46,7 +46,7 @@ flipper = "0.187.1"
 
 koin = "3.3.3"
 
-koin-android = "3.3.3"
+koin-android = "3.4.0"
 
 kotest = "5.5.5"
 
