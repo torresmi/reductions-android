@@ -104,7 +104,7 @@ kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kote
 
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 
-kotlin-faker = "io.github.serpro69:kotlin-faker:1.13.0"
+kotlin-faker = "io.github.serpro69:kotlin-faker:1.14.0"
 
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 
