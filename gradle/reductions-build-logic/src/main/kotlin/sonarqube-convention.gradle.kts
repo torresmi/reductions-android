@@ -20,7 +20,7 @@ val skipProjects = setOf(
 )
 skipProjects.forEach {
     project(it) {
-        sonarqube {
+        sonar {
             isSkipProject = true
         }
     }
