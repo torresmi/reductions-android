@@ -14,14 +14,3 @@ sonar {
         property("sonar.androidLint.reportPaths", "build/reports/lint-results-debug.xml")
     }
 }
-
-val skipProjects = setOf(
-    ":test-util",
-)
-skipProjects.forEach {
-    project(it) {
-        sonar {
-            isSkipProject = true
-        }
-    }
-}
