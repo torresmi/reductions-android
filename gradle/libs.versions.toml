@@ -62,7 +62,7 @@ androidx-activity-compose = "androidx.activity:activity-compose:1.7.1"
 
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 
-androidx-compose-animation = "androidx.compose.animation:animation:1.4.2"
+androidx-compose-animation = "androidx.compose.animation:animation:1.4.3"
 
 androidx-compose-material3 = "androidx.compose.material3:material3:1.0.1"
 
