@@ -120,7 +120,7 @@ material = "com.google.android.material:material:1.9.0"
 
 mockk = "io.mockk:mockk:1.13.5"
 
-moshi = "com.squareup.moshi:moshi:1.14.0"
+moshi = "com.squareup.moshi:moshi:1.15.0"
 
 remotedata = "com.github.torresmi:remotedata:1.1"
 
