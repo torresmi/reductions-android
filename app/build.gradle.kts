@@ -31,7 +31,7 @@ android {
                     systemImageSource = "aosp-atd"
                 }
 
-                deviceGroups {
+                groups {
                     register("phoneAndTablet") {
                         setOf(
                             pixel2Api30,
