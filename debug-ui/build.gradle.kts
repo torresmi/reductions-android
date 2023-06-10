@@ -3,6 +3,8 @@ plugins {
 }
 
 android {
+    namespace = "com.fuzzyfunctors.reductions.debug.ui"
+
     compileSdk = 33
 
     defaultConfig {
