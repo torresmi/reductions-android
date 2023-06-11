@@ -25,7 +25,8 @@ configure<ApplicationExtension> {
 
     buildTypes {
         getByName("debug") {
-            isTestCoverageEnabled = true
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
 
         getByName("release") {

@@ -8,6 +8,8 @@ plugins {
 }
 
 android {
+    namespace = "com.fuzzyfunctors.reductions"
+
     compileSdk = 33
 
     defaultConfig {
@@ -31,7 +33,7 @@ android {
                     systemImageSource = "aosp-atd"
                 }
 
-                deviceGroups {
+                groups {
                     register("phoneAndTablet") {
                         setOf(
                             pixel2Api30,
