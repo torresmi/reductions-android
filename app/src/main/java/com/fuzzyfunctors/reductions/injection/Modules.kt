@@ -23,6 +23,7 @@ import com.fuzzyfunctors.reductions.domain.alert.AlertRepository
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository
 import com.fuzzyfunctors.reductions.domain.game.GameRepository
 import com.fuzzyfunctors.reductions.domain.store.StoreRepository
+import logcat.logcat
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -99,6 +100,7 @@ private const val MEMORY_STORE_DEAL = "storeMemoryDeal"
 object Modules {
 
     fun get(isDebug: Boolean): List<Module> {
+        logcat { "isDebug: $isDebug" }
         return listOf(
             appModule,
             networkModule,
