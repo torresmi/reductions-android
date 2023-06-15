@@ -3,12 +3,7 @@ package com.fuzzyfunctors.reductions.data
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
 
 class MemoryReactiveStoreTest : DescribeSpec() {
 
@@ -32,31 +27,25 @@ class MemoryReactiveStoreTest : DescribeSpec() {
             }
 
             it("updates a watching observer") {
-                val result = waitForSubscribers(
-                    subscription = {
-                        sut.get(key)
-                            .take(2)
-                            .toList()
-                    },
-                    action = {
-                        sut.store(item)
-                    },
-                )
+                val initial = sut.get(key).first()
+
+                sut.store(item)
+
+                val updated = sut.get(key).first()
+
+                val result = listOf(initial, updated)
 
                 result shouldBe listOf(null, item)
             }
 
             it("updates a watching observer for all items") {
-                val result = waitForSubscribers(
-                    subscription = {
-                        sut.get()
-                            .take(2)
-                            .toList()
-                    },
-                    action = {
-                        sut.store(item)
-                    },
-                )
+                val initial = sut.get().first()
+
+                sut.store(item)
+
+                val updated = sut.get().first()
+
+                val result = listOf(initial, updated)
 
                 result shouldBe listOf(null, items)
             }
@@ -73,32 +62,25 @@ class MemoryReactiveStoreTest : DescribeSpec() {
             }
 
             it("updates a watching observer") {
-                val result = waitForSubscribers(
-                    subscription = {
-                        sut.get()
-                            .take(2)
-                            .toList()
-                    },
-                    action = {
-                        sut.store(items)
-                    },
-                )
+                val initial = sut.get().first()
+
+                sut.store(items)
+
+                val updated = sut.get().first()
+
+                val result = listOf(initial, updated)
 
                 result shouldBe listOf(null, items)
             }
 
             it("Updates individual item observers") {
+                val initial = sut.get(key).first()
 
-                val result = waitForSubscribers(
-                    subscription = {
-                        sut.get(key)
-                            .take(2)
-                            .toList()
-                    },
-                    action = {
-                        sut.store(item)
-                    },
-                )
+                sut.store(item)
+
+                val updated = sut.get(key).first()
+
+                val result = listOf(initial, updated)
 
                 result shouldBe listOf(null, item)
             }
@@ -135,17 +117,4 @@ class MemoryReactiveStoreTest : DescribeSpec() {
             }
         }
     }
-}
-
-private suspend fun <A> CoroutineScope.waitForSubscribers(
-    subscription: suspend CoroutineScope.() -> A,
-    action: suspend CoroutineScope.() -> Unit,
-): A {
-    val subscriptionTask = async(block = subscription)
-
-    // TODO: This is probably flaky, and delays the call enough to start the subscription.
-    // - This will be changed later when we refactor the store to use suspension functions
-    launch(block = action)
-
-    return subscriptionTask.await()
 }
