@@ -112,7 +112,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.11"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.12"
 
 logcat = "com.squareup.logcat:logcat:0.1"
 
