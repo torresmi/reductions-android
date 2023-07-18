@@ -18,7 +18,7 @@ android-app = { id = "com.android.application", version.ref = "android-tools" }
 
 android-lib = { id = "com.android.library", version.ref = "android-tools" }
 
-spotless = "com.diffplug.spotless:6.19.0"
+spotless = "com.diffplug.spotless:6.20.0"
 
 detekt = "io.gitlab.arturbosch.detekt:1.22.0"
 
