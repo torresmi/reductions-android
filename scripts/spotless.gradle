@@ -11,25 +11,11 @@ spotless {
         target "**/*.kt"
         targetExclude "**/build/**/*.kt", "bin/**/*.kt", "gradle-user-home/**/*.kt"
         ktlint()
-            .setUseExperimental(true)
-            .editorConfigOverride(
-                [
-                    "ij_kotlin_allow_trailing_comma": true,
-                    "ij_kotlin_allow_trailing_comma_on_call_site": true
-                ]
-            )
 
     }
     kotlinGradle {
         target "**/*.gradle.kts"
         targetExclude "**/build/**/*.kts"
         ktlint()
-            .setUseExperimental(true)
-            .editorConfigOverride(
-                [
-                    "ij_kotlin_allow_trailing_comma": true,
-                    "ij_kotlin_allow_trailing_comma_on_call_site": true
-                ]
-            )
     }
 }
