@@ -42,6 +42,12 @@ file("features")
     .maxDepth(2)
     .forEach(::includeNestedDir)
 
+// Include all common library modules
+file("common")
+    .walkTopDown()
+    .maxDepth(1)
+    .forEach(::includeNestedDir)
+
 gradleEnterprise {
     buildScan {
         termsOfServiceUrl = "https://gradle.com/terms-of-service"
