@@ -7,3 +7,8 @@ plugins {
     id("kapt-convention")
     id("kotlin-convention")
 }
+
+android {
+    namespace = "com.fuzzyfunctors.reductions.${projectDir.name}"
+    compileSdk = 33
+}

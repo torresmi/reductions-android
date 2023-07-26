@@ -14,7 +14,13 @@ plugins {
 }
 
 configure<ApplicationExtension> {
+    namespace = "com.fuzzyfunctors.reductions"
+    compileSdk = 34
+
     defaultConfig {
+        minSdk = 23
+        targetSdk = 34
+
         // Making either of these two values dynamic in the defaultConfig will
         // require a full app build and reinstallation because the AndroidManifest.xml
         // must be updated.
