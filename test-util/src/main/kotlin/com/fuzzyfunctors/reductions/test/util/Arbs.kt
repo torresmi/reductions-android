@@ -1,5 +1,3 @@
-@file:Suppress("ktlint:filename")
-
 package com.fuzzyfunctors.reductions.test.util
 
 import io.kotest.property.Arb
