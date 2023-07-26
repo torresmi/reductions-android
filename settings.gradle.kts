@@ -30,9 +30,27 @@ include(
     ":test-util",
 )
 
+// Include all application modules
+file("apps")
+    .walkTopDown()
+    .maxDepth(1)
+    .forEach(::includeNestedDir)
+
+// Include all feature modules
+file("features")
+    .walkTopDown()
+    .maxDepth(2)
+    .forEach(::includeNestedDir)
+
 gradleEnterprise {
     buildScan {
         termsOfServiceUrl = "https://gradle.com/terms-of-service"
         termsOfServiceAgree = "yes"
     }
+}
+
+fun includeNestedDir(dir: File) {
+    val name = dir.name
+    include(name)
+    project(":$name").projectDir = dir
 }
