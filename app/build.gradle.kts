@@ -8,14 +8,8 @@ plugins {
 }
 
 android {
-    namespace = "com.fuzzyfunctors.reductions"
-
-    compileSdk = 33
-
     defaultConfig {
         applicationId = "com.fuzzyfunctors.reductions"
-        minSdk = 23
-        targetSdk = 33
     }
 
     testOptions {
