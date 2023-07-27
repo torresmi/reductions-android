@@ -30,19 +30,13 @@ include(
     ":test-util",
 )
 
-// Include all application modules
-file("apps")
-    .walkTopDown()
-    .maxDepth(1)
-    .forEach(::includeNestedDir)
-
 // Include all feature modules
-file("features")
+file("feature")
     .walkTopDown()
     .maxDepth(2)
     .forEach(::includeNestedDir)
 
-// Include all common library modules
+// Include all common modules
 file("common")
     .walkTopDown()
     .maxDepth(1)
