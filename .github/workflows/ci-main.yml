@@ -38,14 +38,14 @@ jobs:
           gradle-dependencies-cache-key: |
             gradle/libs.versions.toml
           arguments: |
-            spotlessCheck
+            spotlessCheck --no-configuration-cache
             detekt reportMerge --continue
             assembleDebug
             bundleDebug
             lintDebug
             debugCoverage
             jacocoTestReport
-            sonarqube
+            sonar
 
       - name: Upload apk
         uses: actions/upload-artifact@v3
