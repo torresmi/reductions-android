@@ -45,7 +45,7 @@ jobs:
             lintDebug
             debugCoverage
             jacocoTestReport
-            sonarqube
+            sonar
 
       - name: Upload apk
         uses: actions/upload-artifact@v3
