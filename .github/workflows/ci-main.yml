@@ -38,7 +38,7 @@ jobs:
           gradle-dependencies-cache-key: |
             gradle/libs.versions.toml
           arguments: |
-            spotlessCheck
+            spotlessCheck --no-configuration-cache
             detekt reportMerge --continue
             assembleDebug
             bundleDebug
