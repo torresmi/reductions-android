@@ -14,4 +14,4 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 
 semver-gradle-plugin = "net.thauvin.erik.gradle:semver:1.0.4"
 
-sonarqube-gradle-plugin = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.0.0.2929"
+sonarqube-gradle-plugin = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.3.0.3225"
