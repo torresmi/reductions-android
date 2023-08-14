@@ -42,6 +42,11 @@ file("common")
     .maxDepth(1)
     .forEach(::includeNestedDir)
 
+// Optionally include sample apps. Uncomment as needed for faster feature development
+include(
+//    ":sample:store",
+)
+
 gradleEnterprise {
     buildScan {
         termsOfServiceUrl = "https://gradle.com/terms-of-service"
