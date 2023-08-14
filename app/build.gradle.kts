@@ -1,4 +1,3 @@
-
 import com.android.build.api.dsl.ManagedVirtualDevice
 
 plugins {
@@ -41,10 +40,6 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
-
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
     }
@@ -52,12 +47,6 @@ android {
     lint {
         abortOnError = false
         lintConfig = file("..lint.xml")
-    }
-
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
     }
 }
 
