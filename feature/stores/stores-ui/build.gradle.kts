@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api(project(":stores-data"))
+    implementation(project(":stores-api"))
 
     implementation(platform(libs.kotlin.bom))
 
