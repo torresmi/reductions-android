@@ -122,7 +122,7 @@ logcat = "com.squareup.logcat:logcat:0.1"
 
 material = "com.google.android.material:material:1.9.0"
 
-mockk = "io.mockk:mockk:1.13.5"
+mockk = "io.mockk:mockk:1.13.7"
 
 moshi = "com.squareup.moshi:moshi:1.15.0"
 
