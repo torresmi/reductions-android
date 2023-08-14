@@ -13,7 +13,7 @@ plugins {
     id("install-git-hooks")
 }
 
-configure<ApplicationExtension> {
+android {
     namespace = "com.fuzzyfunctors.reductions"
     compileSdk = 34
 
