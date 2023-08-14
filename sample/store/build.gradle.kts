@@ -15,6 +15,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":flipper-api"))
+    implementation(project(":flipper"))
     implementation(project(":stores-api"))
     implementation(project(":stores-ui"))
 
