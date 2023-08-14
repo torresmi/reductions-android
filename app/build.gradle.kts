@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":domain"))
     implementation(project(":debug-ui"))
+    implementation(project(":debug-ui-api"))
 
     implementation(platform(libs.kotlin.bom))
 
