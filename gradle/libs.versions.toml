@@ -1,5 +1,11 @@
 [bundles]
 
+android-test = [
+    "androidx-compose-ui-testing",
+    "androidx-test-rules",
+    "androidx-test-runner"
+]
+
 compose-ui = [
     "androidx-compose-animation",
     "androidx-compose-material3",

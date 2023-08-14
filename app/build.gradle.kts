@@ -1,4 +1,3 @@
-
 import com.android.build.api.dsl.ManagedVirtualDevice
 
 plugins {
@@ -8,14 +7,8 @@ plugins {
 }
 
 android {
-    namespace = "com.fuzzyfunctors.reductions"
-
-    compileSdk = 34
-
     defaultConfig {
         applicationId = "com.fuzzyfunctors.reductions"
-        minSdk = 23
-        targetSdk = 34
     }
 
     testOptions {
@@ -47,10 +40,6 @@ android {
         }
     }
 
-    buildFeatures {
-        compose = true
-    }
-
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
     }
@@ -58,12 +47,6 @@ android {
     lint {
         abortOnError = false
         lintConfig = file("..lint.xml")
-    }
-
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
     }
 }
 
@@ -103,9 +86,7 @@ dependencies {
 
     testImplementation(project(":test-util"))
 
-    androidTestImplementation(libs.androidx.compose.ui.testing)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.bundles.android.test)
 
     detektPlugins(libs.twitter.detekt.rules)
 }

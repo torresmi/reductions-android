@@ -1,4 +1,3 @@
-import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 
 plugins {
@@ -13,8 +12,14 @@ plugins {
     id("install-git-hooks")
 }
 
-configure<ApplicationExtension> {
+android {
+    namespace = "com.fuzzyfunctors.reductions"
+    compileSdk = 34
+
     defaultConfig {
+        minSdk = 23
+        targetSdk = 34
+
         // Making either of these two values dynamic in the defaultConfig will
         // require a full app build and reinstallation because the AndroidManifest.xml
         // must be updated.
@@ -38,6 +43,10 @@ configure<ApplicationExtension> {
         }
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_11
         sourceCompatibility = JavaVersion.VERSION_11
@@ -53,6 +62,12 @@ configure<ApplicationExtension> {
         checkDependencies = true
         xmlReport = true
         htmlReport = true
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 

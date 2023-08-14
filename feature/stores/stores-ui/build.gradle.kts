@@ -3,7 +3,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":stores-data"))
+    api(project(":stores-data"))
+    implementation(project(":stores-api"))
 
     implementation(platform(libs.kotlin.bom))
 
