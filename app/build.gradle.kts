@@ -55,8 +55,10 @@ dependencies {
     implementation(project(":presentation"))
     implementation(project(":core"))
     implementation(project(":domain"))
-    implementation(project(":debug-ui"))
     implementation(project(":debug-ui-api"))
+    implementation(project(":debug-ui"))
+    implementation(project(":flipper-api"))
+    implementation(project(":flipper"))
 
     implementation(platform(libs.kotlin.bom))
 
@@ -74,13 +76,6 @@ dependencies {
     implementation(libs.remotedata)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
-
-    debugImplementation(libs.flipper)
-    debugImplementation(libs.flipper.leakcanary2.plugin)
-    debugImplementation(libs.leakcanary)
-    debugImplementation(libs.soloader)
-
-    releaseImplementation(libs.flipper.noop)
 
     testImplementation(libs.koin.test)
     testImplementation(libs.kotlinx.coroutines.test)

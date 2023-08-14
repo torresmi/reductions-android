@@ -2,7 +2,7 @@ package com.fuzzyfunctors.reductions
 
 import android.app.Application
 import com.fuzzyfunctors.reductions.debug.ui.DebugDrawer
-import com.fuzzyfunctors.reductions.flipper.initializeFlipper
+import com.fuzzyfunctors.reductions.flipper.FlipperImpl
 import com.fuzzyfunctors.reductions.injection.Modules
 import logcat.AndroidLogcatLogger
 import logcat.LogPriority
@@ -15,8 +15,7 @@ class ReductionsApp : Application() {
         super.onCreate()
         AndroidLogcatLogger.installOnDebuggableApp(this, minPriority = LogPriority.VERBOSE)
         DebugDrawer.initialize(this)
-
-        initializeFlipper()
+        FlipperImpl().initialize(this)
 
         startKoin {
             androidContext(this@ReductionsApp)
