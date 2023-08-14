@@ -9,6 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.fuzzyfunctors.reductions.${projectDir.name}"
+    val formattedProjectName = projectDir.name.replace("-", ".")
+    namespace = "com.fuzzyfunctors.reductions.$formattedProjectName"
     compileSdk = 33
 }
