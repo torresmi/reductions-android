@@ -11,5 +11,5 @@ plugins {
 android {
     val formattedProjectName = projectDir.name.replace("-", ".")
     namespace = "com.fuzzyfunctors.reductions.$formattedProjectName"
-    compileSdk = 33
+    compileSdk = 34
 }
