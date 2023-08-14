@@ -1,4 +1,4 @@
-package com.fuzzyfunctors.reductions.debug.ui
+package com.fuzzyfunctors.reductions.debug.ui.api
 
 import android.app.Application
 

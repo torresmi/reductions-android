@@ -2,6 +2,7 @@ package com.fuzzyfunctors.reductions.debug.ui
 
 import android.app.Application
 import android.content.res.Resources
+import com.fuzzyfunctors.reductions.debug.ui.api.DebugUI
 import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.common.configuration.Behavior
 import com.pandulapeter.beagle.log.BeagleLogger

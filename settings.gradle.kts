@@ -24,7 +24,6 @@ include(
     ":app",
     ":core",
     ":data",
-    ":debug-ui",
     ":domain",
     ":presentation",
     ":test-util",
@@ -38,6 +37,12 @@ file("feature")
 
 // Include all common modules
 file("common")
+    .walkTopDown()
+    .maxDepth(1)
+    .forEach(::includeNestedDir)
+
+// Include all platform modules
+file("platform")
     .walkTopDown()
     .maxDepth(1)
     .forEach(::includeNestedDir)
