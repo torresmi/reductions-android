@@ -1,11 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application
-        android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="false">
-
+    <application>
         <activity android:name="com.facebook.flipper.android.diagnostics.FlipperDiagnosticActivity"
-            android:exported="false"/>
+            android:exported="true"/>
     </application>
-
 </manifest>

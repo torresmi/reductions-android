@@ -1,8 +1,5 @@
 plugins {
-    id("android-library-convention")
-}
-
-android {
+    id("kotlin-library-convention")
 }
 
 dependencies {

@@ -23,6 +23,7 @@ import com.fuzzyfunctors.reductions.domain.alert.AlertRepository
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository
 import com.fuzzyfunctors.reductions.domain.game.GameRepository
 import com.fuzzyfunctors.reductions.domain.store.StoreRepository
+import com.fuzzyfunctors.reductions.flipper.di.flipperModule
 import logcat.logcat
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -104,6 +105,7 @@ object Modules {
         return listOf(
             appModule,
             networkModule,
+            flipperModule,
             localModule,
             repositoryModule,
         )
