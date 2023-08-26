@@ -78,7 +78,9 @@ dependencies {
     implementation(libs.retrofit.converter.moshi)
 
     testImplementation(libs.koin.test)
+    testImplementation(libs.kotest.koin)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 
     testImplementation(project(":test-util"))
 

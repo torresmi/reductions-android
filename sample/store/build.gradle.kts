@@ -22,5 +22,6 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.bundles.compose.ui)
+    implementation(libs.koin.android)
     implementation(libs.material)
 }
