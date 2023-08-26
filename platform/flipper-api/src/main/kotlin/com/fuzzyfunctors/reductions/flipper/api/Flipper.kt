@@ -1,5 +1,5 @@
 package com.fuzzyfunctors.reductions.flipper.api
 
-interface Flipper {
+fun interface Flipper {
     fun start()
 }
