@@ -19,7 +19,7 @@ class StoreApp : Application() {
             loadKoinModules(
                 listOf(
                     flipperModule,
-                )
+                ),
             )
         }
 
