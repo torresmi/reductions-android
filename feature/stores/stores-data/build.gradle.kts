@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":stores-domain"))
+    implementation(projects.feature.stores.storesDomain)
 
     implementation(platform(libs.kotlin.bom))
 
@@ -11,5 +11,5 @@ dependencies {
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
-    testImplementation(project(":test-util"))
+    testImplementation(projects.testUtil)
 }

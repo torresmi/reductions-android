@@ -19,6 +19,10 @@ plugins {
     id("com.gradle.enterprise") version "3.14.1"
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "reductions-android-root"
+
 includeBuild("gradle/reductions-build-logic")
 include(
     ":app",
@@ -33,19 +37,13 @@ include(
 file("feature")
     .walkTopDown()
     .maxDepth(2)
-    .forEach(::includeNestedDir)
-
-// Include all common modules
-file("common")
-    .walkTopDown()
-    .maxDepth(1)
-    .forEach(::includeNestedDir)
+    .forEach(::includeDir)
 
 // Include all platform modules
 file("platform")
     .walkTopDown()
     .maxDepth(1)
-    .forEach(::includeNestedDir)
+    .forEach(::includeDir)
 
 // Optionally include sample apps. Uncomment as needed for faster feature development
 include(
@@ -59,8 +57,11 @@ gradleEnterprise {
     }
 }
 
-fun includeNestedDir(dir: File) {
-    val name = dir.name
-    include(name)
-    project(":$name").projectDir = dir
+fun includeDir(dir: File) {
+    val path = dir.path
+        .substringAfterLast(rootDir.name)
+        .replace("/", ":")
+
+    include(path)
+    project(path).projectDir = dir
 }

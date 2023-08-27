@@ -6,7 +6,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":flipper-api"))
+    implementation(projects.platform.flipperApi)
 
     implementation(platform(libs.kotlin.bom))
     implementation(platform(libs.okhttp.bom))
