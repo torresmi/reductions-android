@@ -51,14 +51,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":data"))
-    implementation(project(":presentation"))
-    implementation(project(":core"))
-    implementation(project(":domain"))
-    implementation(project(":debug-ui-api"))
-    implementation(project(":debug-ui"))
-    implementation(project(":flipper-api"))
-    implementation(project(":flipper"))
+    implementation(projects.core)
+    implementation(projects.data)
+    implementation(projects.domain)
+    implementation(projects.presentation)
+    implementation(projects.platform.debugUiApi)
+    implementation(projects.platform.debugUi)
+    implementation(projects.platform.flipperApi)
+    implementation(projects.platform.flipper)
 
     implementation(platform(libs.kotlin.bom))
 
@@ -82,7 +82,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
 
-    testImplementation(project(":test-util"))
+    testImplementation(projects.testUtil)
 
     androidTestImplementation(libs.bundles.android.test)
 

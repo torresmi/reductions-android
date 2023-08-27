@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(projects.core)
 
     implementation(libs.remotedata)
     api(libs.bundles.kotest)

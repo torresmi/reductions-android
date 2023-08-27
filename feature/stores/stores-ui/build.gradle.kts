@@ -3,8 +3,8 @@ plugins {
 }
 
 dependencies {
-    api(project(":stores-data"))
-    implementation(project(":stores-api"))
+    implementation(projects.feature.stores.storesApi)
+    implementation(projects.feature.stores.storesData)
 
     implementation(platform(libs.kotlin.bom))
 
@@ -12,7 +12,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.remotedata)
 
-    testImplementation(project(":test-util"))
+    testImplementation(projects.testUtil)
 
     testImplementation(libs.koin.test)
     testImplementation(libs.kotlinx.coroutines.test)

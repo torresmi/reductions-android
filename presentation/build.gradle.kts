@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(projects.core)
 
     implementation(platform(libs.kotlin.bom))
 
@@ -12,5 +12,5 @@ dependencies {
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
-    testImplementation(project(":test-util"))
+    testImplementation(projects.testUtil)
 }

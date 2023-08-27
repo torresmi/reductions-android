@@ -15,10 +15,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":flipper-api"))
-    implementation(project(":flipper"))
-    implementation(project(":stores-api"))
-    implementation(project(":stores-ui"))
+    implementation(projects.platform.flipperApi)
+    implementation(projects.platform.flipper)
+    implementation(projects.feature.stores.storesApi)
+    implementation(projects.feature.stores.storesUi)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.bundles.compose.ui)
