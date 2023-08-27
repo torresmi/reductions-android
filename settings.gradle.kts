@@ -36,10 +36,18 @@ file("feature")
     .forEach(::includeDir)
 
 // Include all platform modules
-file("platform")
-    .walkTopDown()
-    .maxDepth(1)
-    .forEach(::includeDir)
+//file("platform")
+//    .walkTopDown()
+//    .maxDepth(1)
+//    .forEach(::includeDir)
+
+include(
+    ":platform",
+    ":platform:flipper",
+    ":platform:flipper-api",
+    ":platform:debug-ui-api",
+    ":platform:debug-ui",
+)
 
 // Optionally include sample apps. Uncomment as needed for faster feature development
 include(
