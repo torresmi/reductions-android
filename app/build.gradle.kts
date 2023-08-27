@@ -55,10 +55,10 @@ dependencies {
     implementation(project(":presentation"))
     implementation(project(":core"))
     implementation(project(":domain"))
-    implementation(project(":debug-ui-api"))
-    implementation(project(":debug-ui"))
-    implementation(project(":flipper-api"))
-    implementation(project(":flipper"))
+    implementation(project(":platform:debug-ui-api"))
+    implementation(project(":platform:debug-ui"))
+    implementation(project(":platform:flipper-api"))
+    implementation(project(":platform:flipper"))
 
     implementation(platform(libs.kotlin.bom))
 

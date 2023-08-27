@@ -6,7 +6,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":debug-ui-api"))
+    implementation(project(":platform:debug-ui-api"))
 
     implementation(platform(libs.kotlin.bom))
 

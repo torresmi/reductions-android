@@ -33,19 +33,13 @@ include(
 file("feature")
     .walkTopDown()
     .maxDepth(2)
-    .forEach(::includeNestedDir)
-
-// Include all common modules
-file("common")
-    .walkTopDown()
-    .maxDepth(1)
-    .forEach(::includeNestedDir)
+    .forEach(::includeDir)
 
 // Include all platform modules
 file("platform")
     .walkTopDown()
     .maxDepth(1)
-    .forEach(::includeNestedDir)
+    .forEach(::includeDir)
 
 // Optionally include sample apps. Uncomment as needed for faster feature development
 include(
@@ -59,8 +53,11 @@ gradleEnterprise {
     }
 }
 
-fun includeNestedDir(dir: File) {
-    val name = dir.name
-    include(name)
-    project(":$name").projectDir = dir
+fun includeDir(dir: File) {
+    val path = dir.path
+        .substringAfter(rootDir.name)
+        .replace("/", ":")
+
+    include(path)
+    project(path).projectDir = dir
 }
