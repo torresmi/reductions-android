@@ -34,7 +34,7 @@ jobs:
     needs: changes  
     if: ${{ needs.changes.outputs.action == 'true' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Reviewdog Actionlint
         uses: reviewdog/action-actionlint@v1
@@ -46,7 +46,7 @@ jobs:
     needs: changes
     if: ${{ needs.changes.outputs.kotlin == 'true ' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/gradle-jdk11@0.4.0
@@ -66,7 +66,7 @@ jobs:
     needs: changes
     if: ${{ needs.changes.outputs.markdown == 'true' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Markdownlint
         uses: reviewdog/action-markdownlint@v0.12
@@ -88,7 +88,7 @@ jobs:
     needs: changes 
     if: ${{ needs.changes.outputs.application == 'true' }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
     
