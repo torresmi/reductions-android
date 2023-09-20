@@ -68,7 +68,7 @@ androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 
 androidx-compose-animation = "androidx.compose.animation:animation:1.5.1"
 
-androidx-compose-material3 = "androidx.compose.material3:material3:1.1.1"
+androidx-compose-material3 = "androidx.compose.material3:material3:1.1.2"
 
 androidx-compose-ui-testing = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui" }
 
