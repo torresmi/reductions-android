@@ -56,7 +56,7 @@ kotlin = "1.8.10"
 
 kotlinx-coroutines = "1.7.3"
 
-okhttp = "4.11.0"
+okhttp = "4.12.0"
 
 retrofit2 = "2.9.0"
 
