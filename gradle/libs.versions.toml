@@ -34,7 +34,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
 semver = "net.thauvin.erik.gradle.semver:1.0.4"
 
-doctor = "com.osacky.doctor:0.9.0"
+doctor = "com.osacky.doctor:0.9.1"
 
 [versions]
 
