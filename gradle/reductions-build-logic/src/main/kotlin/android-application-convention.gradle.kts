@@ -17,7 +17,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 24
         targetSdk = 34
 
         // Making either of these two values dynamic in the defaultConfig will
