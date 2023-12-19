@@ -1,3 +1,5 @@
 dependencies:
-  - gradle/libs.versions.toml
+- changed-files:
+  - any-glob-to-any-file:
+    - gradle/libs.versions.toml
   
