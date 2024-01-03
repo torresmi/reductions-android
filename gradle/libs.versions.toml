@@ -42,7 +42,7 @@ androidx-compose-compiler = "1.4.4"
 
 androidx-compose-ui = "1.5.4"
 
-android-tools = "8.2.0"
+android-tools = "8.2.1"
 
 beagle = "2.9.2"
 
