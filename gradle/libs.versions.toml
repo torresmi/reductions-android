@@ -124,7 +124,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 
 kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2"
 
-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.12"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.13"
 
 logcat = "com.squareup.logcat:logcat:0.1"
 
