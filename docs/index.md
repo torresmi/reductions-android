@@ -2,7 +2,7 @@
 
 ![Logo](https://github.com/torresmi/reductions-android/raw/master/app/src/main/ic_launcher-web.png)
 
-Android app to find the latest video game deals
+Android app to find the latest video game deals.
 
 ## Disclaimer
 
