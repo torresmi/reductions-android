@@ -11,7 +11,6 @@ import io.mockk.mockk
 import java.net.HttpURLConnection
 
 class AlertDataRepositoryTest : DescribeSpec() {
-
     val mockAlertNetworkDataSource = mockk<AlertNetworkDataSource>()
 
     val sut = AlertDataRepository(mockAlertNetworkDataSource)

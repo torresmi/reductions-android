@@ -10,30 +10,30 @@ import retrofit2.Response
 import java.net.HttpURLConnection
 
 class AlertNetworkDataSource(private val networkService: CheapSharkService) {
-
     suspend fun watchGame(
         gameId: GameId,
         email: String,
         price: Double?,
-    ): Either<LoadingFailure.Remote, Unit> =
-        networkService
-            .updateAlert(
-                ACTION_SET,
-                email,
-                gameId,
-                price,
-            )
-            .run(responseMapper)
+    ): Either<LoadingFailure.Remote, Unit> = networkService
+        .updateAlert(
+            ACTION_SET,
+            email,
+            gameId,
+            price,
+        )
+        .run(responseMapper)
 
-    suspend fun unwatchGame(gameId: GameId, email: String): Either<LoadingFailure.Remote, Unit> =
-        networkService
-            .updateAlert(
-                ACTION_DELETE,
-                email,
-                gameId,
-                null,
-            )
-            .run(responseMapper)
+    suspend fun unwatchGame(
+        gameId: GameId,
+        email: String,
+    ): Either<LoadingFailure.Remote, Unit> = networkService
+        .updateAlert(
+            ACTION_DELETE,
+            email,
+            gameId,
+            null,
+        )
+        .run(responseMapper)
 
     private val responseMapper = { response: Response<Boolean> ->
         response.toEither().flatMap { isSuccess ->

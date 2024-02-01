@@ -8,7 +8,6 @@ import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import kotlinx.coroutines.flow.Flow
 
 interface DealRepository {
-
     fun getTopDeals(): Flow<List<Deal>?>
 
     suspend fun fetchTopDeals(options: Options = Options()): LoadingFailure.Remote?
@@ -35,7 +34,6 @@ interface DealRepository {
         val order: Order? = null,
         val filters: Filters? = null,
     ) {
-
         enum class Order {
             DEAL_RATING,
             TITLE,

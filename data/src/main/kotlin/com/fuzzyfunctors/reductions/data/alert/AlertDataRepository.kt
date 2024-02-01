@@ -6,7 +6,6 @@ import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.alert.AlertRepository
 
 class AlertDataRepository(private val networkDataSource: AlertNetworkDataSource) : AlertRepository {
-
     override suspend fun watchGame(
         gameId: GameId,
         email: String,
@@ -17,7 +16,10 @@ class AlertDataRepository(private val networkDataSource: AlertNetworkDataSource)
             .orNull()
     }
 
-    override suspend fun unwatchGame(gameId: GameId, email: String): LoadingFailure.Remote? {
+    override suspend fun unwatchGame(
+        gameId: GameId,
+        email: String,
+    ): LoadingFailure.Remote? {
         return networkDataSource.unwatchGame(gameId, email)
             .swap()
             .orNull()

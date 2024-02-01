@@ -9,7 +9,6 @@ import java.util.Date
 import com.fuzzyfunctors.reductions.data.deal.Deal as ApiDeal
 
 class DealMapperTest : DescribeSpec() {
-
     val generator = DealResponseGeneration.arb()
 
     init {
@@ -97,7 +96,10 @@ class DealMapperTest : DescribeSpec() {
         }
     }
 
-    fun assertCommonProperties(deal: ApiDeal, result: Deal) {
+    fun assertCommonProperties(
+        deal: ApiDeal,
+        result: Deal,
+    ) {
         result.id shouldBe deal.dealID
         result.storeId shouldBe deal.storeID
         result.gameId shouldBe deal.gameID

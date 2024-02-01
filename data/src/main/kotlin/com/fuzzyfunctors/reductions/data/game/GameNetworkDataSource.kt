@@ -11,7 +11,6 @@ import com.fuzzyfunctors.reductions.data.network.toEither
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 
 class GameNetworkDataSource(private val networkService: CheapSharkService) {
-
     suspend fun getGameInfo(gameId: GameId): Either<LoadingFailure.Remote, Game> =
         networkService.getGame(gameId)
             .toEither()

@@ -8,7 +8,6 @@ import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import kotlinx.coroutines.flow.Flow
 
 interface GameRepository {
-
     fun getGame(id: GameId): Flow<Game?>
 
     suspend fun fetchGame(id: GameId): LoadingFailure.Remote?

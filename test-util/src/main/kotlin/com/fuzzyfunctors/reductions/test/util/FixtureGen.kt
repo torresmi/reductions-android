@@ -20,12 +20,11 @@ inline fun <reified A> arb(
         }
     }
 
-    override fun edgecase(rs: RandomSource): A? =
-        if (edgecases.isNotEmpty()) {
-            edgecases.random(rs.random)
-        } else {
-            null
-        }
+    override fun edgecase(rs: RandomSource): A? = if (edgecases.isNotEmpty()) {
+        edgecases.random(rs.random)
+    } else {
+        null
+    }
 
     override fun sample(rs: RandomSource): Sample<A> {
         randomSource = rs

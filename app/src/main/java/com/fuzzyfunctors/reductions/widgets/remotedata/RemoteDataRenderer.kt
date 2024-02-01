@@ -3,7 +3,6 @@ package com.fuzzyfunctors.reductions.widgets.remotedata
 import remotedata.RemoteData
 
 interface RemoteDataRenderer {
-
     fun showNotAskedView()
 
     fun showLoading()
@@ -12,7 +11,10 @@ interface RemoteDataRenderer {
 
     fun showFailure(failureMessage: String? = null)
 
-    fun <E : Any, A : Any> bind(data: RemoteData<E, A>, onSuccess: (A) -> Unit) = bind(
+    fun <E : Any, A : Any> bind(
+        data: RemoteData<E, A>,
+        onSuccess: (A) -> Unit,
+    ) = bind(
         data,
         { null },
         onSuccess,

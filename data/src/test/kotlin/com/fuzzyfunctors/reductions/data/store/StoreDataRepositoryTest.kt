@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.single
 
 class StoreDataRepositoryTest : DescribeSpec() {
-
     val mockStoreNetworkDataSource = mockk<StoreNetworkDataSource>()
     val mockMemoryReactiveStore = mockk<MemoryReactiveStore<StoreId, Store>>(relaxUnitFun = true)
 

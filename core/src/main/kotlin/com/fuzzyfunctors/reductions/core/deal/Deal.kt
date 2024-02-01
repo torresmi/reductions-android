@@ -19,7 +19,6 @@ data class Deal(
     val lastChange: Date?,
     val iconLink: String,
 ) {
-
     data class SaleData(
         val price: String,
         val savings: String,

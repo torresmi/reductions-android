@@ -13,7 +13,6 @@ import org.koin.test.KoinTest
 import org.koin.test.check.checkModules
 
 class KoinSetupTest : DescribeSpec(), KoinTest {
-
     private val modules = Modules.get(false)
 
     override fun extensions() = listOf(

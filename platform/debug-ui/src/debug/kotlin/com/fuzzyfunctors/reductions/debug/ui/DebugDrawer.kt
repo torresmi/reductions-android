@@ -18,7 +18,6 @@ import com.pandulapeter.beagle.modules.ScreenCaptureToolboxModule
 import com.pandulapeter.beagle.modules.TextModule
 
 object DebugDrawer : DebugUI {
-
     override fun initialize(application: Application) {
         Beagle.initialize(
             application,
@@ -44,7 +43,6 @@ object DebugDrawer : DebugUI {
     private fun setupModules(resources: Resources) {
         Beagle.set(
             HeaderModule(resources.getString(R.string.debug_drawer_title)),
-
             // UI
             TextModule(
                 resources.getString(R.string.debug_drawer_ui_section_title),
@@ -53,7 +51,6 @@ object DebugDrawer : DebugUI {
             KeylineOverlaySwitchModule(),
             AnimationDurationSwitchModule(),
             ScreenCaptureToolboxModule(),
-
             // Logging
             TextModule(
                 resources.getString(R.string.debug_drawer_logs_section_title),
@@ -61,7 +58,6 @@ object DebugDrawer : DebugUI {
             ),
             LogListModule(),
             LifecycleLogListModule(),
-
             // Info
             TextModule(
                 resources.getString(R.string.debug_drawer_device_section_title),
