@@ -18,7 +18,6 @@ class DealDataRepository(
     private val dealsMemoryReactiveStore: ReactiveStore<DealType, DealTypeData>,
     private val dealInfoMemoryReactiveStore: ReactiveStore<DealId, DealInfo>,
 ) : DealRepository {
-
     // Keep requests ordered for pagination
     private val topDealsDispatcher = createNewSingleThreadDispatcher()
     private val newestGameDealsDispatcher = createNewSingleThreadDispatcher()
@@ -48,10 +47,9 @@ class DealDataRepository(
 
     override suspend fun fetchMostSavingsDeals(
         options: DealRepository.Options,
-    ): LoadingFailure.Remote? =
-        withContext(mostSavingsDealsDispatcher) {
-            fetchDealsForType(DealType.MOST_SAVINGS, options)
-        }
+    ): LoadingFailure.Remote? = withContext(mostSavingsDealsDispatcher) {
+        fetchDealsForType(DealType.MOST_SAVINGS, options)
+    }
 
     override fun getDealInfo(id: DealId): Flow<DealInfo?> = dealInfoMemoryReactiveStore.get(id)
 
@@ -66,9 +64,10 @@ class DealDataRepository(
             }
         }
 
-    private fun getDealsForType(type: DealType): Flow<List<Deal>?> =
-        dealsMemoryReactiveStore.get(type)
-            .map { it?.deals }
+    private fun getDealsForType(type: DealType): Flow<List<Deal>?> = dealsMemoryReactiveStore.get(
+        type,
+    )
+        .map { it?.deals }
 
     private suspend fun fetchDealsForType(
         type: DealType,
@@ -102,7 +101,10 @@ class DealDataRepository(
 private class Paginator {
     private val pages = HashMap<DealType, Int?>()
 
-    fun getPageforOptions(dealType: DealType, options: DealRepository.Options): Int? {
+    fun getPageforOptions(
+        dealType: DealType,
+        options: DealRepository.Options,
+    ): Int? {
         val currentPage = pages[dealType]
         return if (options.continuePagination) {
             currentPage?.plus(1)
@@ -111,7 +113,10 @@ private class Paginator {
         }
     }
 
-    fun onSuccessfulResponse(dealType: DealType, options: DealRepository.Options) {
+    fun onSuccessfulResponse(
+        dealType: DealType,
+        options: DealRepository.Options,
+    ) {
         val nextPage = if (options.continuePagination) {
             val currentPage = pages[dealType]
             currentPage?.plus(1) ?: 1

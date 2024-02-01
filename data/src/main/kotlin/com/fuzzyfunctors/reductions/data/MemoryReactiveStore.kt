@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.onStart
 import java.util.concurrent.ConcurrentHashMap
 
 class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : ReactiveStore<K, V> {
-
     private val cache = ConcurrentHashMap<K, V>()
 
     private val itemsStateFlow = MutableStateFlow<Set<V>?>(null)
@@ -28,12 +27,11 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
         updateExistingChannels()
     }
 
-    override fun get(key: K): Flow<V?> =
-        getOrCreateStateFlow(key)
-            .onStart {
-                val item = cache[key]
-                emit(item)
-            }
+    override fun get(key: K): Flow<V?> = getOrCreateStateFlow(key)
+        .onStart {
+            val item = cache[key]
+            emit(item)
+        }
 
     override fun get(): Flow<Set<V>?> = itemsStateFlow
         .onStart { emit(getAllItems()) }
@@ -59,7 +57,10 @@ class MemoryReactiveStore<K, V>(private inline val keyForItem: (V) -> K) : React
         }
     }
 
-    private fun updateItemChannel(key: K, item: V?) {
+    private fun updateItemChannel(
+        key: K,
+        item: V?,
+    ) {
         itemStateFlows[key]?.tryEmit(item)
     }
 }

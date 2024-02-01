@@ -3,7 +3,6 @@ package com.fuzzyfunctors.reductions.data
 import kotlinx.coroutines.flow.Flow
 
 interface ReactiveStore<K, V> {
-
     fun store(item: V)
 
     fun store(items: Collection<V>)

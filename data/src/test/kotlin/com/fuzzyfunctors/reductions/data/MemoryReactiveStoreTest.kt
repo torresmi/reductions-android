@@ -6,7 +6,6 @@ import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.first
 
 class MemoryReactiveStoreTest : DescribeSpec() {
-
     override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
     init {

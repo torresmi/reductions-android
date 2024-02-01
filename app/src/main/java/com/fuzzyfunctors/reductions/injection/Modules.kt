@@ -99,7 +99,6 @@ private const val MEMORY_STORE_DEALS = "storeMemoryDeals"
 private const val MEMORY_STORE_DEAL = "storeMemoryDeal"
 
 object Modules {
-
     fun get(isDebug: Boolean): List<Module> {
         logcat { "isDebug: $isDebug" }
         return listOf(

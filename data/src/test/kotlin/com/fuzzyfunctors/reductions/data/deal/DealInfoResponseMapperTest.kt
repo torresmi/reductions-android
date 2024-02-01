@@ -10,7 +10,6 @@ import io.kotest.matchers.shouldNotBe
 import java.util.Date
 
 class DealInfoResponseMapperTest : DescribeSpec() {
-
     val dealId = kotlinFixture().invoke<String>()
 
     init {
@@ -92,7 +91,10 @@ class DealInfoResponseMapperTest : DescribeSpec() {
         }
     }
 
-    fun assertCommonProperties(response: DealInfoResponse, result: DealInfo) {
+    fun assertCommonProperties(
+        response: DealInfoResponse,
+        result: DealInfo,
+    ) {
         result.id shouldBe dealId
         result.storeId shouldBe response.gameInfo.storeID
         result.gameId shouldBe response.gameInfo.gameID

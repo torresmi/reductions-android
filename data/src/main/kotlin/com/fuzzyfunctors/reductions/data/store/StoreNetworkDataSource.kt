@@ -8,11 +8,9 @@ import com.fuzzyfunctors.reductions.data.network.toEither
 import com.fuzzyfunctors.reductions.domain.LoadingFailure
 
 class StoreNetworkDataSource(private val networkService: CheapSharkService) {
-
-    suspend fun getStores(): Either<LoadingFailure.Remote, List<Store>> =
-        networkService.getStores()
-            .toEither()
-            .map { stores ->
-                stores.map { it.toCore() }
-            }
+    suspend fun getStores(): Either<LoadingFailure.Remote, List<Store>> = networkService.getStores()
+        .toEither()
+        .map { stores ->
+            stores.map { it.toCore() }
+        }
 }

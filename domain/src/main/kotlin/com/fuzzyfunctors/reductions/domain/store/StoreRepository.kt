@@ -6,7 +6,6 @@ import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import kotlinx.coroutines.flow.Flow
 
 interface StoreRepository {
-
     fun getStore(id: StoreId): Flow<Store?>
 
     fun getStores(): Flow<Set<Store>?>

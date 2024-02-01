@@ -25,7 +25,6 @@ import java.net.HttpURLConnection
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class DealDataRepositoryTest : DescribeSpec() {
-
     override fun isolationMode(): IsolationMode? = IsolationMode.InstancePerLeaf
 
     val mockDealNetworkDataSource = mockk<DealNetworkDataSource>()

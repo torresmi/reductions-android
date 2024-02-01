@@ -12,7 +12,6 @@ class StoreDataRepository(
     private val networkDataSource: StoreNetworkDataSource,
     private val memoryStore: ReactiveStore<StoreId, Store>,
 ) : StoreRepository {
-
     override fun getStore(id: StoreId): Flow<Store?> = memoryStore.get(id)
 
     override fun getStores(): Flow<Set<Store>?> = memoryStore.get()

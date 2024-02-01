@@ -5,7 +5,6 @@ class GameInfoResponse(
     val cheapestPriceEver: CheapestPriceEver,
     val deals: List<Deal>,
 ) {
-
     data class Info(
         val title: String,
         val steamAppID: String?,

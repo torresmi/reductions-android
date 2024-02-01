@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.flowOf
 import java.net.HttpURLConnection
 
 class GameDataRepositoryTest : DescribeSpec() {
-
     val mockGameNetworkDataSource = mockk<GameNetworkDataSource>()
     val mockMemoryReactiveStore = mockk<MemoryReactiveStore<GameId, Game>>(relaxed = true)
 

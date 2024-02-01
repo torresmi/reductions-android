@@ -6,7 +6,6 @@ data class Store(
     val isActive: Int,
     val images: Images,
 ) {
-
     data class Images(
         val banner: String,
         val logo: String,

@@ -11,7 +11,6 @@ import com.fuzzyfunctors.reductions.domain.LoadingFailure
 import com.fuzzyfunctors.reductions.domain.deal.DealRepository.Options
 
 class DealNetworkDataSource(private val networkService: CheapSharkService) {
-
     suspend fun getDeals(
         options: Options,
         pageNumber: Int? = null,
@@ -29,7 +28,9 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
     }
 
     suspend fun getDeal(dealId: DealId): Either<LoadingFailure.Remote, DealInfo> =
-        networkService.getDeal(dealId)
+        networkService.getDeal(
+            dealId,
+        )
             .toEither()
             .map { it.toCore(dealId) }
 
@@ -39,7 +40,10 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         val intParams: Map<String, Int>?,
     )
 
-    private fun toParams(options: Options, pageNumber: Int? = null): Params {
+    private fun toParams(
+        options: Options,
+        pageNumber: Int? = null,
+    ): Params {
         val filters = options.filters
         val stringParams = mutableMapOf<String, String>()
         val boolParams = mutableMapOf<String, Boolean>()
@@ -66,18 +70,17 @@ class DealNetworkDataSource(private val networkService: CheapSharkService) {
         )
     }
 
-    private fun orderParamName(order: Options.Order): String =
-        when (order) {
-            Options.Order.DEAL_RATING -> OrderParam.DEAL_RATING.paramName
-            Options.Order.TITLE -> OrderParam.TITLE.paramName
-            Options.Order.SAVINGS -> OrderParam.SAVINGS.paramName
-            Options.Order.PRICE -> OrderParam.PRICE.paramName
-            Options.Order.METACRITIC -> OrderParam.METACRITIC.paramName
-            Options.Order.REVIEWS -> OrderParam.REVIEWS.paramName
-            Options.Order.RELEASE -> OrderParam.RELEASE.paramName
-            Options.Order.STORE -> OrderParam.STORE.paramName
-            Options.Order.RECENT -> OrderParam.RECENT.paramName
-        }
+    private fun orderParamName(order: Options.Order): String = when (order) {
+        Options.Order.DEAL_RATING -> OrderParam.DEAL_RATING.paramName
+        Options.Order.TITLE -> OrderParam.TITLE.paramName
+        Options.Order.SAVINGS -> OrderParam.SAVINGS.paramName
+        Options.Order.PRICE -> OrderParam.PRICE.paramName
+        Options.Order.METACRITIC -> OrderParam.METACRITIC.paramName
+        Options.Order.REVIEWS -> OrderParam.REVIEWS.paramName
+        Options.Order.RELEASE -> OrderParam.RELEASE.paramName
+        Options.Order.STORE -> OrderParam.STORE.paramName
+        Options.Order.RECENT -> OrderParam.RECENT.paramName
+    }
 
     private enum class Param(val paramName: String) {
         STORE_ID("storeID"),

@@ -10,7 +10,9 @@ import androidx.compose.ui.res.stringResource
 import com.fuzzyfunctors.reductions.R
 
 // TODO Move to view model
-private enum class DealType(@StringRes val titleRes: Int) {
+private enum class DealType(
+    @StringRes val titleRes: Int,
+) {
     TOP(R.string.deals_top_title),
     NEWEST_GAMES(R.string.deals_newest_games_title),
     LATEST_DEALS(R.string.deals_latest_deals_title),
@@ -18,14 +20,17 @@ private enum class DealType(@StringRes val titleRes: Int) {
 }
 
 @Composable
-fun DealTabs(modifier: Modifier = Modifier, selectedIndex: Int = 0) {
+fun DealTabs(
+    modifier: Modifier = Modifier,
+    selectedIndex: Int = 0,
+) {
     TabRow(selectedTabIndex = selectedIndex, modifier = modifier) {
         DealType.values().forEachIndexed { index, type ->
             Tab(
                 text = { Text(stringResource(type.titleRes)) },
                 selected = index == selectedIndex,
                 onClick = {
-                    /*TODO*/
+                    // TODO
                 },
             )
         }

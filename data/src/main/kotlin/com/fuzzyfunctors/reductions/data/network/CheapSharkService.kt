@@ -13,7 +13,6 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface CheapSharkService {
-
     @GET("deals")
     suspend fun getDeals(
         @QueryMap stringParams: Map<String, String>,
@@ -22,7 +21,9 @@ interface CheapSharkService {
     ): Response<List<Deal>>
 
     @GET("deals")
-    suspend fun getDeal(@Query("id") dealId: DealId): Response<DealInfoResponse>
+    suspend fun getDeal(
+        @Query("id") dealId: DealId,
+    ): Response<DealInfoResponse>
 
     @GET("games")
     suspend fun searchGames(
@@ -33,7 +34,9 @@ interface CheapSharkService {
     ): Response<List<GameBestDeal>>
 
     @GET("games")
-    suspend fun getGame(@Query("id") gameId: GameId): Response<GameInfoResponse>
+    suspend fun getGame(
+        @Query("id") gameId: GameId,
+    ): Response<GameInfoResponse>
 
     @GET("stores")
     suspend fun getStores(): Response<List<Store>>

@@ -8,7 +8,6 @@ data class Store(
     val isActive: Boolean,
     val images: Images,
 ) {
-
     data class Images(
         val banner: String,
         val logo: String,

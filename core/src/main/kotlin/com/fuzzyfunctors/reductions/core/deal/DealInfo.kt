@@ -21,7 +21,6 @@ data class DealInfo(
     val cheaperStores: Map<StoreId, CheaperStore>,
     val cheapestPriceEver: CheapestPriceEver,
 ) {
-
     data class CheaperStore(
         val storeId: StoreId,
         val dealId: DealId,

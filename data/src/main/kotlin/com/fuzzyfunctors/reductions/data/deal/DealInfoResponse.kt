@@ -5,7 +5,6 @@ data class DealInfoResponse(
     val cheaperStores: List<CheaperStore>,
     val cheapestPrice: CheapestPrice,
 ) {
-
     data class GameInfo(
         val storeID: String,
         val gameID: String,

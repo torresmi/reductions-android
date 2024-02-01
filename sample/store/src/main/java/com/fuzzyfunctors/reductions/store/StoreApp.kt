@@ -9,7 +9,6 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 
 class StoreApp : Application() {
-
     private val flipper by inject<Flipper>()
 
     override fun onCreate() {
