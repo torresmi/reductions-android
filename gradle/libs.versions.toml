@@ -40,7 +40,7 @@ doctor = "com.osacky.doctor:0.9.1"
 
 androidx-compose-compiler = "1.4.4"
 
-androidx-compose-ui = "1.6.0"
+androidx-compose-ui = "1.6.1"
 
 android-tools = "8.2.2"
 
