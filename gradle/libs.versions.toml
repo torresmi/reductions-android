@@ -54,7 +54,7 @@ kotest = "5.8.0"
 
 kotlin = "1.8.10"
 
-kotlinx-coroutines = "1.7.3"
+kotlinx-coroutines = "1.8.0"
 
 okhttp = "4.12.0"
 
