@@ -86,7 +86,7 @@ beagle-log = { module = "io.github.pandulapeter.beagle:log", version.ref = "beag
 
 beagle-ui-drawer = { module = "io.github.pandulapeter.beagle:ui-drawer", version.ref = "beagle" }
 
-coil = "io.coil-kt:coil:2.5.0"
+coil = "io.coil-kt:coil:2.6.0"
 
 flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
 
