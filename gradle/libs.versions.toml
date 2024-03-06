@@ -42,11 +42,11 @@ androidx-compose-compiler = "1.4.4"
 
 androidx-compose-ui = "1.6.2"
 
-android-tools = "8.2.2"
+android-tools = "8.3.0"
 
 beagle = "2.9.2"
 
-flipper = "0.247.0"
+flipper = "0.249.0"
 
 koin = "3.5.3"
 
