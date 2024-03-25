@@ -26,7 +26,7 @@ android-lib = { id = "com.android.library", version.ref = "android-tools" }
 
 spotless = "com.diffplug.spotless:6.25.0"
 
-detekt = "io.gitlab.arturbosch.detekt:1.23.5"
+detekt = "io.gitlab.arturbosch.detekt:1.23.6"
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
