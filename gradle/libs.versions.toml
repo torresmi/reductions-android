@@ -98,7 +98,7 @@ flipper-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "fl
 
 fixture = "com.appmattus.fixture:fixture:1.2.0"
 
-koin-android = { module = "io.insert-koin:koin-android", version = "3.5.4" }
+koin-android = { module = "io.insert-koin:koin-android", version = "3.5.5" }
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 
