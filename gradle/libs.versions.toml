@@ -62,7 +62,7 @@ retrofit2 = "2.11.0"
 
 [libraries]
 
-androidx-activity-compose = "androidx.activity:activity-compose:1.8.2"
+androidx-activity-compose = "androidx.activity:activity-compose:1.9.0"
 
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 
