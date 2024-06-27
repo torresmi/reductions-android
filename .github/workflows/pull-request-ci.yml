@@ -12,7 +12,7 @@ jobs:
       action: ${{ steps.changes.outputs.action }}
       markdown: ${{ steps.changes.outputs.markdown }}
     steps:
-      - uses: dorny/paths-filter@v2
+      - uses: dorny/paths-filter@v3
         id: changes
         with:
           filters: |
