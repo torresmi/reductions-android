@@ -4,7 +4,7 @@ kotlin = "2.0.0"
 
 [libraries]
 
-android-tools-gradle-plugin = "com.android.tools.build:gradle:8.5.1"
+android-tools-gradle-plugin = "com.android.tools.build:gradle:8.5.2"
 
 arrow-analysis-gradle-plugin = "io.arrow-kt:arrow-analysis-kotlin-gradle-plugin:2.0.2"
 
