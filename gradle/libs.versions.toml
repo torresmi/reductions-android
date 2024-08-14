@@ -78,7 +78,7 @@ androidx-core-ktx = "androidx.core:core-ktx:1.13.1"
 
 androidx-test-rules = "androidx.test:rules:1.6.1"
 
-androidx-test-runner = "androidx.test:runner:1.6.1"
+androidx-test-runner = "androidx.test:runner:1.6.2"
 
 arrow-core = "io.arrow-kt:arrow-core:1.2.4"
 
