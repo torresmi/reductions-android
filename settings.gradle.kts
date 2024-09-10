@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("com.gradle.enterprise") version "3.18"
+    id("com.gradle.enterprise") version "3.18.1"
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
