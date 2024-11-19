@@ -44,7 +44,7 @@ androidx-compose-ui = "1.7.0"
 
 android-tools = "8.7.2"
 
-beagle = "2.9.4"
+beagle = "2.9.5"
 
 flipper = "0.267.1"
 
